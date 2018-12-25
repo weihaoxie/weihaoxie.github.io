@@ -126,7 +126,7 @@
 <meta property="og:image" content="http://weihaoxie.com/post/d5dc028e/7CD4259F-D646-4E52-8EAD-9737CADCB5F3.png">
 <meta property="og:image" content="http://weihaoxie.com/post/d5dc028e/801E5093-B636-4793-B608-631A0D54D3E9.png">
 <meta property="og:image" content="http://weihaoxie.com/post/d5dc028e/F57C46F9-E61A-47FD-A042-23872B64421B.png">
-<meta property="og:updated_time" content="2018-12-25T09:36:22.014Z">
+<meta property="og:updated_time" content="2018-12-25T09:37:48.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation">
 <meta name="twitter:description" content="该论文发表于MiCCAI2018 动机   在医疗图像领域，数据难获取，而且类内存在着很大的差异。为了缓解数据问题，作者在这篇文章中调查了通过仿真出来的数据，是否能够改善P-HNN模型在肺结节分割任务上的效果。 主要创新点 为了生成仿真数据，作者使用了GAN模型，有效地学习肺结节在3D空间中的属性分布。 为了让仿真的结节能够更好的融入到背景中去，作者使用了真结节的背景信息，即把真结节从图片中抠走。">
@@ -450,9 +450,9 @@
 <h3 id="主要创新点"><a href="#主要创新点" class="headerlink" title="主要创新点"></a>主要创新点</h3><ol>
 <li>为了生成仿真数据，作者使用了GAN模型，有效地学习肺结节在3D空间中的属性分布。</li>
 <li>为了让仿真的结节能够更好的融入到背景中去，作者使用了真结节的背景信息，即把真结节从图片中抠走。</li>
-<li>最后为了能够进一步让结节看起来更加的真实作者提出了一个新颖的multi-mask重构loss.<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h5 id="1-3D-CGAN-网络结构"><a href="#1-3D-CGAN-网络结构" class="headerlink" title="1.3D CGAN 网络结构"></a>1.3D CGAN 网络结构</h5></li>
+<li>最后为了能够进一步让结节看起来更加的真实作者提出了一个新颖的multi-mask重构loss.</li>
 </ol>
-<img src="/post/d5dc028e/FD03C352-C78D-49B5-A5C6-A5A7659F125A.png">
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h5 id="1-3D-CGAN-网络结构"><a href="#1-3D-CGAN-网络结构" class="headerlink" title="1.3D CGAN 网络结构"></a>1.3D CGAN 网络结构</h5><img src="/post/d5dc028e/FD03C352-C78D-49B5-A5C6-A5A7659F125A.png">
 <ol>
 <li>生成网络的输入是消除掉中心结节但是包含结节背景信息的图像。通过编码和解码过程，生成网络试图恢复消除掉的中心结节。</li>
 <li>判别器的输入包括了扣掉中心结节的图片以及原始图片。</li>
