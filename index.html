@@ -436,45 +436,15 @@
 
       
         
-          
-            <p>该论文发表于MiCCAI2018</p>
-<h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><p>   在医疗图像领域，数据难获取，而且类内存在着很大的差异。为了缓解数据问题，作者在这篇文章中调查了通过仿真出来的数据，是否能够改善P-HNN模型在肺结节分割任务上的效果。</p>
-<h3 id="主要创新点"><a href="#主要创新点" class="headerlink" title="主要创新点"></a>主要创新点</h3><ol>
-<li>为了生成仿真数据，作者使用了GAN模型，有效地学习肺结节在3D空间中的属性分布。</li>
-<li>为了让仿真的结节能够更好的融入到背景中去，作者使用了真结节的背景信息，即把真结节从图片中抠走。</li>
-<li>最后为了能够进一步让结节看起来更加的真实作者提出了一个新颖的multi-mask重构loss.</li>
-</ol>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><h5 id="1-3D-CGAN-网络结构"><a href="#1-3D-CGAN-网络结构" class="headerlink" title="1.3D CGAN 网络结构"></a>1.3D CGAN 网络结构</h5><img src="/post/d5dc028e/FD03C352-C78D-49B5-A5C6-A5A7659F125A.png">
-<ol>
-<li>生成网络的输入是消除掉中心结节但是包含结节背景信息的图像。通过编码和解码过程，生成网络试图恢复消除掉的中心结节。</li>
-<li>判别器的输入包括了扣掉中心结节的图片以及原始图片。</li>
-<li>在生成网络的解码器的前两个卷积层作者加入了dropout.</li>
-<li>作者在网络中利用strided卷积代替了pooling层。 包括生成网络的编码器，以及判别网络。并在strided 卷积后使用了Leaky relu激活函数。</li>
-<li>在生成器的最后一层作者使用了Tanh激活函数</li>
-</ol>
-<h5 id="2-模型loss"><a href="#2-模型loss" class="headerlink" title="2.模型loss"></a>2.模型loss</h5><ol>
-<li>CGAN loss<img src="/post/d5dc028e/1FB24B6C-CC1D-4979-8F83-CBA7348660AA.png"></li>
-<li>multi-mask L1 loss<img src="/post/d5dc028e/5435D297-E905-4D08-9852-80300A39C660.png">
-这里的M表示消除掉的结节位置，N是对M进行膨胀后的结果。<br>这里的multi-mask是指对消除掉的结节位置的重构loss以及对其膨胀后膨胀位置像素的重构loss，分别赋予不同的loss 权重。比较合适的是3到6个。这里作者给前者赋予1.0，后者赋予5.0.</li>
-<li>这个模型的loss由这两部分加权构成<img src="/post/d5dc028e/FE56BEC5-47FD-44B0-8FE2-D43C1D99BD8F.png">
-loss包括了两部分，一部分是普通的CGAN loss；另一部分是multi-mask loss。这两部分的权重分别为1.0和100.0.</li>
-</ol>
-<h5 id="3-相关参数"><a href="#3-相关参数" class="headerlink" title="3.相关参数"></a>3.相关参数</h5><ol>
-<li>作者使用了标准的GAN训练方法，交替优化G和D。</li>
-<li>在训练G的时候，作者通过去最大化logD(x,G(x)),而不是去最小化log(1-D(x,G(x)))。</li>
-<li>作者使用了Adam优化方法，并设置初始学习率为0.0001，对于生成器动量参数设置为0.5，对于判别器动量参数设置为0.999。</li>
-</ol>
-<h5 id="4-数据和结果"><a href="#4-数据和结果" class="headerlink" title="4.数据和结果"></a>4.数据和结果</h5><h6 id="作者使用了LIDC数据集对GAN模型进行训练"><a href="#作者使用了LIDC数据集对GAN模型进行训练" class="headerlink" title="作者使用了LIDC数据集对GAN模型进行训练"></a>作者使用了LIDC数据集对GAN模型进行训练</h6><p>1.真实结节从ct图像中crop出来，crop的3个纬度的是结节直径的3到3.5倍大。最后将crop出来的图片缩放到64X64X64。<br>2.消除掉结节的输入图片，由真实结节图片消除掉中心直径为32的球体生成。<br>3.对于结节直接小于5mm的，不用于训练GAN.<br><img src="/post/d5dc028e/7CD4259F-D646-4E52-8EAD-9737CADCB5F3.png"><br>(c) 用全图的L1loss,不用判别网络<br>(d) 用了GAN和全图的L1 loss<br>(e) 用了GAN和中心消除位置的L1 loss<br>(f) 用了GAN和multi-mask L1 loss</p>
-<h6 id="利用训练好的GAN模型生成一些仿真结节，用于fine-tune-P-HNN模型"><a href="#利用训练好的GAN模型生成一些仿真结节，用于fine-tune-P-HNN模型" class="headerlink" title="利用训练好的GAN模型生成一些仿真结节，用于fine-tune P-HNN模型"></a>利用训练好的GAN模型生成一些仿真结节，用于fine-tune P-HNN模型</h6><p>P-HNN模型在之前的实验中对于在肺壁的结节分割效果较差，主要原因是训练数据中缺少肺壁附近的结节。</p>
-<ol>
-<li>作者首先从LIDC数据集中挑选了34张图，了解数据中缺少的外围结节大致是如何的。</li>
-<li>然后从相对健康的CT影像中挑选42个。并从其中随机挑选了30个类似的位置。每个位置距离肺壁距离在8到20mm之间。crop图片的大小为32到80mm之间。</li>
-<li>接着将crop的图片缩放到64X64X64。生成仿真数据之后，再将其缩放回去，然后黏贴回原来的位置。</li>
-<li>最后利用他们来fine-tune P-HNN模型。</li>
-</ol>
-<p>最后的结果显示，生成的结节确实可以提高分割效果。<br><img src="/post/d5dc028e/801E5093-B636-4793-B608-631A0D54D3E9.png"><br><img src="/post/d5dc028e/F57C46F9-E61A-47FD-A042-23872B64421B.png"></p>
-
-          
+          <p>该论文发表于MiCCAI2018</p>
+<h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><p>   在医疗图像领域，数据难获取，而且类内存在着很大的差异。为了缓解数据问题，作者在这篇文章中调查了通过仿真出来的数据，是否能够改善P-HNN模型在肺结节分割任务上的效果。<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/post/d5dc028e.html#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1463,6 +1433,28 @@ loss包括了两部分，一部分是普通的CGAN loss；另一部分是multi-m
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'dDMmq0DW49bHRqpGFYVG1fL3-gzGzoHsz',
+        appKey: 'AJn1qT41p5yskDanCSWnCuaN',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
