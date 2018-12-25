@@ -111,18 +111,18 @@
 
 
 
-<meta name="description" content="object detection（rcnn,the way to endtoend）基础概念 mAP（mean average precision）   precision：检测出相关的内容占检测出的内容的比例。 average precision：举个例子，比如说当前文档相关的主题有5个，检测出了3个，其中3个相关的主题rank分别为2,3,4，则这个文档的average precision就是">
+<meta name="description" content="object detection（rcnn,the way to endtoend）本文主要简单介绍了rcnn如何一步步改进到支持端到端训练的faster-rcnn。">
 <meta name="keywords" content="object detection,rcnn,spp-net,fast rcnn,faster rcnn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="object detection">
 <meta property="og:url" content="http://weihaoxie.com/post/4ec81054.html">
 <meta property="og:site_name" content="xieweihao&#39;s blog">
-<meta property="og:description" content="object detection（rcnn,the way to endtoend）基础概念 mAP（mean average precision）   precision：检测出相关的内容占检测出的内容的比例。 average precision：举个例子，比如说当前文档相关的主题有5个，检测出了3个，其中3个相关的主题rank分别为2,3,4，则这个文档的average precision就是">
+<meta property="og:description" content="object detection（rcnn,the way to endtoend）本文主要简单介绍了rcnn如何一步步改进到支持端到端训练的faster-rcnn。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-24T10:31:59.500Z">
+<meta property="og:updated_time" content="2018-12-25T12:54:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="object detection">
-<meta name="twitter:description" content="object detection（rcnn,the way to endtoend）基础概念 mAP（mean average precision）   precision：检测出相关的内容占检测出的内容的比例。 average precision：举个例子，比如说当前文档相关的主题有5个，检测出了3个，其中3个相关的主题rank分别为2,3,4，则这个文档的average precision就是">
+<meta name="twitter:description" content="object detection（rcnn,the way to endtoend）本文主要简单介绍了rcnn如何一步步改进到支持端到端训练的faster-rcnn。">
 
 
 
@@ -437,7 +437,8 @@
       
 
       
-        <h2 id="object-detection（rcnn-the-way-to-endtoend）"><a href="#object-detection（rcnn-the-way-to-endtoend）" class="headerlink" title="object detection（rcnn,the way to endtoend）"></a>object detection（rcnn,the way to endtoend）</h2><h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><ol>
+        <h2 id="object-detection（rcnn-the-way-to-endtoend）"><a href="#object-detection（rcnn-the-way-to-endtoend）" class="headerlink" title="object detection（rcnn,the way to endtoend）"></a>object detection（rcnn,the way to endtoend）</h2><p>本文主要简单介绍了rcnn如何一步步改进到支持端到端训练的faster-rcnn。<br><a id="more"></a></p>
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><ol>
 <li>mAP（mean average precision）</li>
 </ol>
 <ul>
