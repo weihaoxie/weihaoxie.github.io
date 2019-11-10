@@ -116,11 +116,11 @@
                 
                     <ul class="sub hide">
                         
-                        <li><div data-rel="目标检测">目标检测<small>(2)</small></div>
+                        <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
                             
                         </li>
                             
-                        <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
+                        <li><div data-rel="目标检测">目标检测<small>(2)</small></div>
                             
                         </li>
                             
@@ -157,7 +157,7 @@
     <div><a class="about  hasFriend  site_url" href="/about">关于</a><a style="width: 50%" class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="10">
-<input type="hidden" id="yelog_site_word_count" value="9.6k">
+<input type="hidden" id="yelog_site_word_count" value="9.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -191,14 +191,6 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">object detection</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">rcnn</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">GAN</a>
     </li>
     
@@ -208,6 +200,14 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">segmentation</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">object detection</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">rcnn</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -244,19 +244,19 @@
     
     <nav id="title-list-nav">
         
-        <a class="深度学习 目标检测 " href="/post/2f9d64a9.html" data-tag="object detection,rcnn" data-author="">
-            <span class="post-title" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</span>
-            <span class="post-date" title="2019-11-10 21:03:14">2019/11/10</span>
-        </a>
-        
         <a class="深度学习 医学图像处理 " href="/post/d5dc028e.html" data-tag="GAN,lung nodule,segmentation" data-author="">
             <span class="post-title" title="CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation">CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation</span>
             <span class="post-date" title="2018-12-25 16:31:29">2018/12/25</span>
         </a>
         
-        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
+        <a class="深度学习 目标检测 " href="/post/2f9d64a9.html" data-tag="object detection,rcnn" data-author="">
+            <span class="post-title" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</span>
+            <span class="post-date" title="2019-11-10 21:03:14">2019/11/10</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/4ec81054.html" data-tag="object detection,rcnn,spp-net,fast rcnn,faster rcnn" data-author="">
+            <span class="post-title" title="object detection">object detection</span>
+            <span class="post-date" title="2016-12-04 11:43:01">2016/12/04</span>
         </a>
         
         <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
@@ -264,9 +264,9 @@
             <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
         </a>
         
-        <a class="深度学习 目标检测 " href="/post/4ec81054.html" data-tag="object detection,rcnn,spp-net,fast rcnn,faster rcnn" data-author="">
-            <span class="post-title" title="object detection">object detection</span>
-            <span class="post-date" title="2016-12-04 11:43:01">2016/12/04</span>
+        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
         </a>
         
         <a class="" href="/post/12fd4503.html" data-tag="" data-author="">
@@ -424,7 +424,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#object detection','#rcnn','#GAN','#lung nodule','#segmentation','#spp-net','#fast rcnn','#faster rcnn','#工具','#deep learning','#convolution neural network','#CNN',],
+            'data': ['#GAN','#lung nodule','#segmentation','#object detection','#rcnn','#spp-net','#fast rcnn','#faster rcnn','#工具','#deep learning','#convolution neural network','#CNN',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
