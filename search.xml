@@ -32,8 +32,8 @@
     <url>%2Fpost%2F4ec81054.html</url>
     <content type="text"><![CDATA[object detection（rcnn,the way to endtoend）本文主要简单介绍了rcnn如何一步步改进到支持端到端训练的faster-rcnn。 基础概念 mAP（mean average precision） precision：检测出相关的内容占检测出的内容的比例。 average precision：举个例子，比如说当前文档相关的主题有5个，检测出了3个，其中3个相关的主题rank分别为2,3,4，则这个文档的average precision就是(1/2+2/3+3/4+0+0)/5 。 mAP:则是每个文档的average precision的平均值。这里的文档对应于目标检测的每张图片，而相关主题则对应到图片中目标的个数 IoU（交并比） 两个区域的交集比上两个区域的并集 non maxinum supression 与得分最高的区域的IOU高于某个阈值时，将其排除掉 基于region proposeal加classification这一框架的几个重要工作1.rcnn 几个重要的创新 selection search提取候选区域 利用cnn 提取重要的特征（需要将特征保存到硬盘中，用于svm的训练） 利用svm对不同的候选框进行分类 利用回归来获取更加准确的位置 缺点： 训练需要分成多个阶段完成 训练和存储代价大 检测速度缓慢 2.spp-net 几个重要的贡献 rcnn速度缓慢的原因是它需要分别对每个proposal提取特征，而没有共享计算 输入整张图片，然后利用spp层提取不同尺度大小的featuremap，最后将它们级联起来，最后输出一个特定维度的特征向量。 spp-net使得rcnn在检测的时候提升了10到100倍。训练速度提升了3倍。 缺点 训练仍然需要多个阶段。仍然需要提取特征训练svm； 最后仍然需要利用回归模型来获取更加精确的定位。 需要将特征保存到硬盘中。 网络训练的时候梯度没法穿过spp层。 3.fast rcnn 解决需要将同张图的每个候选区域分别输入网络提取特征的问题直接输入原图，并利用cnn以及roipooling来提取每个roi区域的特征，并利用cnn对每个roi区域进行分类以及定位 roipooling层：单尺度的ssp层，输出特定大小的特征向量，类似于根据情况调整pooling层的kenal size。 多任务的loss：softmax层以及bounding box 回归 几个重要的贡献 提升了训练以及检测的速度。 训练只需要单个阶段就可以完成。使用了多任务的loss层。 可以调整网络的所有层。 不需要将特征保存到硬盘中 缺点： 仍然需要利用selection search 4.faster rcnn 提出了利用PRN来提取候选区域，并让PRN与fast rcnn共享网络。使得目标检测成为真正的一种endtoend的方式，并将速度进一步提升到可以进行实时检测的目的。]]></content>
       <categories>
-        <category>deep_learning</category>
-        <category>object_detection</category>
+        <category>深度学习</category>
+        <category>目标检测</category>
       </categories>
       <tags>
         <tag>object detection</tag>
