@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <title>xieweihao&#39;s blog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="xieweihao&#39;s blog">
+  <title>2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick | xieweihao&#39;s blog</title>
+  <meta name="keywords" content=" object detection , rcnn ">
+  <meta name="description" content="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick | xieweihao&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="xieweihao&#39;s blog">
@@ -49,7 +49,7 @@
 </div>
 
 <body>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><aside class="nav mobile">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
     <img class="avatar" src="/img/my_avatar.jpg">
@@ -304,12 +304,72 @@
         </div>
     </div>
 </aside>
-<div class="post index">
+<div class="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-2014-Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation-CVPR2014-Ross-Girshick" class="article article-type-post" itemscope="" itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于本博客"><span class="toc-text">关于本博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+        <h1 class="article-title">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="深度学习">深度学习</a>/
+            
+                <a href="javascript:" data-rel="目标检测">目标检测</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color2">object detection</a>
+            
+            <a href="javascript:" class="color5">rcnn</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title="更新时间: 2019-11-10 21:18:28">2019-11-10 21:03</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、背景及意义（动机）"><span class="toc-text">一、背景及意义（动机）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、使用什么方法来解决问题（创新点）"><span class="toc-text">二、使用什么方法来解决问题（创新点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、方法介绍"><span class="toc-text">三、方法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#R-CNN主要包括了3个模块："><span class="toc-text">R-CNN主要包括了3个模块：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监督预训练和指定领域的finetune"><span class="toc-text">监督预训练和指定领域的finetune</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#目标类别分类器"><span class="toc-text">目标类别分类器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、实验结果及重要结论"><span class="toc-text">四、实验结果及重要结论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PASCAL-VOC-2010-12测试集"><span class="toc-text">PASCAL VOC 2010-12测试集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ILSVRC2013检测数据集"><span class="toc-text">ILSVRC2013检测数据集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可视化学习到的特征"><span class="toc-text">可视化学习到的特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Ablation-studies"><span class="toc-text">Ablation studies</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#在没有fine-tuning的情况下，比较不同层特征带来的效果。"><span class="toc-text">在没有fine-tuning的情况下，比较不同层特征带来的效果。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#在fine-tuning的情况下，比较不同层特征带来的效果。"><span class="toc-text">在fine-tuning的情况下，比较不同层特征带来的效果。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#不同网络结构对结果的影响"><span class="toc-text">不同网络结构对结果的影响</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用Bounding-box-回归可以提高定位的准确率"><span class="toc-text">使用Bounding-box 回归可以提高定位的准确率</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -322,24 +382,74 @@
     }
 </style>
 </div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><p>通过博客来对自己工作学习中有价值的信息进行记录总结，便于自己查阅回顾，也希望能够对有需要的朋友有所帮助，更是希望能够结识更多志同道合的朋友。</p>
-<h2 id="关于本博客"><a href="#关于本博客" class="headerlink" title="关于本博客"></a>关于本博客</h2><p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源。十分感谢杨玉杰开源的这个主题，这个主题与我的需求十分切合。</p>
-<p>主要功能：</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h3><p>这篇论文中作者提出了一个很牛逼的目标检测算法R-CNN，直接将PASCAL VOC数据集上的最好性能提高了30%。将深度学习应用到目标检测，主要会面临两个挑战，一个是如何使用深度学习去定位目标位置；另一个是在数据缺乏的情况下如何训练高质量的模型。在这个方法中作者结合了两个关键的思想来解决这两个问题：1）为了去定位和分割目标，可以应用一个能力很强的卷积神经网络去筛选候选目标 2）当标注的训练数据缺乏的情况下，运用辅助任务进行监督预训练和指定任务的fine-tune，可以让性能有一定的提升。</p>
+<h3 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h3><ul>
+<li>创新点<br>1）提出一个能有效进行目标检出的框架RCNN，在PASCAL VOC 2012数据集上，将mAP提高30%<br>2）当标注的训练数据缺乏的情况下，运用辅助任务进行<strong>监督预训练</strong>和指定任务的fine-tune，可以让性能有一定的提升。将mAP提高了8个点。</li>
+<li>存在的问题<br>1）需要对候选区域的特征进行存储，需要较多存储空间<br>2）对每个候选区域都需要运行一次卷积神经网络来提取特征，速度慢</li>
+<li>重要结论<br>1）对于深层神经网络来说，越高层的特征越是任务相关的，而低层的特征则更加的通用。<h3 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h3><img src="/post/2f9d64a9/60C2B1DE-5087-4DB1-A7FF-9E37A633B311.png">
+<h4 id="R-CNN主要包括了3个模块："><a href="#R-CNN主要包括了3个模块：" class="headerlink" title="R-CNN主要包括了3个模块："></a>R-CNN主要包括了3个模块：</h4></li>
+</ul>
+<ol>
+<li>首先通过一个类别无关的proposal方法得到候选框。</li>
+</ol>
 <ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a href="http://yelog.org/2017/03/24/3-hexo-shortcuts/">3-hexo快捷键说明</a></li>
+<li>这里proposal方法作者主要使用了selective search，从每张图片中提取2000个候选框。</li>
+</ul>
+<ol start="2">
+<li>然后将候选框reshape到指定输入大小并用一个卷积神经网络提取固定长度的特征。最后利用SVM来对每个目标进行打分，每个类别训练一个svm。</li>
+</ol>
+<ul>
+<li>特征的提取主要使用了一个卷积神经网络，从每个区域提取4096维的特征。输入图片大小为227X227，预处理方式为减去均值图片，网络结构为5层卷积2层全连接层。</li>
+</ul>
+<ol start="3">
+<li>最后对每个类别运用非最大化抑制将冗余的检测框剔除掉。非最大化抑制主要是先找到得到最高的目标，如果它周围的目标的得分超过类别阈值，但是它与最好得分目标的IOU超过了某个阈值，那么将该目标剔除掉。<h4 id="监督预训练和指定领域的finetune"><a href="#监督预训练和指定领域的finetune" class="headerlink" title="监督预训练和指定领域的finetune"></a>监督预训练和指定领域的finetune</h4></li>
+<li>监督预训练：作者使用了ILSVRC2012作为辅助的数据集，并利用该数据集图像层面的标注训练一个分类模型。</li>
+<li>在检出训练集上进行finetune：将最后一层分类层替换为N+1类，其中1类为背景。将候选框与目标的IOU大于等于0.5作为正样本，其他作为负样本。利用先前的预训练模型来fine-tune，并把学习率设为原来的十分之一为0.001.在每次迭代中，均匀采阳32个正样本和96个负样本，batchsize大小为128。<h4 id="目标类别分类器"><a href="#目标类别分类器" class="headerlink" title="目标类别分类器"></a>目标类别分类器</h4></li>
+<li>fine-tune完之后，作者没有使用finetune的网络的结果作为最终的结果。而是利用fine-tune完成的网络作为特征提取器，并运用histogram intersection kernel svm分类器，来得到最终每个目标的类别。这里作者训练svm的时候将训练集和验证集一起拿来训练。</li>
+<li>这里负样本如何确定很关键，当使用IOU小于0.5为负样本时，mAP下降5个点，使用IOU<br>为0时为负样本，mAP下降4个点，最终作者通过网格搜索确定了IOU小于0.3为负样本最优。正样本则为ground-truth bounding boxes。</li>
+<li>最后作者采用hard negative mining方法来加速拟合。通过利用困难负样本挖掘，只需要跑一个epoch，svm就拟合完成了。</li>
+</ol>
+<h3 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h3><h4 id="PASCAL-VOC-2010-12测试集"><a href="#PASCAL-VOC-2010-12测试集" class="headerlink" title="PASCAL VOC 2010-12测试集"></a>PASCAL VOC 2010-12测试集</h4><p>对于VOC2010-12，作者使用VOC2012训练集进行finetune，使用VOC2012训练集和验证集训练SVM模型。<br><img src="/post/2f9d64a9/9CC8733B-7E4E-42F7-8883-16071AD41E8E.png"></p>
+<h4 id="ILSVRC2013检测数据集"><a href="#ILSVRC2013检测数据集" class="headerlink" title="ILSVRC2013检测数据集"></a>ILSVRC2013检测数据集</h4><img src="/post/2f9d64a9/1AA98F88-ECF5-460E-B945-1716902E643C.png">
+<p>在ILSVRC2013检测数据集上，OverFeat，NEC-MU,UvAEuvision，Toronto A 和UIUC-IFP都使用了卷积神经网络，但是效果却比作者的方法差很多，说明不同的用法对结果影响很大。</p>
+<h4 id="可视化学习到的特征"><a href="#可视化学习到的特征" class="headerlink" title="可视化学习到的特征"></a>可视化学习到的特征</h4><img src="/post/2f9d64a9/D112FB1E-2CD7-418F-BC34-CA312FBE1B65.png">
+<p>作者选取了pool5层中6个激活单元，作为proposal的得分，执行非最大化抑制，最后对所有的结果精细排序，选择了激活值最大的前16个图片进行可视化。说明学习到的特征具有较好的判别性。</p>
+<h4 id="Ablation-studies"><a href="#Ablation-studies" class="headerlink" title="Ablation studies"></a>Ablation studies</h4><img src="/post/2f9d64a9/3174984B-5572-4BC4-80C8-79C8F1D67CB2.png">
+<p>作者对fine-tune与不fine-tune不同网络层的特征进行了比对，发现pool5的特征相对于fc层比较通用，而fc层的特征则更多是任务相关的。</p>
+<h5 id="在没有fine-tuning的情况下，比较不同层特征带来的效果。"><a href="#在没有fine-tuning的情况下，比较不同层特征带来的效果。" class="headerlink" title="在没有fine-tuning的情况下，比较不同层特征带来的效果。"></a>在没有fine-tuning的情况下，比较不同层特征带来的效果。</h5><ul>
+<li>为了理解哪一层特征对于检出性能比较关键，作者分别用CNN（只使用ILSVRC2012进行预训练）的最后3层来测试VOC2007数据集上检出任务的效果。结果表明：pool5只使用了卷积特征就可以达到较好的效果，说明主要带来效果的是卷积层而不是全连接层；另外fc7要比fc6效果差，说明越高层的特征越是任务相关的。<h5 id="在fine-tuning的情况下，比较不同层特征带来的效果。"><a href="#在fine-tuning的情况下，比较不同层特征带来的效果。" class="headerlink" title="在fine-tuning的情况下，比较不同层特征带来的效果。"></a>在fine-tuning的情况下，比较不同层特征带来的效果。</h5></li>
+<li>利用VOC2007trainval集对模型进行finetune，并利用finetune好的模型的最后3层来测试VOC2007数据集上检出任务的效果。利用finetune后的特征来训练，mAP的提升十分明显，足足提升了8个点。finetune后fc6和fc7比起pool5层提升的效果更加明显，进一步说明越高层的特征越是任务相关的，而低层特征则是更加的通用。<h5 id="不同网络结构对结果的影响"><a href="#不同网络结构对结果的影响" class="headerlink" title="不同网络结构对结果的影响"></a>不同网络结构对结果的影响</h5><img src="/post/2f9d64a9/950B6E7F-961C-4485-9EF3-EAA4E7912EE2.png">
+T-net比O-net效果更好，但是也更加耗时<h5 id="使用Bounding-box-回归可以提高定位的准确率"><a href="#使用Bounding-box-回归可以提高定位的准确率" class="headerlink" title="使用Bounding-box 回归可以提高定位的准确率"></a>使用Bounding-box 回归可以提高定位的准确率</h5></li>
 </ul>
 
-        </article>
-        
-        <p>
-            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 524813168@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">1.6k</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-10, 21:03:14</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-10, 21:18:28</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/post/2f9d64a9.html" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">http://weihaoxie.com/post/2f9d64a9.html</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -359,6 +469,13 @@
         gitalk.render('comments')
     })
 </script>
+
+
+
+
+    
+
+
 
 
     </div>
