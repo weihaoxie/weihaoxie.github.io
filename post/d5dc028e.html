@@ -116,11 +116,11 @@
                 
                     <ul class="sub hide">
                         
-                        <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
+                        <li><div data-rel="目标检测">目标检测<small>(2)</small></div>
                             
                         </li>
                             
-                        <li><div data-rel="目标检测">目标检测<small>(2)</small></div>
+                        <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
                             
                         </li>
                             
@@ -249,6 +249,11 @@
             <span class="post-date" title="2018-12-25 16:31:29">2018/12/25</span>
         </a>
         
+        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
+        </a>
+        
         <a class="深度学习 目标检测 " href="/post/2f9d64a9.html" data-tag="object detection,rcnn" data-author="">
             <span class="post-title" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</span>
             <span class="post-date" title="2019-11-10 21:03:14">2019/11/10</span>
@@ -262,11 +267,6 @@
         <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
             <span class="post-title" title="sublime基础用法汇总">sublime基础用法汇总</span>
             <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
-        </a>
-        
-        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
         </a>
         
         <a class="" href="/post/12fd4503.html" data-tag="" data-author="">
@@ -336,7 +336,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-10 21:34:32">2018-12-25 16:31</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-10 21:35:43">2018-12-25 16:31</time>
         
     </div>
     <div class="article-meta">
@@ -393,9 +393,9 @@
 <li>为了生成仿真数据，作者使用了GAN模型，有效地学习肺结节在3D空间中的属性分布。</li>
 <li>为了让仿真的结节能够更好的融入到背景中去，作者使用了真结节的背景信息，即把真结节从图片中抠走。</li>
 <li>最后为了能够进一步让结节看起来更加的真实作者提出了一个新颖的multi-mask重构loss.<a id="more"></a>
-<h1 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h1></li>
+</li>
 </ol>
-<h2 id="3-1-3D-CGAN-网络结构"><a href="#3-1-3D-CGAN-网络结构" class="headerlink" title="3.1 3D CGAN 网络结构"></a>3.1 3D CGAN 网络结构</h2><img src="/post/d5dc028e/FD03C352-C78D-49B5-A5C6-A5A7659F125A.png">
+<h1 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h1><h2 id="3-1-3D-CGAN-网络结构"><a href="#3-1-3D-CGAN-网络结构" class="headerlink" title="3.1 3D CGAN 网络结构"></a>3.1 3D CGAN 网络结构</h2><img src="/post/d5dc028e/FD03C352-C78D-49B5-A5C6-A5A7659F125A.png">
 <ol>
 <li>生成网络的输入是消除掉中心结节但是包含结节背景信息的图像。通过编码和解码过程，生成网络试图恢复消除掉的中心结节。</li>
 <li>判别器的输入包括了扣掉中心结节的图片以及原始图片。</li>
@@ -441,7 +441,7 @@ loss包括了两部分，一部分是普通的CGAN loss；另一部分是multi-m
     <p><span class="copy-title">文章字数:</span><span class="post-count">1k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
     <p><span class="copy-title">发布时间:</span>2018-12-25, 16:31:29</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-10, 21:34:32</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-10, 21:35:43</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/post/d5dc028e.html" title="CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation">http://weihaoxie.com/post/d5dc028e.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
