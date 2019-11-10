@@ -157,7 +157,7 @@
     <div><a class="about  hasFriend  site_url" href="/about">关于</a><a style="width: 50%" class="friends">友链</a></div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="9">
-<input type="hidden" id="yelog_site_word_count" value="8.1k">
+<input type="hidden" id="yelog_site_word_count" value="8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -269,14 +269,14 @@
             <span class="post-date" title="2016-12-04 11:43:01">2016/12/04</span>
         </a>
         
-        <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
-            <span class="post-title" title="利用git来管理各种文档">利用git来管理各种文档</span>
-            <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
-        </a>
-        
         <a class="工作环境 " href="/post/78cc5777.html" data-tag="工具" data-author="">
             <span class="post-title" title="利用sublime文本编辑工具和markdown标记语言写印象笔记">利用sublime文本编辑工具和markdown标记语言写印象笔记</span>
             <span class="post-date" title="2016-11-17 22:32:59">2016/11/17</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用git来管理各种文档">利用git来管理各种文档</span>
+            <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
         </a>
         
         <a class="工作环境 " href="/post/d9ff40b9.html" data-tag="工具" data-author="">
@@ -329,12 +329,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-10 18:09:48">2019-02-28 21:31</time>
+        创建时间:<time class="date" title="更新时间: 2019-11-10 18:30:35">2019-02-28 21:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:3.4k</span>
+        <span>字数:3.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -398,7 +398,6 @@
 <div style="width: 250px; margin: auto"><img src="/post/0/图片21.png"></div><br>对于分类任务，损失函数一般选择交叉熵损失函数；对于回归任务，则一般为均方误差。<br><div style="width: 350px; margin: auto"><img src="/post/0/图片9.png"></div> <div align="center"> 图七.带有一层隐含层的前馈神经网络 </div>
 
 <h4 id="５-反向传播算法"><a href="#５-反向传播算法" class="headerlink" title="５.反向传播算法"></a>５.反向传播算法</h4><p>　　训练卷积神经网络是一个全局优化的问题，通过最小化损失函数，我们可以找到最合适的参数集。通常我们采用随机梯度下降方法来优化CNN网络。CNN网络中梯度的计算主要采用了反向传播算法，其中主要利用了链式法则来对不同网络层的权重进行求导。<br>下面给出反向传播的一个简单例子，假设我们的网络结构如图七所示并假设损失函数为<br>均方误差，则损失函数可以表示为：<br><img src="/post/0/图片23.png"><br>其中x是输入数据，y是其对应的标签；σ为激活函数，这里选取sigmoid函数为激活函数；W1，b1、W2，b2分别为第一层和第二层的权重和偏置项。我们将中间变量定义为：<br><img src="/post/0/图片24.png"><br>则其前向传播过程如下：<br><img src="/post/0/图片25.1.png"><br>对应的中间变量的梯度即反向传播如下:<br><img src="/post/0/图片26.png"><br>通过链式法则可以很容易计算到各个参数的梯度，如W2和b2的梯度：<br><img src="/post/0/图片27.png"><br><img src="/post/0/图片28.png"></p>
-<p>$$<br>\begin{eqnarray}<br>\nabla\cdot\vec{E} &amp;=&amp; \frac{\rho}{\epsilon_0} \\<br>\nabla\cdot\vec{B} &amp;=&amp; 0 \\<br>\nabla\times\vec{E} &amp;=&amp; -\frac{\partial B}{\partial t} \\<br>\nabla\times\vec{B} &amp;=&amp; \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)<br>\end{eqnarray}<br>$$</p>
 <p>[1] B. B. Le Cun, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, L. D. Jackel, Handwritten digit recognition with a back-propagation network, in: Proceedings of the Advances in Neural Information Processing Systems (NIPS), 1989, pp. 396–404.<br>[2] Y. LeCun, L. Bottou, Y. Bengio, P. Haffner, Gradient-based learning applied to document recognition, Proceedings of IEEE 86 (11) (1998) 2278–2324.<br>[3] R. Hecht-Nielsen, Theory of the backpropagation neural network, Neural Networks 1 (Supplement-1) (1988) 445–448.<br>[4] W. Zhang, K. Itoh, J. Tanida, Y. Ichioka, Parallel distributed processing model with local space-invariant interconnections and its optical architecture, Applied optics 29 (32) (1990) 4790–4797.<br>[5] X.-X. Niu, C. Y. Suen, A novel hybrid cnn–svm classifier for recognizing handwritten digits, Pattern Recognition 45 (4) (2012) 1318–1325.<br>[6] O. Russakovsky, J. Deng, H. Su, J. Krause, S. Satheesh, S. Ma, Z. Huang, A. Karpathy, A. Khosla, M. Bernstein, et al., Imagenet large scale visual recognition challenge, International Journal of Conflict and Violence (IJCV) 115 (3) (2015) 211–252.<br>[7] K. Simonyan, A. Zisserman, Very deep convolutional networks for large-scale image recognition, in: Proceedings of the International Conference on Learning Representations (ICLR), 2015.<br>[8] C. Szegedy, W. Liu, Y. Jia, P. Sermanet, S. Reed, D. Anguelov, D. Erhan, V. Vanhoucke, A. Rabinovich, Going deeper with convolutions, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015, pp. 1–9.<br>[9] M. D. Zeiler, R. Fergus, Visualizing and understanding convolutional networks, in: Proceedings of the European Conference on Computer Vision (ECCV), 2014, pp. 818–833.<br>[10] K. He, X. Zhang, S. Ren, J. Sun, Deep residual learning for image recognition, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016, pp. 770–778.</p>
 
       
@@ -414,10 +413,10 @@
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>卷积神经网络的基本概念</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">3.4k</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">3.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
     <p><span class="copy-title">发布时间:</span>2019-02-28, 21:31:29</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-10, 18:09:48</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-10, 18:30:35</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/post/0.html" title="卷积神经网络的基本概念">http://weihaoxie.com/post/0.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
