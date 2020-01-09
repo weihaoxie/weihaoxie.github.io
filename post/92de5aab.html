@@ -152,13 +152,13 @@
     
         
             
-        
-    
-        
-            
             <li><div data-rel="工作环境">工作环境<small>(3)</small></div>
                 
             </li>
+            
+        
+    
+        
             
         
     
@@ -297,19 +297,9 @@
             <span class="post-date" title="2016-12-04 11:43:01">2016/12/04</span>
         </a>
         
-        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
-        </a>
-        
         <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
             <span class="post-title" title="sublime基础用法汇总">sublime基础用法汇总</span>
             <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
-        </a>
-        
-        <a class="" href="/post/12fd4503.html" data-tag="" data-author="">
-            <span class="post-title" title="terminator+tmux打造超级终端">terminator+tmux打造超级终端</span>
-            <span class="post-date" title="2016-11-17 22:35:24">2016/11/17</span>
         </a>
         
         <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
@@ -317,9 +307,19 @@
             <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
         </a>
         
+        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
+        </a>
+        
         <a class="工作环境 " href="/post/78cc5777.html" data-tag="工具" data-author="">
             <span class="post-title" title="利用sublime文本编辑工具和markdown标记语言写印象笔记">利用sublime文本编辑工具和markdown标记语言写印象笔记</span>
             <span class="post-date" title="2016-11-17 22:32:59">2016/11/17</span>
+        </a>
+        
+        <a class="" href="/post/12fd4503.html" data-tag="" data-author="">
+            <span class="post-title" title="terminator+tmux打造超级终端">terminator+tmux打造超级终端</span>
+            <span class="post-date" title="2016-11-17 22:35:24">2016/11/17</span>
         </a>
         
         <a class="深度学习 " href="/post/0.html" data-tag="deep learning,convolution neural network,CNN" data-author="">
@@ -375,7 +375,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2020-01-09 17:55:53">2020-01-09 17:17</time>
+        创建时间:<time class="date" title="更新时间: 2020-01-09 17:58:52">2020-01-09 17:17</time>
         
     </div>
     <div class="article-meta">
@@ -438,7 +438,10 @@
 <li>在每个卷积和激活函数中间加入BN层。</li>
 <li>正则化：权重衰减系数为0.0001；动量参数为0.9；没使用dropout。</li>
 <li>优化方法：SGD;batch-size大小为256；起始学习率为0.1;学习率衰减方式为当误差无法下降的时候将学习率除以10;迭代次数为60* 10^4以上。</li>
-<li>参数的初始化方式参考：K. He, X. Zhang, S. Ren, and J. Sun. Delving deep into rectifiers: Surpassing human-level performance on imagenet classification. In ICCV, 2015.<br>测试时参数设置：</li>
+<li>参数的初始化方式参考：K. He, X. Zhang, S. Ren, and J. Sun. Delving deep into rectifiers: Surpassing human-level performance on imagenet classification. In ICCV, 2015. </li>
+</ul>
+<p>测试时参数设置：</p>
+<ul>
 <li>采用多种尺度的全卷积形式，然后将得分取平均。尺度包括将短边resize为{224,256,384,480,640}</li>
 </ul>
 <h3 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h3><img src="/post/92de5aab/C183D00E-CC2C-4412-B521-C224E7FB4821.png">
@@ -457,7 +460,7 @@
 <p>为了在控制的训练时间内，探索残差模块对训练更深网络的效用，作者使用了bottlenet结构，将每个残差模块中的2层卷积替换为3层卷积。先使用1x1卷积进行降维，之后再使用1X1卷积扩张维度。这样使得复杂度与原本2层结构相似。构建的网络结构如table1中50层resnet,101层resnet和152层resnet。从table3和table4中可以看出更深的网络效果更好，而且不会出现退化问题。table4为提到的方法与最先进的几个方法的对比，从结果可以看出resnet效果具有很大的提升。</p>
 <h4 id="4-2-CIFAR-10-分类任务"><a href="#4-2-CIFAR-10-分类任务" class="headerlink" title="4.2 CIFAR-10 分类任务"></a>4.2 CIFAR-10 分类任务</h4><p><strong>作者在CIFAR-10数据集上也得出了类似的结论另外作者也对响应值情况和是否能够训练更深的网络进行了探索:</strong><br><img src="/post/92de5aab/36D99014-228F-4EF3-8F67-20713F09DD73.png"></p>
 <ol>
-<li>作者也对卷积层的响应情况进行分析（fig7），并得出以下结论<br>1）相较于普通网络，resnet网络的响应值更加小。<br>2）层数更多的resnet，会产生更多小响应值。这两个结论与原本的动机想符合。</li>
+<li>作者也对卷积层的响应情况进行分析（fig7），并得出以下结论：<br>1）相较于普通网络，resnet网络的响应值更加小。<br>2）层数更多的resnet，会产生更多小响应值。这两个结论与原本的动机想符合。</li>
 <li>作者也尝试将网络层数增加到1000层，发现网络依然能够正常训练，说明残差结构对于训练深层网络是很有用的。</li>
 </ol>
 <h4 id="4-3-PASCAL-和-MSCOCO目标检测任务。"><a href="#4-3-PASCAL-和-MSCOCO目标检测任务。" class="headerlink" title="4.3 PASCAL 和 MSCOCO目标检测任务。"></a>4.3 PASCAL 和 MSCOCO目标检测任务。</h4><img src="/post/92de5aab/29CE9F3E-7B73-4BF3-981B-A287779C46D0.png">
@@ -479,7 +482,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">2k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
     <p><span class="copy-title">发布时间:</span>2020-01-09, 17:17:21</p>
-    <p><span class="copy-title">最后更新:</span>2020-01-09, 17:55:53</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-09, 17:58:52</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/post/92de5aab.html" title="2016_Deep Residual Learning for Image Recognition_CVPR2016_HeK et al">http://weihaoxie.com/post/92de5aab.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
