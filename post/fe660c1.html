@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <title>2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick | xieweihao&#39;s blog</title>
-  <meta name="keywords" content=" object detection , rcnn ">
-  <meta name="description" content="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick | xieweihao&#39;s blog">
+  <title>2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai | xieweihao&#39;s blog</title>
+  <meta name="keywords" content=" RFCN , two-setp detector ">
+  <meta name="description" content="2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai | xieweihao&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="xieweihao&#39;s blog">
@@ -362,9 +362,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-2014-Rich-feature-hierarchies-for-accurate-object-detection-and-semantic-segmentation-CVPR2014-Ross-Girshick" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <article id="post-2016-R-FCN-Object-Detection-via-Region-based-Fully-Convolutional-Networks-NIPS2016-Jifeng-Dai" class="article article-type-post" itemscope="" itemprop="blogPost">
     
-        <h1 class="article-title">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</h1>
+        <h1 class="article-title">2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai</h1>
     
     <div class="article-meta">
         
@@ -381,21 +381,21 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color2">object detection</a>
+            <a href="javascript:" class="color5">RFCN</a>
             
-            <a href="javascript:" class="color5">rcnn</a>
+            <a href="javascript:" class="color3">two-setp detector</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2019-11-10 21:28:00">2019-11-10 21:03</time>
+        创建时间:<time class="date" title="更新时间: 2020-01-10 13:28:30">2020-01-10 13:16</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.6k</span>
+        <span>字数:2.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -425,7 +425,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、背景及意义（动机）"><span class="toc-text">一、背景及意义（动机）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、使用什么方法来解决问题（创新点）"><span class="toc-text">二、使用什么方法来解决问题（创新点）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、方法介绍"><span class="toc-text">三、方法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-R-CNN主要包括了3个模块："><span class="toc-text">3.1 R-CNN主要包括了3个模块：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-监督预训练和指定领域的finetune"><span class="toc-text">3.2 监督预训练和指定领域的finetune</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-目标类别分类器"><span class="toc-text">3.3 目标类别分类器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、实验结果及重要结论"><span class="toc-text">四、实验结果及重要结论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-PASCAL-VOC-2010-12测试集"><span class="toc-text">4.1 PASCAL VOC 2010-12测试集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-ILSVRC2013检测数据集"><span class="toc-text">4.2 ILSVRC2013检测数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-可视化学习到的特征"><span class="toc-text">4.3 可视化学习到的特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-Ablation-studies"><span class="toc-text">4.4 Ablation studies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-1-在没有fine-tuning的情况下，比较不同层特征带来的效果。"><span class="toc-text">4.4.1 在没有fine-tuning的情况下，比较不同层特征带来的效果。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-2-在fine-tuning的情况下，比较不同层特征带来的效果。"><span class="toc-text">4.4.2 在fine-tuning的情况下，比较不同层特征带来的效果。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-3-不同网络结构对结果的影响"><span class="toc-text">4.4.3 不同网络结构对结果的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-4-使用Bounding-box-回归可以提高定位的准确率"><span class="toc-text">4.4.4 使用Bounding-box 回归可以提高定位的准确率</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、背景及意义（动机）"><span class="toc-text">一、背景及意义（动机）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、使用什么方法来解决问题（创新点）"><span class="toc-text">二、使用什么方法来解决问题（创新点）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、实现细节"><span class="toc-text">三、实现细节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Backbone-architeture"><span class="toc-text">3.1 Backbone architeture</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-Position-sensitive-score-maps-amp-Position-sensitive-RoI-pooling"><span class="toc-text">3.2 Position-sensitive score maps &amp; Position-sensitive RoI pooling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-孔洞卷积"><span class="toc-text">3.3 孔洞卷积</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-可视化"><span class="toc-text">3.4 可视化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、实验"><span class="toc-text">四、实验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-PASCAL-VOC目标检测任务"><span class="toc-text">4.1 PASCAL VOC目标检测任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-多种全卷积目标检测策略的比较"><span class="toc-text">4.1.1 多种全卷积目标检测策略的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-faster-R-CNN-Resnet101和RFCN-Resnet101的比较"><span class="toc-text">4.1.2 faster R-CNN+Resnet101和RFCN+Resnet101的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-MS-COCO目标检测任务"><span class="toc-text">4.2 MS COCO目标检测任务</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -441,53 +441,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h1><p>这篇论文中作者提出了一个很牛逼的目标检测算法R-CNN，直接将PASCAL VOC数据集上的最好性能提高了30%。将深度学习应用到目标检测，主要会面临两个挑战，一个是如何使用深度学习去定位目标位置；另一个是在数据缺乏的情况下如何训练高质量的模型。在这个方法中作者结合了两个关键的思想来解决这两个问题：1）为了去定位和分割目标，可以应用一个能力很强的卷积神经网络去筛选候选目标 2）当标注的训练数据缺乏的情况下，运用辅助任务进行监督预训练和指定任务的fine-tune，可以让性能有一定的提升。</p>
-<h1 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h1><ul>
-<li>创新点<br>1）提出一个能有效进行目标检出的框架RCNN，在PASCAL VOC 2012数据集上，将mAP提高30%<br>2）当标注的训练数据缺乏的情况下，运用辅助任务进行<strong>监督预训练</strong>和指定任务的fine-tune，可以让性能有一定的提升。将mAP提高了8个点。</li>
-<li>存在的问题<br>1）需要对候选区域的特征进行存储，需要较多存储空间<br>2）对每个候选区域都需要运行一次卷积神经网络来提取特征，速度慢</li>
-<li>重要结论<br>1）对于深层神经网络来说，越高层的特征越是任务相关的，而低层的特征则更加的通用。</li>
-</ul>
-<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><img src="/post/2f9d64a9/60C2B1DE-5087-4DB1-A7FF-9E37A633B311.png">
-<h2 id="3-1-R-CNN主要包括了3个模块："><a href="#3-1-R-CNN主要包括了3个模块：" class="headerlink" title="3.1 R-CNN主要包括了3个模块："></a>3.1 R-CNN主要包括了3个模块：</h2><ol>
-<li>首先通过一个类别无关的proposal方法得到候选框。</li>
-</ol>
+        <h1 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h1><p>先前主流的目标检测方法，都是使用了一个全图片共享计算的全卷积子网和一个没有共享计算的ROI分类子网。而最近最新的分类网络都被设计为全卷积网络,比如resnet。那是不是在目标检测也可以只使用全卷积网络来进行检测呢？但是直接运用全卷积网络效果并不理想，因为分类是希望变化不敏感的，而检测则是希望变换敏感的。之前resnet作者为了获得比较好的准确率将ROIpooling插入到某个卷积层中，这样将网络变换不敏感的全卷积子网和变换敏感的ROI子网，这样仍然与之前做法没区别，ROI子网仍然无法共享计算 。为此在这篇论文中，作者提出了基于区域的全卷积神经网络，用于更加准确，高效的目标检测任务。跟faster rcnn相比，RFCN不需要在每个区域运用一个子网络来对目标进行进一步的筛选，而是直接运用一个全图共享的全卷积神经网络直接得到结果，因此可以更快。为了达到这个目标，作者提出了一个位置敏感得分图，去解决在目标检测任务中，需要对变换敏感，而在分类任务中需要对变换不敏感这样一个两难的问题。该方法可以很自然地使用全卷积图像分类网络作为backbone。作者使用了resnet101，在PASCAL VOC数据集上达到了比较好的结果（在2007数据集上mAP为83.6%，在2012数据集上mAP为82.0%），并且速度比faster rcnn+resnet101快了2.5-20倍，平均每张图片只需170ms。</p>
+<p>代码:<img src="" alt="https://github.com/daijifeng001/r-fcn"></p>
+<h1 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h1><img src="/post/undefined/64285B25-5335-40DD-83AB-91208765B8E3.png">
+<p>为了解决分类网络对变换不敏感而检出任务则需要对变换敏感这个两难问题，作者使用一个指定通道数的卷积层作为全卷积网络的输出，该卷积层中每个通道都编码进了不同类型目标的位置信息，整个卷积层构成了位置敏感得分图。之后作者在该卷积层上面放置了位置敏感的池化层（RsROI pooling）去整合各个类型目标得分图的信息，这个操作并没有引入额外的参数。整个过程都是可以端到端训练并且是全卷积可共享计算的。<br>如Figure1所示，C为类别数，k为空间划分的粒度，也即将目标所在区域划分成k<em> k的网格，则每个目标将会有k^2个得分图，每个得分图对目标的不同位置做出响应，最终将会有(C+1)</em> k <em> k个得分图，多加的一类为背景。最后在RPN网络获取到候选目标位置的时候，会利用RsROI pooling将各个类别的各个位置的得分进行融合，作者采用取平均的方式，最后再使用softmax得到最终目标的分类置信度。对于目标的定位，作者也采用类似的方式，加多一个得分图分支，不过这里作者采用的是类别无关的方式，也即得分图通道数为4</em> k * k。</p>
+<h1 id="三、实现细节"><a href="#三、实现细节" class="headerlink" title="三、实现细节"></a>三、实现细节</h1><img src="/post/undefined/6B5EDDF9-3BD6-4F59-9799-972F05198BAB.png">
+<p>作者采用了2阶段的目标检测策略，先利用RPN网络得到候选框，然后再利用R-FCN对候选目标进一步的筛选和定位，整个检出系统如Figure2所示。<br>给定一个候选的ROI区域，R-FCN主要去区分该区域目标的类别以及精确定位目标。在R-FCN中，所有的可学习到的权重层都是卷积层。最后的卷积层为每个类别生成一个k平方channel的位置敏感得分图。这个得分图编码了位置信息进去。在位置敏感得分图之后，作者使用了一个RsROI pooling层去整合各个类别的各个位置的得分信息，最后再使用softmax得到每个类别的置信度。</p>
+<h2 id="3-1-Backbone-architeture"><a href="#3-1-Backbone-architeture" class="headerlink" title="3.1 Backbone architeture"></a>3.1 Backbone architeture</h2><p>作者采用ResNet-101作为backbone。首先利用Imagenet对其进行预训练，然后将最后的global average pooling和1000类的fc层移除，并在最后一层2048-d卷积层后放置一个通道数为1024-d的1x1卷积层对最后一层进行降维，最后再放置(c+1) <em> k </em> k-d的得分图。</p>
+<h2 id="3-2-Position-sensitive-score-maps-amp-Position-sensitive-RoI-pooling"><a href="#3-2-Position-sensitive-score-maps-amp-Position-sensitive-RoI-pooling" class="headerlink" title="3.2 Position-sensitive score maps &amp; Position-sensitive RoI pooling"></a>3.2 Position-sensitive score maps &amp; Position-sensitive RoI pooling</h2><p>为了编码位置信息到每个ROI区域，作者将ROI区域划分为$k <em> k$个网格。对于大小为$w </em> h$的ROI区域，每个网格大小约为为$(w/k) * (h/k)$。对于每个类别的每个网格信息，作者通过以下的RsPooling操作得到其得分：<br><img src="/post/undefined/78ECCD99-5E37-45D5-9309-1B02EF7BAA97.png"><br>这里$Z_{i,j,c}$是每个channel的响应值，$x_0$和$y_0$是ROI区域左上角的位置。每个类别每个位置$(i，j)$的得分，是通过将该类别的对应位置的channel取出来，然后将与该位置相关的响应值求和取平均得到。在得到每个位置的得分之后，最后的结果通过对所有位置求平均得到。然后得到每个类别的score之后，再利用softmax得到最后每个类别的概率。loss采用交叉熵loss。<br>对于回归任务的处理，作者也采用了类似的方式，但是使用了一个类别无关的回归策略，当然也可以使用一个类别相关的。为此接入的一个卷积层的channel数为4乘以k的平方。然后通过聚合每个位置每个坐标的得分，得到一个4维的向量。这里位置的变换参考R. Girshick. Fast R-CNN. In ICCV, 2015.</p>
+<h2 id="3-3-孔洞卷积"><a href="#3-3-孔洞卷积" class="headerlink" title="3.3 孔洞卷积"></a>3.3 孔洞卷积</h2><img src="/post/undefined/6B2A747A-6998-4C59-BAF7-51090E4AD8FF.png">
+<p>在FCN中使用孔洞卷积可以提高语义分割的效果。由于现在模型也是全卷积的形式，也可以利用孔洞卷积带来的增益。另外作者也将resnet101的stride从原来的32变成16，以此来增加得分图的分辨率。在conv4 stage及之前的卷积作者保持不变，而conv5的第一个block作者将stride从原来的2调整为1，并将conv5 stage的所有的卷积滤波器变成了孔洞卷积。作者将RPN放在了conv4 stage上，这样做也方便与之前resnet101+faster rcnn比较。最后作者通过实验发现使用孔洞卷积，mAP可以提高2.6个点。</p>
+<h2 id="3-4-可视化"><a href="#3-4-可视化" class="headerlink" title="3.4 可视化"></a>3.4 可视化</h2><img src="/post/undefined/B0105F1E-D372-4A99-BC0A-51768AB0A681.png">
+<p>Figure3和Figure4给出了当目标在ROI区域内和不在ROI区域内得分图的情况.可以看到，当目标在ROI区域内时各个位置得分都比较高，最后融合后最终的得分相应的也高；而当目标偏离ROI区域的时候，有些位置的得分就偏低，最后融合后最终的得分相应的也低。</p>
+<h1 id="四、实验"><a href="#四、实验" class="headerlink" title="四、实验"></a>四、实验</h1><h2 id="4-1-PASCAL-VOC目标检测任务"><a href="#4-1-PASCAL-VOC目标检测任务" class="headerlink" title="4.1 PASCAL VOC目标检测任务"></a>4.1 PASCAL VOC目标检测任务</h2><p>训练相关设置：</p>
 <ul>
-<li>这里proposal方法作者主要使用了selective search，从每张图片中提取2000个候选框。</li>
+<li>目标函数：<img src="/post/undefined/F7562CD0-3CE5-4329-AC8D-01C2CA85C09E.png"><br>这里$C^<em>$为类别标签,$C^</em>=0$表示背景;$t^*$为grouth truth box。分类损失函数为交叉熵；回归才是smooth-L1。</li>
+<li>k * k = 7 x 7</li>
+<li>正负样本构建准则:<br>正样本为与ground-truth box的IOU大于0.5的侯选框，其它为负样本。训练的时候选择128个候选框进行训练。</li>
+<li>OHEM方式训练：训练的时候采用在线困难样本挖掘进行训练。该方法有个特别好的优势就是在困难样本挖掘的时候，基本不需要什么计算量。</li>
+<li>正则化：权重衰减系数为0.0005，动量为0.9</li>
+<li>预处理：将图片短边缩放为600，采用单尺度训练。多尺度训练使用的尺度为{400,500,600,700,800}</li>
+<li>学习率：在voc上，前20k次迭代学习率为0.001，后10k次迭代学习率为0.0001.</li>
+<li>batch-size：8个gpu每个gpu一张图片</li>
+<li>采用faster rcnn提到的4-step交替训练，训练RPN和R-FCN。</li>
 </ul>
-<ol start="2">
-<li>然后将候选框reshape到指定输入大小并用一个卷积神经网络提取固定长度的特征。最后利用SVM来对每个目标进行打分，每个类别训练一个svm。</li>
-</ol>
+<p>推断相关设置：</p>
 <ul>
-<li>特征的提取主要使用了一个卷积神经网络，从每个区域提取4096维的特征。输入图片大小为227X227，预处理方式为减去均值图片，网络结构为5层卷积2层全连接层。</li>
+<li>在短边为600的图片上获取300个候选，并使用IOU为0.3的NMS进行过滤</li>
 </ul>
-<ol start="3">
-<li>最后对每个类别运用非最大化抑制将冗余的检测框剔除掉。非最大化抑制主要是先找到得到最高的目标，如果它周围的目标的得分超过类别阈值，但是它与最好得分目标的IOU超过了某个阈值，那么将该目标剔除掉。</li>
-</ol>
-<h2 id="3-2-监督预训练和指定领域的finetune"><a href="#3-2-监督预训练和指定领域的finetune" class="headerlink" title="3.2 监督预训练和指定领域的finetune"></a>3.2 监督预训练和指定领域的finetune</h2><ol>
-<li>监督预训练：作者使用了ILSVRC2012作为辅助的数据集，并利用该数据集图像层面的标注训练一个分类模型。</li>
-<li>在检出训练集上进行finetune：将最后一层分类层替换为N+1类，其中1类为背景。将候选框与目标的IOU大于等于0.5作为正样本，其他作为负样本。利用先前的预训练模型来fine-tune，并把学习率设为原来的十分之一为0.001.在每次迭代中，均匀采阳32个正样本和96个负样本，batchsize大小为128。</li>
-</ol>
-<h2 id="3-3-目标类别分类器"><a href="#3-3-目标类别分类器" class="headerlink" title="3.3 目标类别分类器"></a>3.3 目标类别分类器</h2><ol>
-<li>fine-tune完之后，作者没有使用finetune的网络的结果作为最终的结果。而是利用fine-tune完成的网络作为特征提取器，并运用histogram intersection kernel svm分类器，来得到最终每个目标的类别。这里作者训练svm的时候将训练集和验证集一起拿来训练。</li>
-<li>这里负样本如何确定很关键，当使用IOU小于0.5为负样本时，mAP下降5个点，使用IOU<br>为0时为负样本，mAP下降4个点，最终作者通过网格搜索确定了IOU小于0.3为负样本最优。正样本则为ground-truth bounding boxes。</li>
-<li>最后作者采用hard negative mining方法来加速拟合。通过利用困难负样本挖掘，只需要跑一个epoch，svm就拟合完成了。</li>
-</ol>
-<h1 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h1><h2 id="4-1-PASCAL-VOC-2010-12测试集"><a href="#4-1-PASCAL-VOC-2010-12测试集" class="headerlink" title="4.1 PASCAL VOC 2010-12测试集"></a>4.1 PASCAL VOC 2010-12测试集</h2><p>对于VOC2010-12，作者使用VOC2012训练集进行finetune，使用VOC2012训练集和验证集训练SVM模型。<br><img src="/post/2f9d64a9/9CC8733B-7E4E-42F7-8883-16071AD41E8E.png"></p>
-<h2 id="4-2-ILSVRC2013检测数据集"><a href="#4-2-ILSVRC2013检测数据集" class="headerlink" title="4.2 ILSVRC2013检测数据集"></a>4.2 ILSVRC2013检测数据集</h2><img src="/post/2f9d64a9/1AA98F88-ECF5-460E-B945-1716902E643C.png">
-<p>在ILSVRC2013检测数据集上，OverFeat，NEC-MU,UvAEuvision，Toronto A 和UIUC-IFP都使用了卷积神经网络，但是效果却比作者的方法差很多，说明不同的用法对结果影响很大。</p>
-<h2 id="4-3-可视化学习到的特征"><a href="#4-3-可视化学习到的特征" class="headerlink" title="4.3 可视化学习到的特征"></a>4.3 可视化学习到的特征</h2><img src="/post/2f9d64a9/D112FB1E-2CD7-418F-BC34-CA312FBE1B65.png">
-<p>作者选取了pool5层中6个激活单元，作为proposal的得分，执行非最大化抑制，最后对所有的结果精细排序，选择了激活值最大的前16个图片进行可视化。说明学习到的特征具有较好的判别性。</p>
-<h2 id="4-4-Ablation-studies"><a href="#4-4-Ablation-studies" class="headerlink" title="4.4 Ablation studies"></a>4.4 Ablation studies</h2><img src="/post/2f9d64a9/3174984B-5572-4BC4-80C8-79C8F1D67CB2.png">
-<p>作者对fine-tune与不fine-tune不同网络层的特征进行了比对，发现pool5的特征相对于fc层比较通用，而fc层的特征则更多是任务相关的。</p>
-<h3 id="4-4-1-在没有fine-tuning的情况下，比较不同层特征带来的效果。"><a href="#4-4-1-在没有fine-tuning的情况下，比较不同层特征带来的效果。" class="headerlink" title="4.4.1 在没有fine-tuning的情况下，比较不同层特征带来的效果。"></a>4.4.1 在没有fine-tuning的情况下，比较不同层特征带来的效果。</h3><ul>
-<li>为了理解哪一层特征对于检出性能比较关键，作者分别用CNN（只使用ILSVRC2012进行预训练）的最后3层来测试VOC2007数据集上检出任务的效果。结果表明：pool5只使用了卷积特征就可以达到较好的效果，说明主要带来效果的是卷积层而不是全连接层；另外fc7要比fc6效果差，说明越高层的特征越是任务相关的。</li>
+<h3 id="4-1-1-多种全卷积目标检测策略的比较"><a href="#4-1-1-多种全卷积目标检测策略的比较" class="headerlink" title="4.1.1 多种全卷积目标检测策略的比较"></a>4.1.1 多种全卷积目标检测策略的比较</h3><img src="/post/undefined/3B88DC08-51CB-40A9-B92D-5745A0A326BA.png">
+<p>作者比较了多种全卷积的目标检测策略，发现提到的方法要远远优于其他策略。</p>
+<h3 id="4-1-2-faster-R-CNN-Resnet101和RFCN-Resnet101的比较"><a href="#4-1-2-faster-R-CNN-Resnet101和RFCN-Resnet101的比较" class="headerlink" title="4.1.2 faster R-CNN+Resnet101和RFCN+Resnet101的比较"></a>4.1.2 faster R-CNN+Resnet101和RFCN+Resnet101的比较</h3><img src="/post/undefined/D7D26C5B-F54F-4627-80BE-E294CA3C9B23.png">
+<p>从结果可以看出，R-FCN与faster rcnn效果差不多，但是速度要快上很多。</p>
+<h2 id="4-2-MS-COCO目标检测任务"><a href="#4-2-MS-COCO目标检测任务" class="headerlink" title="4.2 MS COCO目标检测任务"></a>4.2 MS COCO目标检测任务</h2><img src="/post/undefined/B1031FFD-2625-47F6-8CE6-3CBA7679B247.png">
+<ul>
+<li>数据集：80k训练集，40k验证集，20k测试集</li>
+<li>学习率：前90k次迭代为0.001，后30k次迭代为0.0001</li>
+<li>batchsize:8</li>
+<li>交替训练方式：参考faster-rcnn</li>
 </ul>
-<h3 id="4-4-2-在fine-tuning的情况下，比较不同层特征带来的效果。"><a href="#4-4-2-在fine-tuning的情况下，比较不同层特征带来的效果。" class="headerlink" title="4.4.2 在fine-tuning的情况下，比较不同层特征带来的效果。"></a>4.4.2 在fine-tuning的情况下，比较不同层特征带来的效果。</h3><ul>
-<li>利用VOC2007trainval集对模型进行finetune，并利用finetune好的模型的最后3层来测试VOC2007数据集上检出任务的效果。利用finetune后的特征来训练，mAP的提升十分明显，足足提升了8个点。finetune后fc6和fc7比起pool5层提升的效果更加明显，进一步说明越高层的特征越是任务相关的，而低层特征则是更加的通用。</li>
-</ul>
-<h3 id="4-4-3-不同网络结构对结果的影响"><a href="#4-4-3-不同网络结构对结果的影响" class="headerlink" title="4.4.3 不同网络结构对结果的影响"></a>4.4.3 不同网络结构对结果的影响</h3><img src="/post/2f9d64a9/950B6E7F-961C-4485-9EF3-EAA4E7912EE2.png">
-<p>T-net比O-net效果更好，但是也更加耗时</p>
-<h3 id="4-4-4-使用Bounding-box-回归可以提高定位的准确率"><a href="#4-4-4-使用Bounding-box-回归可以提高定位的准确率" class="headerlink" title="4.4.4 使用Bounding-box 回归可以提高定位的准确率"></a>4.4.4 使用Bounding-box 回归可以提高定位的准确率</h3>
+<p>从结果可以看出，R-FCN与faster rcnn效果差不多，但是速度要快上很多。</p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 524813168@qq.com </span>
     </div>
@@ -500,12 +494,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">1.6k</span></p>
+    <p><span class="copy-title">文章标题:</span>2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-11-10, 21:03:14</p>
-    <p><span class="copy-title">最后更新:</span>2019-11-10, 21:28:00</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/post/2f9d64a9.html" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">http://weihaoxie.com/post/2f9d64a9.html</a>
+    <p><span class="copy-title">发布时间:</span>2020-01-10, 13:16:44</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-10, 13:28:30</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/post/fe660c1.html" title="2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai">http://weihaoxie.com/post/fe660c1.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
