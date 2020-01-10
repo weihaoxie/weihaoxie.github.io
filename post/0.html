@@ -108,11 +108,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(14)</small></div></li>
+    <li><div class="all active">全部文章<small>(13)</small></div></li>
     
         
             
-            <li><div data-rel="深度学习"><i class="fold iconfont icon-right"></i>深度学习<small>(7)</small></div>
+            <li><div data-rel="深度学习"><i class="fold iconfont icon-right"></i>深度学习<small>(6)</small></div>
                 
                     <ul class="sub hide">
                         
@@ -124,7 +124,7 @@
                             
                         </li>
                             
-                        <li><div data-rel="目标检测">目标检测<small>(4)</small></div>
+                        <li><div data-rel="目标检测">目标检测<small>(3)</small></div>
                             
                         </li>
                             
@@ -172,8 +172,8 @@
     </div>
     <div><a class="about  hasFriend  site_url" href="/about">关于</a><a style="width: 50%" class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="14">
-<input type="hidden" id="yelog_site_word_count" value="19.7k">
+<input type="hidden" id="yelog_site_posts_number" value="13">
+<input type="hidden" id="yelog_site_word_count" value="17.4k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -251,14 +251,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">RFCN</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">two-setp detector</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">deep learning</a>
     </li>
     
@@ -300,9 +292,9 @@
             <span class="post-date" title="2020-01-09 17:17:21">2020/01/09</span>
         </a>
         
-        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
-            <span class="post-title" title="Hello World">Hello World</span>
-            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
+        <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
+            <span class="post-title" title="sublime基础用法汇总">sublime基础用法汇总</span>
+            <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
         </a>
         
         <a class="深度学习 目标检测 " href="/post/4ec81054.html" data-tag="object detection,rcnn,spp-net,fast rcnn,faster rcnn" data-author="">
@@ -315,14 +307,9 @@
             <span class="post-date" title="2016-11-17 22:35:24">2016/11/17</span>
         </a>
         
-        <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
-            <span class="post-title" title="sublime基础用法汇总">sublime基础用法汇总</span>
-            <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
-        </a>
-        
-        <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
-            <span class="post-title" title="利用git来管理各种文档">利用git来管理各种文档</span>
-            <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
+        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
         </a>
         
         <a class="工作环境 " href="/post/78cc5777.html" data-tag="工具" data-author="">
@@ -330,9 +317,9 @@
             <span class="post-date" title="2016-11-17 22:32:59">2016/11/17</span>
         </a>
         
-        <a class="深度学习 目标检测 " href="/post/fe660c1.html" data-tag="RFCN,two-setp detector" data-author="">
-            <span class="post-title" title="2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai">2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai</span>
-            <span class="post-date" title="2020-01-10 13:16:44">2020/01/10</span>
+        <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用git来管理各种文档">利用git来管理各种文档</span>
+            <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
         </a>
         
         <a class="深度学习 " href="/post/0.html" data-tag="deep learning,convolution neural network,CNN" data-author="">
@@ -447,16 +434,28 @@
 <div style="width: 950px; margin: auto"><img src="/post/0/图片1.1.png"></div> <div align="center"> 图一.LeNet-5网络结构 </div>
 
 <h4 id="1-卷积层"><a href="#1-卷积层" class="headerlink" title="1.卷积层"></a>1.卷积层</h4><p>　　卷积层的目的是学习输入的特征表示，如图一所示，卷积层主要由多个卷积核构成，每个卷积核被用于计算不同的特征图。图二给出了卷积计算的一个例子，其中图二(a)为卷积核，图二(b)中蓝色矩阵为输入的特征图，绿色矩阵为利用图二(a)中的卷积核对输入特征图进行卷积计算的结果。输出的矩阵中的每个神经元与输入特征图的局部区域相连，这个局部区域就是当前神经元在上一层的感受野。输出矩阵的计算方式是利用卷积核对每个局部区域进行卷积，即逐元素相乘再相加。在得到卷积结果之后，新的特征图可以通过对每个从局部区域卷积计算得到的神经元应用非线性激活函数得到。这里值得注意的是，同个特征图的生成过程中，输入的多个局部区域共享同个卷积核。最终多个特征图的生成，则是由多个不同的卷积核计算得到。我们把在第l层的第k个特征图中的第(i,j)个位置(这里(i,j)表示第i行第j列)的特征值表示为$z^l_{i,j,k}$，则：</p>
-<div style="width: 200px; margin: auto"><img src="/post/0/图片3.2.png"></div><br>　　其中w表示第l层第k个滤波器的权重，b表示该滤波器对应的偏置项，x表示当前响应值对应的输入块，其中心位置对应特征图中的第(i,j)个位置。这里w为当前特征图中每个特征值所共享。这种权重共享方式具有多种优势，它可以降低模型复杂度，并且可以让网络更加容易训练。在卷积神经网络中引入非线性激活函数，可以让多层网络学习到非线性特征。用 $z^l_{i,j,k}$ 表示非线性激活函数，则卷积特征值的激活值$a^l_{i,j,k}$可以表示为：<br><div style="width: 200px; margin: auto"><img src="/post/0/图片6.png"></div><br>经典的激活函数是sigmoid、tanh、ReLU和Leaky ReLU，图三中给出了这四种常见的激活函数。图四中显示了两个卷积层从数字图片7中学习到的特征图，其中左边为第一层卷积层的特征图，大小为6X28X28，右边为第三层卷积层的特征图，大小为16X10X10。从特征图可以看出底层卷积核主要用于学习低层次的信息，如边缘和曲线，而更高层的卷积核则用于学习更加抽象的信息。通过叠加多个卷积层和池化层，我们可以逐渐提取到更加高层次的特征表示。<br><div style="width: 150px; margin: auto"><img src="/post/0/图片7.4.png"></div> <div align="center"> 图二 (a).卷积核示例</div><br><div style="width: 750px; margin: auto"><img src="/post/0/图片8.png"></div> <div align="center"> 图二(b).卷积计算示例</div><br><div style="width: 450px; margin: auto"><img src="/post/0/图片9.1.png"></div> <div align="center"> 图三.常用的激活函数 </div><br><div style="width: 450px; margin: auto"><img src="/post/0/图片10.1.png"></div> <div align="center"> 图四.从数字图片7中学到的特征</div>
+<div style="width: 200px; margin: auto"><img src="/post/0/图片3.2.png"></div>
+　　其中w表示第l层第k个滤波器的权重，b表示该滤波器对应的偏置项，x表示当前响应值对应的输入块，其中心位置对应特征图中的第(i,j)个位置。这里w为当前特征图中每个特征值所共享。这种权重共享方式具有多种优势，它可以降低模型复杂度，并且可以让网络更加容易训练。在卷积神经网络中引入非线性激活函数，可以让多层网络学习到非线性特征。用 $z^l_{i,j,k}$ 表示非线性激活函数，则卷积特征值的激活值$a^l_{i,j,k}$可以表示为：
+<div style="width: 200px; margin: auto"><img src="/post/0/图片6.png"></div>
+经典的激活函数是sigmoid、tanh、ReLU和Leaky ReLU，图三中给出了这四种常见的激活函数。图四中显示了两个卷积层从数字图片7中学习到的特征图，其中左边为第一层卷积层的特征图，大小为6X28X28，右边为第三层卷积层的特征图，大小为16X10X10。从特征图可以看出底层卷积核主要用于学习低层次的信息，如边缘和曲线，而更高层的卷积核则用于学习更加抽象的信息。通过叠加多个卷积层和池化层，我们可以逐渐提取到更加高层次的特征表示。
+<div style="width: 150px; margin: auto"><img src="/post/0/图片7.4.png"></div> <div align="center"> 图二 (a).卷积核示例</div>
+<div style="width: 750px; margin: auto"><img src="/post/0/图片8.png"></div> <div align="center"> 图二(b).卷积计算示例</div>
+<div style="width: 450px; margin: auto"><img src="/post/0/图片9.1.png"></div> <div align="center"> 图三.常用的激活函数 </div>
+<div style="width: 450px; margin: auto"><img src="/post/0/图片10.1.png"></div> <div align="center"> 图四.从数字图片7中学到的特征</div>
 
 <h4 id="2-池化层"><a href="#2-池化层" class="headerlink" title="2.池化层"></a>2.池化层</h4><p>　　池化层通过减少特征图分辨率的方式让网络具有平移和旋转不变性。它经常放在两个卷积层之间。典型的池化操作是平均池化和最大池化。图五给出了池化操作的例子，其中图五(a)为平均池化，图五(b)为最大池化。池化层的每个特征图与它前一层的卷积层对应的特征图相连接。用$pool(.)$表示池化函数，对于卷积层的每个特征图$a^l_{:,:,k}$，对应的池化层的特征值可以表示为：</p>
-<div style="width: 350px; margin: auto"><img src="/post/0/图片13.png"></div><br>其中$R_{i,j}$是卷积层特征图中第(i,j)个位置周围的一个局部区域。平均池化取池化区域的平均值，而最大池化则是取池化区域的最大值。<br><div style="width: 750px; margin: auto"><img src="/post/0/图片15.2.png"></div> <div align="center"> 图五(a) 平均池化示例</div><br><div style="width: 750px; margin: auto"><img src="/post/0/图片16.png"></div> <div align="center"> 图五(b) 最大池化示例</div>
+<div style="width: 350px; margin: auto"><img src="/post/0/图片13.png"></div>
+其中$R_{i,j}$是卷积层特征图中第(i,j)个位置周围的一个局部区域。平均池化取池化区域的平均值，而最大池化则是取池化区域的最大值。 
+<div style="width: 750px; margin: auto"><img src="/post/0/图片15.2.png"></div> <div align="center"> 图五(a) 平均池化示例</div>
+<div style="width: 750px; margin: auto"><img src="/post/0/图片16.png"></div> <div align="center"> 图五(b) 最大池化示例</div>
 
 <h4 id="3-全连接层"><a href="#3-全连接层" class="headerlink" title="3.全连接层"></a>3.全连接层</h4><p>　　在经过多个卷积和池化层之后，可能会连接一个或者多个全连接层来进行高层次的推理。图六给出了全连接层的例子，它们将前一层的所有的神经元作为输入，并将它们与当前层的每个神经元相连接，通过这种方式来生成全局的语义信息。这里的全连接层并不是必须的，它有时候也可以用1X1的卷积层来替代。 </p>
 <div style="width: 750px; margin: auto"><img src="/post/0/图片17.2.png"></div> <div align="center"> 图六.全链接层示例 </div>
 
 <h4 id="4-输出层及损失函数"><a href="#4-输出层及损失函数" class="headerlink" title="4.输出层及损失函数"></a>4.输出层及损失函数</h4><p>　　卷积神经网络的最后一层是输出层。对于分类任务，最常用的是softmax操作。另一个比较常用的方法是svm，它可以结合卷积层的特征来处理多种不同的分类任务。用K表示类别数，则其对应的softmax函数可以表示为：<br><img src="/post/0/图片18.png"><br>其中$\sigma(z)_j）$表示第j个类别的概率。对于回归任务，输出层一般为普通神经元。<br>用$\theta$表示所有可学习的参数(比如卷积核的权重和偏置项)，对于具体任务的最优参数，可以通过优化其对应的损失函数来得到。假设我们有N个有标签的训练样本数据，将其表示为{(x(n),y(n))};nЄ{[1,…,N]}，这里x(n)表示第n个输入数据，y(n)是其对应的标签，用o(n)表示卷积神经网络的输出，则其损失函数可以表示为：</p>
-<div style="width: 250px; margin: auto"><img src="/post/0/图片21.png"></div><br>对于分类任务，损失函数一般选择交叉熵损失函数；对于回归任务，则一般为均方误差。<br><div style="width: 350px; margin: auto"><img src="/post/0/图片9.png"></div> <div align="center"> 图七.带有一层隐含层的前馈神经网络 </div>
+<div style="width: 250px; margin: auto"><img src="/post/0/图片21.png"></div>
+对于分类任务，损失函数一般选择交叉熵损失函数；对于回归任务，则一般为均方误差。
+<div style="width: 350px; margin: auto"><img src="/post/0/图片9.png"></div> <div align="center"> 图七.带有一层隐含层的前馈神经网络 </div>
 
 <h4 id="５-反向传播算法"><a href="#５-反向传播算法" class="headerlink" title="５.反向传播算法"></a>５.反向传播算法</h4><p>　　训练卷积神经网络是一个全局优化的问题，通过最小化损失函数，我们可以找到最合适的参数集。通常我们采用随机梯度下降方法来优化CNN网络。CNN网络中梯度的计算主要采用了反向传播算法，其中主要利用了链式法则来对不同网络层的权重进行求导。<br>下面给出反向传播的一个简单例子，假设我们的网络结构如图七所示并假设损失函数为<br>均方误差，则损失函数可以表示为：<br><img src="/post/0/图片23.png"><br>其中x是输入数据，y是其对应的标签；σ为激活函数，这里选取sigmoid函数为激活函数；W1，b1、W2，b2分别为第一层和第二层的权重和偏置项。我们将中间变量定义为：<br><img src="/post/0/图片24.png"><br>则其前向传播过程如下：<br><img src="/post/0/图片25.1.png"><br>对应的中间变量的梯度即反向传播如下:<br><img src="/post/0/图片26.png"><br>通过链式法则可以很容易计算到各个参数的梯度，如W2和b2的梯度：<br><img src="/post/0/图片27.png"><br><img src="/post/0/图片28.png"></p>
 <p>[1] B. B. Le Cun, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, L. D. Jackel, Handwritten digit recognition with a back-propagation network, in: Proceedings of the Advances in Neural Information Processing Systems (NIPS), 1989, pp. 396–404.<br>[2] Y. LeCun, L. Bottou, Y. Bengio, P. Haffner, Gradient-based learning applied to document recognition, Proceedings of IEEE 86 (11) (1998) 2278–2324.<br>[3] R. Hecht-Nielsen, Theory of the backpropagation neural network, Neural Networks 1 (Supplement-1) (1988) 445–448.<br>[4] W. Zhang, K. Itoh, J. Tanida, Y. Ichioka, Parallel distributed processing model with local space-invariant interconnections and its optical architecture, Applied optics 29 (32) (1990) 4790–4797.<br>[5] X.-X. Niu, C. Y. Suen, A novel hybrid cnn–svm classifier for recognizing handwritten digits, Pattern Recognition 45 (4) (2012) 1318–1325.<br>[6] O. Russakovsky, J. Deng, H. Su, J. Krause, S. Satheesh, S. Ma, Z. Huang, A. Karpathy, A. Khosla, M. Bernstein, et al., Imagenet large scale visual recognition challenge, International Journal of Conflict and Violence (IJCV) 115 (3) (2015) 211–252.<br>[7] K. Simonyan, A. Zisserman, Very deep convolutional networks for large-scale image recognition, in: Proceedings of the International Conference on Learning Representations (ICLR), 2015.<br>[8] C. Szegedy, W. Liu, Y. Jia, P. Sermanet, S. Reed, D. Anguelov, D. Erhan, V. Vanhoucke, A. Rabinovich, Going deeper with convolutions, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2015, pp. 1–9.<br>[9] M. D. Zeiler, R. Fergus, Visualizing and understanding convolutional networks, in: Proceedings of the European Conference on Computer Vision (ECCV), 2014, pp. 818–833.<br>[10] K. He, X. Zhang, S. Ren, J. Sun, Deep residual learning for image recognition, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016, pp. 770–778.</p>
@@ -615,7 +614,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#GAN','#lung nodule','#segmentation','#object detection','#rcnn','#python','#resnet','#spp-net','#fast rcnn','#faster rcnn','#工具','#RFCN','#two-setp detector','#deep learning','#convolution neural network','#CNN','#SPPnet',],
+            'data': ['#GAN','#lung nodule','#segmentation','#object detection','#rcnn','#python','#resnet','#spp-net','#fast rcnn','#faster rcnn','#工具','#deep learning','#convolution neural network','#CNN','#SPPnet',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
