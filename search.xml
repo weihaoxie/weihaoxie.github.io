@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[2016_Identity Mappings in Deep Residual Networks_ECCV2016_HeK et al]]></title>
     <url>%2Fpost%2F96c98dd3.html</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[一、背景及意义（动机）在这篇论文中，作者分析了残差构建块的前向和反向的信号传播机制发现，当使用恒等映射作为skip connection，并在之后将残差函数与输入相加的形式，这里不加入激活函数，前向和反向信号可以直接从某个构建块，传播到任意一个构建块。并根据这两个条件提出了一个新的残差模块，使网络更加容易训练，并且泛化能力更好。最后作者在CIFAR-10和CIFAR-100数据集上使用1001层的resnet，以及在Imagenet数据集上使用200层的resnet都取得了较好的结果。代码https://github.com/KaimingHe/resnet-1k-layers]]></content>
   </entry>
   <entry>
     <title><![CDATA[2017_Feature Pyramid Networks for object detection(CVPR2017)Tsung-Yi Lin.pdf]]></title>
