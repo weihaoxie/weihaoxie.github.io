@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <title>2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He | xieweihao&#39;s blog</title>
+  <meta name="keywords" content=" object detection , SPPnet ">
+  <meta name="description" content="2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He | xieweihao&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xieweihao&#39;s blog">
+<meta property="og:url" content="http://weihaoxie.com/404.html">
+<meta property="og:site_name" content="xieweihao&#39;s blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-10T13:06:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xieweihao&#39;s blog">
+
+
+<link rel="icon" href="/img/my_avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my_avatar.jpg">
+</a>
+<div class="author">
+    <span>xieweihao</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+        <a title="github" href="https://github.com/weihaoxie" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(12)</small></div></li>
+    
+        
+            
+            <li><div data-rel="深度学习"><i class="fold iconfont icon-right"></i>深度学习<small>(5)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="目标检测">目标检测<small>(3)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="python">python<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="工作环境">工作环境<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url" href="/about">关于</a><a style="width: 50%" class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="12">
+<input type="hidden" id="yelog_site_word_count" value="15.4k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off" id="local-search-input">
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none">
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">GAN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lung nodule</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">segmentation</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">object detection</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">spp-net</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">fast rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">faster rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">工具</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">deep learning</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">convolution neural network</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">CNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SPPnet</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a class="深度学习 医学图像处理 " href="/post/d5dc028e.html" data-tag="GAN,lung nodule,segmentation" data-author="">
+            <span class="post-title" title="2018_[CGAN]CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation_MICCAI2018_Dakai Jin">2018_[CGAN]CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation_MICCAI2018_Dakai Jin</span>
+            <span class="post-date" title="2018-12-25 16:31:29">2018/12/25</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/2f9d64a9.html" data-tag="object detection,rcnn" data-author="">
+            <span class="post-title" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</span>
+            <span class="post-date" title="2019-11-10 21:03:14">2019/11/10</span>
+        </a>
+        
+        <a class="python " href="/post/b8f3def3.html" data-tag="python" data-author="">
+            <span class="post-title" title="python2.x和python3.x主要的差异">python2.x和python3.x主要的差异</span>
+            <span class="post-date" title="2019-11-13 17:20:48">2019/11/13</span>
+        </a>
+        
+        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/4ec81054.html" data-tag="object detection,rcnn,spp-net,fast rcnn,faster rcnn" data-author="">
+            <span class="post-title" title="object detection">object detection</span>
+            <span class="post-date" title="2016-12-04 11:43:01">2016/12/04</span>
+        </a>
+        
+        <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
+            <span class="post-title" title="sublime基础用法汇总">sublime基础用法汇总</span>
+            <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
+        </a>
+        
+        <a class="" href="/post/12fd4503.html" data-tag="" data-author="">
+            <span class="post-title" title="terminator+tmux打造超级终端">terminator+tmux打造超级终端</span>
+            <span class="post-date" title="2016-11-17 22:35:24">2016/11/17</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/78cc5777.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用sublime文本编辑工具和markdown标记语言写印象笔记">利用sublime文本编辑工具和markdown标记语言写印象笔记</span>
+            <span class="post-date" title="2016-11-17 22:32:59">2016/11/17</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用git来管理各种文档">利用git来管理各种文档</span>
+            <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/d9ff40b9.html" data-tag="工具" data-author="">
+            <span class="post-title" title="搭建属于你自己的工作环境">搭建属于你自己的工作环境</span>
+            <span class="post-date" title="2016-11-17 21:23:17">2016/11/17</span>
+        </a>
+        
+        <a class="深度学习 " href="/post/0.html" data-tag="deep learning,convolution neural network,CNN" data-author="">
+            <span class="post-title" title="卷积神经网络的基本概念">卷积神经网络的基本概念</span>
+            <span class="post-date" title="2019-02-28 21:31:29">2019/02/28</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/60c293cd.html" data-tag="object detection,SPPnet" data-author="">
+            <span class="post-title" title="2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He">2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He</span>
+            <span class="post-date" title="2019-11-10 22:01:15">2019/11/10</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-2014-SPPnet-Spatial-pyramid-pooling-in-Deep-convolutional-networks-for-visual-recognition-ECCV2014-Kaiming-He" class="article article-type-post" itemscope="" itemprop="blogPost">
+    
+        <h1 class="article-title">2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="深度学习">深度学习</a>/
+            
+                <a href="javascript:" data-rel="目标检测">目标检测</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color2">object detection</a>
+            
+            <a href="javascript:" class="color2">SPPnet</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title="更新时间: 2019-11-10 22:29:35">2019-11-10 22:01</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:4.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、背景及意义（动机）"><span class="toc-text">一、背景及意义（动机）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、使用什么方法来解决问题（创新点）"><span class="toc-text">二、使用什么方法来解决问题（创新点）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、方法介绍"><span class="toc-text">三、方法介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、实验结果及重要结论"><span class="toc-text">四、实验结果及重要结论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-分类："><span class="toc-text">4.1 分类：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-ImageNet分类任务"><span class="toc-text">4.1.1 ImageNet分类任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-1-训练细节："><span class="toc-text">4.1.1.1 训练细节：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-1-实验结果及结论"><span class="toc-text">4.1.1.1 实验结果及结论</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-VOC2007分类任务"><span class="toc-text">4.1.2 VOC2007分类任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-1-训练细节"><span class="toc-text">4.1.2.1 训练细节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-2-实验结果和结论"><span class="toc-text">4.1.2.2 实验结果和结论</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-Caltech101-分类任务"><span class="toc-text">4.1.3 Caltech101 分类任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-1-训练细节（没有说清楚怎么训练）"><span class="toc-text">4.1.3.1 训练细节（没有说清楚怎么训练）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-2-实验结果和结论"><span class="toc-text">4.1.3.2 实验结果和结论</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-检测："><span class="toc-text">4.2 检测：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-RCNN方法简介"><span class="toc-text">4.2.1 RCNN方法简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-将SPP应用于RCNN中及训练细节"><span class="toc-text">4.2.2 将SPP应用于RCNN中及训练细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-实验结果和结论"><span class="toc-text">4.2.3 实验结果和结论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-1-VOC-2007测试集"><span class="toc-text">4.2.3.1 VOC 2007测试集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-实验结果"><span class="toc-text">1. 实验结果</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-结论"><span class="toc-text">2. 结论</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-2-ILSVRC-2014测试集"><span class="toc-text">4.2.3.2 ILSVRC 2014测试集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-训练细节"><span class="toc-text">1. 训练细节</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-重要结论："><span class="toc-text">2. 重要结论：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h1><p>先前针对分类的卷积神经网络需要固定大小的输入，这样需要对不同尺度的图片进行裁剪或者变形之后输入，这种做法会导致目标信息丢失或者带来不期望的图像扭曲，另外预定义的尺度对于不同的目标可能会不合适。这两个问题往往会降低准确率。如果能够解决这些问题，就有可能可以进一步提高分类准确率。</p>
+<h1 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h1><p>针对这个问题，作者分析了为什么需要固定大小输入的原因，那是因为全连接层需要固定大小输入，为此作者提出了一个解决方案叫空间金字塔pooling，作者称其为SPPnet，它被加在最后一层卷积层上，将最后一层的卷积特征池化成固定大小的输出，为此它可以对输入的任意尺度大小的图片生成固定长度的表示。</p>
+<ul>
+<li>spp的好处（作者通过实验验证了每个优点都对准确率的提高有帮助）<br>1）不管输入图片大小如何，都可以生成固定大小的特征。<br>2）它将特征拆分成不同粒度的bin，类似于应用了多个不同尺度的slide window，相较于单个尺度的slide window，这种方式对目标的形变更加鲁棒<br>3）应用于不同粒度的slide window可以根据输入图像的大小进行自适应的变化。</li>
+<li>技巧及重要结论<br>1）使用多层pooling提高了准确率。提升的主要原因是多层的金字塔层对于目标的形变以及在空间中的布局更加鲁棒。<br>2）这种方式不仅可以用于多尺度测试，也可以用于多尺度的训练方式。多尺度的训练，在训练集上的拟合情况与单尺度类似，但是在测试集上有更高的准确率。具体的做法是一个epoch使用一种尺度来训练。<br>3）使用全图输入，可以提高准确率。<br>4）feature map上的多尺度多视角的测试，可以提高准确率。<br>5) 使用多个模型进行boosting可以提高准确率<br>6）作者通过实验验证了sppnet的优势与具体的网络结构是不相关的，即证明了该方法的通用性。<br>7）该方法可以加速R-CNN的特征提取并且能够取得更好或者差不多的检出准确率，应用该方法无论图片中的目标有多少，都只需应用卷积神经网络对整张图片提取一次特征，然后再根据候选目标的位置利用spp从特征图上提取固定维度的特征向量，比起R-CNN，应用该方式可以提高24倍以上。<br>8）预训练使用的类别数，样本数，以及目标尺度对于结果都有一定的影响。</li>
+<li>一些重要的细节<br>1）对于一般的分类网络，训练的时候都需要进行减均值的预处理方式。如果使用多种尺度进行训练，作者的做法是对于Imagenet直接将均值图片resize到目标尺度；对于VOC2007和Caltech101则是直接减去128.</li>
+</ul>
+<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><p>空间金字塔pooling是词袋模型（Bow）的一种扩展，它将图片划分成不同粗细粒度的多个部分，然后再对每个部分进行聚合。这种思想其实在传统的计算机视觉任务中一直发挥重要的作用，在深度学习还没有出现之前，它就已经被用在图像分类和检测中。SSP可以说是BOw的一种改进，因为SSP它能够保留空间信息。使用SSP层，网络的输入可以是任意的宽高比，任意的尺度。<br><img src="/post/60c293cd/F6E8EFB4-73E4-4AB5-BCE1-37BC2511F18C.png"><br>空间金字塔pooling会根据输出的大小，以及金字塔的层数，来决定每个金字塔层pooling的size和stride。比如4X4，2X2，1X1，他会根据pooling输出的大小以及输入的大小来推断每个pooling的size和stride。假设特征图大小为13x13,某一层金字塔层的输出大小为nxn，那么滑动窗口大小为$win=\lfloor a/n \rfloor$,stride大小为$str=\lceil a/n \rceil$.在利用该方式得到每一层金字塔层的特征之后，再将所有的特征拼接在一起。下图给出了一个3层金字塔pooling的例子：<br><img src="/post/60c293cd/3851CB6B-8622-4482-B2A3-580A8EB3EFBA.png"><br>作者也尝试使用了多尺度的训练方式，为了减少不同尺度网络的切换，作者在训练一个epoch的时候，只使用一种尺度来训练。</p>
+<h1 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h1><h2 id="4-1-分类："><a href="#4-1-分类：" class="headerlink" title="4.1 分类："></a>4.1 分类：</h2><h3 id="4-1-1-ImageNet分类任务"><a href="#4-1-1-ImageNet分类任务" class="headerlink" title="4.1.1 ImageNet分类任务"></a>4.1.1 ImageNet分类任务</h3><h4 id="4-1-1-1-训练细节："><a href="#4-1-1-1-训练细节：" class="headerlink" title="4.1.1.1 训练细节："></a>4.1.1.1 训练细节：</h4><p>1.训练数据为ImageNet2012，1000类。<br>2.图像先被按比例resize成小边为256,然后再从图片的中心和四个角crop 224X224大小的图片，共5张。<br>3.对图片进行水平翻转和颜色增强。<br>4.再最后两层全链接层中加入dropout<br>5.开始的学习率设置为0.01，之后当训练loss不降的情况下，再次减少10倍。<br>6.作者使用了单个6g显存的GPU，训练了2到4周。<br>7.使用了4层金字塔。6X6,3X3,2X2,1X1<br>8.使用的网络结构有4种，ZF-5，Convent*-5，Overfeat-5，Overfeat-7</p>
+<h4 id="4-1-1-1-实验结果及结论"><a href="#4-1-1-1-实验结果及结论" class="headerlink" title="4.1.1.1 实验结果及结论"></a>4.1.1.1 实验结果及结论</h4><ol>
+<li>使用多层pooling提高了准确率。提升的主要原因是多层的金字塔层对于目标的形变以及在空间中的布局更加鲁棒。<br>作者使用了单尺度的训练方式，在训练和测试的时候都使用了224X224,每张图片先resize到256X256，然后从四个角落和中心crop224X224，最后再结合翻转，构建10张训练和测试图片。测试的时候对这十张图片进行求平均。<img src="/post/60c293cd/1D1BA326-06A9-4CE0-8C42-011331359C67.png"></li>
+<li>使用多个不同尺度的图片进行训练，提高了准确率。作者将图片resize到不同尺度，然后进行训练。训练的时候使用了两个尺度224和180。测试的时候仍然使用单个尺度224.然后仍然将图片resize到256后进行crop，每张图片构建新的10张图片。最后得到的结果比起单尺度的训练方式要更好。作者也尝试使用从[180,224]，之间抽取的一个随机尺度来训练。发现结果比起只使用两个尺度的要差，但是仍然比使用一个尺度的要好。可能的原因是测试的时候是224，而使用随机尺度的话，抽取的尺度很多都不是224，跟测试数据的分布有所偏差。<img src="/post/60c293cd/7F1B12FC-B648-481A-8EAC-8F860EE79903.png"></li>
+<li>使用全图输入，可以提高准确率。作者将图片resize成短边为256，并保持宽高比不变。训练的时候仍然使用单尺度的训练。作者比较了中心crop和保留宽高比的效果，发现使用整张图片的效果更好。虽然使用整张图片比使用单个尺度多个视角的要差，但是当把他们结合在一起的时候仍然可以进一步提高多视角的准确率。并且提取的特征质量会更好。<img src="/post/60c293cd/EEDBC3AB-5140-4864-AF20-79ABADC84AB1.png"></li>
+<li>feature map上的多尺度多视角的测试，可以提高准确率。作者将图片的短边resize到256，然后保留图片的宽高比，并从feature map上提取多个视角的特征用于测试，然后求平均。最后与在图片上的多个视角的测试进行对比，发现他们差不多。然后作者又使用多个尺度多个视角的测试，每个尺度提取18个视角，中心，四个角落，四个每个边的中心，整张图片，以及他们的水平翻转。作者通过多视角多尺度的方式，又将准确率进一步提高。<img src="/post/60c293cd/02E45D0F-B364-4A62-9AC7-0ACCA597D634.png">
+Krizhevsky的方法取得了ILSVRC2012比赛的冠军，而Overfeat，Howard,Zeiler&amp;Fergus则是ILSVRC2013比赛的最好的几个方法。</li>
+<li>使用多个模型进行boosting可以提高准确率<br>下图是ILSVRC2014比赛的排名情况，作者使用了7个模型进行融合使得结果进一步提升。并取得第三名的成绩。<img src="/post/60c293cd/5CADD6BD-BA5E-4A68-8B94-847CE68A8DB1.png">
+</li>
+</ol>
+<h3 id="4-1-2-VOC2007分类任务"><a href="#4-1-2-VOC2007分类任务" class="headerlink" title="4.1.2 VOC2007分类任务"></a>4.1.2 VOC2007分类任务</h3><h4 id="4-1-2-1-训练细节"><a href="#4-1-2-1-训练细节" class="headerlink" title="4.1.2.1 训练细节"></a>4.1.2.1 训练细节</h4><ol>
+<li>训练数据包括9963张图片，共20个类别。其中5011张图片用于训练，剩下的图片用于测试。性能评估方式使用mAP(mean Average Precision)</li>
+<li>作者使用在ImageNet进行训练的网络来提取图片的特征，然后将这些特征用于重新训练SVM分类模型，训练的时候没有做任何数据增强，只对特征进行L2标准化。</li>
+</ol>
+<h4 id="4-1-2-2-实验结果和结论"><a href="#4-1-2-2-实验结果和结论" class="headerlink" title="4.1.2.2 实验结果和结论"></a>4.1.2.2 实验结果和结论</h4><img src="/post/60c293cd/E1149716-CC84-4242-9350-F45EC599A9C2.png">
+<ol>
+<li>图中a列表明：越深层的特征越好</li>
+<li>图中a，b列表明：使用fc层的特征获得更好的增益，主要由于多层的pooling</li>
+<li>图中c列表明：全图输入的特征更好</li>
+<li>图中d列使用尺度392更好的原因主要是：在VOC2007中目标比较小，而在Imagenet中目标比较大。这个结果表明：目标尺度会影响到分类的准确率，而SPP-net可以部分处理这个尺度不匹配的问题。</li>
+<li>图中e列为将网络结构替换为Overfeat-7，并使用多尺度训练得到的结果</li>
+</ol>
+<h3 id="4-1-3-Caltech101-分类任务"><a href="#4-1-3-Caltech101-分类任务" class="headerlink" title="4.1.3 Caltech101 分类任务"></a>4.1.3 Caltech101 分类任务</h3><h4 id="4-1-3-1-训练细节（没有说清楚怎么训练）"><a href="#4-1-3-1-训练细节（没有说清楚怎么训练）" class="headerlink" title="4.1.3.1 训练细节（没有说清楚怎么训练）"></a>4.1.3.1 训练细节（没有说清楚怎么训练）</h4><ol>
+<li>该数据集包括了9144张图片，共102个类别，其中1个是背景。</li>
+<li>作者从每个类别中随机抽取30张图片用于训练，抽取50张图片以上用于测试。作者按照这种数据划分方式重复了10次，并将结果取平均，作为最后的结果。</li>
+</ol>
+<h4 id="4-1-3-2-实验结果和结论"><a href="#4-1-3-2-实验结果和结论" class="headerlink" title="4.1.3.2 实验结果和结论"></a>4.1.3.2 实验结果和结论</h4><img src="/post/60c293cd/E7485E63-A5D7-4265-B3DC-E99E22DD40B2.png">
+<ul>
+<li>从结果来看Caltech101与voc2007有类似的结果：</li>
+</ul>
+<ol>
+<li>从a，b可以看出spp-net要比no-spp net效果要好</li>
+<li>从c，b可以看出全图输入要比crop好</li>
+</ol>
+<ul>
+<li>但是也有一些不同的结论：</li>
+</ul>
+<ol>
+<li>在Caltech101分类任务中全连接层的准确率要比spp层低。</li>
+<li>在选择的多个测试尺度中224的尺度是最好的，这个主要是因为在Caltech101中，目标占据图像的区域与ImageNet差不多。</li>
+<li>作者也尝试将图片reshape 成224X224，这样虽然保留了全图信息，但是会带来扭曲。从结果来看效果没有使用全图的好。使用reshape的准确率是89.91%，而使用全图输入没有扭曲的准确率达到91.44%。</li>
+</ol>
+<p>下图给出了不同方法在Voc2007分类数据集和Caltech101分类数据集上的结果。其中VQ，LCC，FK都是基于金字塔匹配的，剩下都是基于深度网络的。在基于深度网络的方法中，Oquab等人的方法和Chatfield等人的方法采用了finetune和多视角的测试。本文提到的方法只采用了单张全图，并且没有使用finetune，但是取得了与他们类似的结果。而在Caltech101测试集上，作者提出的方法远远超出当前最好的方法。<br><img src="/post/60c293cd/6EF61FF2-CB1B-4E35-9B1D-423B7A1275AD.png"></p>
+<h2 id="4-2-检测："><a href="#4-2-检测：" class="headerlink" title="4.2 检测："></a>4.2 检测：</h2><h3 id="4-2-1-RCNN方法简介"><a href="#4-2-1-RCNN方法简介" class="headerlink" title="4.2.1 RCNN方法简介"></a>4.2.1 RCNN方法简介</h3><ol>
+<li>R-CNN首先利用selective serach从每张图片中提取约2000个候选窗。</li>
+<li>然后将每个候选窗reshape成227X227，并利用一个预先训练好的卷积网络去提取特征。</li>
+<li>利用提取到的特征去训练一个2分类的SVM分类器。<br>虽然RCNN相对于先前的方法，效果很好，但是速度比较慢，每张图片需要对2000个候选窗口应用卷积网络去提取特征。特征提取是测试速度的主要瓶颈。</li>
+</ol>
+<h3 id="4-2-2-将SPP应用于RCNN中及训练细节"><a href="#4-2-2-将SPP应用于RCNN中及训练细节" class="headerlink" title="4.2.2 将SPP应用于RCNN中及训练细节"></a>4.2.2 将SPP应用于RCNN中及训练细节</h3><img src="/post/60c293cd/FDC60DCD-C90A-4D0B-8C7C-027E3F716633.png">
+<ul>
+<li><p>作者将空间金字塔pooling应用到R-CNN中，可以提高训练和测试的速度，并且提高准确率。具体的：<br>1）使用“fast”模式的selective search从每张图片中提取2000个候选框<br>2）将图片resize到min(w,h)=s<br>3）利用单尺度训练的ZF-5网络直接提取整张图片的特征。<br>4）利用4层空间金字塔pooling提取每个候选框的特征，生成12800维的特征向量。<br>5）最后利用全链接层的特征提供给svm分类器，然后利用每个类别的svm分类器来得到每个类别的得分。训练svm的时候，作者使用了ground-truth作为正样本，使用与ground truth的IOU小于0.3的候选框作为负样本。并且负样本之间的IOU要小于0.7.最后使用hard negative mining的方式来训练svm，困难样本挖掘只迭代一次。<br>6）在测试阶段，在对每个候选框进行打分之后，作者使用了非最大化抑制的方式阈值为0.3，去除掉一些冗余的框。 </p>
+</li>
+<li><p>使用该方式，利用多尺度进行测试，可以进一步提高效果。作者发现，最好的一种方式是，对于不同尺度的候选窗口，只对该尺度下最接近224X224的候选窗口进行特征提取。 这样的话不同尺度的输入只需跑一次卷积神经网络对全图进行特征提取，然后让各个候选窗口按在该尺度下最接近224X224的原则分配到各个尺度下，然后应用spp对候选窗口进行特征提取。</p>
+</li>
+<li><p>作者也尝试使用fine-tune和bounding box回归。<br>1.fine-tune的时候作者只fine-tune全链接层，固定其他层。<br>2.fc8使用了方差为0.01的高斯分布来进行初始化。<br>3.正样本为IOU大于0.5，负样本为与正样本的IOU小于0.5大于等于0.1，每个batch包括1/4的正样本，3/4的负样本。<br>4.开始250k次迭代使用学习率为0.0001，之后50k次迭代的学习率设置为0.00001<br>5.使用bounding box 回归作为后处理方式。使用的特征是来自与conv5的空间金字塔pooling。使用的样本为IOU大于0.5的候选框。</p>
+</li>
+</ul>
+<h3 id="4-2-3-实验结果和结论"><a href="#4-2-3-实验结果和结论" class="headerlink" title="4.2.3 实验结果和结论"></a>4.2.3 实验结果和结论</h3><h4 id="4-2-3-1-VOC-2007测试集"><a href="#4-2-3-1-VOC-2007测试集" class="headerlink" title="4.2.3.1 VOC 2007测试集"></a>4.2.3.1 VOC 2007测试集</h4><h5 id="1-实验结果"><a href="#1-实验结果" class="headerlink" title="1. 实验结果"></a>1. 实验结果</h5><ul>
+<li>R-CNN使用Alex-5<img src="/post/60c293cd/7260FF56-9F92-45EE-AF1E-C5518975E377.png"></li>
+<li>R-CNN使用ZF-5<img src="/post/60c293cd/0A4F8BF1-BAC3-4523-B919-09122750C955.png"></li>
+<li>不同的目标检测方法在20类目标的map<img src="/post/60c293cd/36D86482-5A20-4E96-9115-98C91E13B691.png">
+作者使用另外一种候选生成方式EdgeBoxes进行测试，mAP为52.8.这是因为训练的时候使用的是Seletive search。当训练的时候同时使用Selective search和EdgeBoxes，测试时使用EdgeBoxes时，mAP达到了56.3.这是因为训练样本增加了。</li>
+</ul>
+<h5 id="2-结论"><a href="#2-结论" class="headerlink" title="2. 结论"></a>2. 结论</h5><p><strong>从结果来看，SPP跟RCNN差不多，但是速度方面SPP要比RCNN快很多</strong>。</p>
+<ul>
+<li>通过模型组合可以提高效果<br>作者使用相同的网络结构，不同的初始化方式在ImageNet上训练了另一个网络，然后重复上面的检测算法，另一个网络在整体的mAP上与原先的差不多，但是有11个类别要比原来好。两个模型存在较大的差异，可以互补，所以融合后效果提升了不少。<br>组合方式为：首先使用两个模型分别为测试图片上的所有候选进行打分；然后将结果合并在一起做非最大化抑制。<br>作者进一步发现模型组合的提升主要来自与卷积层。作者使用同个模型不同初始化方式对整个卷积网络进行finetune得到了提升，但是使用同个模型不同的初始化方式来fine-tune全连接没有提升。说明提升主要来自于卷积层。<img src="/post/60c293cd/B2AED20A-9D77-430D-90A2-499D50073A94.png">
+</li>
+</ul>
+<h4 id="4-2-3-2-ILSVRC-2014测试集"><a href="#4-2-3-2-ILSVRC-2014测试集" class="headerlink" title="4.2.3.2 ILSVRC 2014测试集"></a>4.2.3.2 ILSVRC 2014测试集</h4><h5 id="1-训练细节"><a href="#1-训练细节" class="headerlink" title="1. 训练细节"></a>1. 训练细节</h5><ul>
+<li>ILSVRC 2014检测数据集，包括200个类别。不允许使用imagenet 1000类数据集。</li>
+<li>450k训练数据；20k验证数据；40k测试数据</li>
+<li>由于数据量以及类别数都比image net要少，这样的话性能没有使用imagenet来预训练好。为此作者使用了提供的499类的数据集。</li>
+<li>由于目标尺度的分布在499类的CLS上是0.8，而在DET是0.5，为此作者把DET数据集resize成min(w,h)=400,而不是256.然后随机crop 224X224用于训练，只有当它与ground truth的重叠大于0.5时，才用来训练。</li>
+</ul>
+<h5 id="2-重要结论："><a href="#2-重要结论：" class="headerlink" title="2. 重要结论："></a>2. 重要结论：</h5><ul>
+<li><p>类别数，样本数，以及目标尺度对于结果都有一定的影响。<br>作者对比了利用ILSVRC2014数据集的不同标签（大类标签有200，子类标签有499）来进行预训练的情况下，在Pascal VOC数据集上的检出效果。作者使用了pool5特征进行训练，在使用imagenet进行预训练的情况下，mAP是43.0%，在使用ILSVRC2014 200类进行与训练的情况下，mAP降到了32.7%，而使用ILSVRC2014 499类进行预训练的情况下，mAP提高到了35.9%。从结果来看，虽然使用200类和499类训练数据量并没有变化，但是效果却提升了，<strong>说明更多的类别有助于提高特征的质量</strong>。另外作者尝试了使用min(W,H)=400来训练，替代使用256来训练，mAP进一步提高到了37.8%。但是仍然没有使用imagenet进行预训练的好，说明数据量对于深度学习的重要性。</p>
+</li>
+<li><p>通过模型的组合可以进一步提升效果。</p>
+</li>
+</ul>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 524813168@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">4.5k</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-11-10, 22:01:15</p>
+    <p><span class="copy-title">最后更新:</span>2019-11-10, 22:29:35</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/post/60c293cd.html" title="2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He">http://weihaoxie.com/post/60c293cd.html</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'e1f8db51420f0826c145',
+            clientSecret: '64dc729821c9ab357090a55a4f6a97aab7dc36d7',
+            repo: 'weihaoxie.github.io',
+            owner: 'weihaoxie',
+            admin: ['weihaoxie'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js" value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 weihaoxie</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1"></script>
+
+<script src="/js/script.js?v=1.0.1"></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#GAN','#lung nodule','#segmentation','#object detection','#rcnn','#python','#spp-net','#fast rcnn','#faster rcnn','#工具','#deep learning','#convolution neural network','#CNN','#SPPnet',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
