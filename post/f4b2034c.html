@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <title>2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al | xieweihao&#39;s blog</title>
+  <meta name="keywords" content=" Light-Head RCNN , RCNN ">
+  <meta name="description" content="2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al | xieweihao&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xieweihao&#39;s blog">
+<meta property="og:url" content="http://weihaoxie.com/404.html">
+<meta property="og:site_name" content="xieweihao&#39;s blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-10T13:06:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xieweihao&#39;s blog">
+
+
+<link rel="icon" href="/img/my_avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my_avatar.jpg">
+</a>
+<div class="author">
+    <span>xieweihao</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+        <a title="github" href="https://github.com/weihaoxie" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(22)</small></div></li>
+    
+        
+            
+            <li><div data-rel="深度学习"><i class="fold iconfont icon-right"></i>深度学习<small>(15)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="目标检测">目标检测<small>(8)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="模型结构优化">模型结构优化<small>(4)</small></div>
+                            
+                        </li>
+                            
+                        <li><div data-rel="实例分割">实例分割<small>(1)</small></div>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="python">python<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="工作环境">工作环境<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url" href="/about">关于</a><a style="width: 50%" class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="22">
+<input type="hidden" id="yelog_site_word_count" value="37.7k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off" id="local-search-input">
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none">
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">GAN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lung nodule</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">segmentation</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">object detection</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Fast-RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">two-stage detector</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">resnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">xception</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">工具</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">spp-net</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">fast rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">faster rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RFCN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">FPN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Mask-RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Light-Head RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Focal Loss</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RetinaNet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">one-stage Detector</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Inception</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Inception-v3</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">deep learning</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">convolution neural network</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">CNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SPPnet</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a class="深度学习 医学图像处理 " href="/post/d5dc028e.html" data-tag="GAN,lung nodule,segmentation" data-author="">
+            <span class="post-title" title="2018_[CGAN]CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation_MICCAI2018_Dakai Jin">2018_[CGAN]CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation_MICCAI2018_Dakai Jin</span>
+            <span class="post-date" title="2018-12-25 16:31:29">2018/12/25</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/2f9d64a9.html" data-tag="object detection,rcnn" data-author="">
+            <span class="post-title" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</span>
+            <span class="post-date" title="2019-11-10 21:03:14">2019/11/10</span>
+        </a>
+        
+        <a class="python " href="/post/b8f3def3.html" data-tag="python" data-author="">
+            <span class="post-title" title="python2.x和python3.x主要的差异">python2.x和python3.x主要的差异</span>
+            <span class="post-date" title="2019-11-13 17:20:48">2019/11/13</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/a58d66d1.html" data-tag="Fast-RCNN,two-stage detector" data-author="">
+            <span class="post-title" title="2015_Fast R-CNN(ICCV2015)Ross Girshick">2015_Fast R-CNN(ICCV2015)Ross Girshick</span>
+            <span class="post-date" title="2020-01-10 17:25:24">2020/01/10</span>
+        </a>
+        
+        <a class="深度学习 模型结构优化 " href="/post/92de5aab.html" data-tag="resnet" data-author="">
+            <span class="post-title" title="2016_Deep Residual Learning for Image Recognition_CVPR2016_HeK et al">2016_Deep Residual Learning for Image Recognition_CVPR2016_HeK et al</span>
+            <span class="post-date" title="2020-01-09 17:17:21">2020/01/09</span>
+        </a>
+        
+        <a class="深度学习 模型结构优化 " href="/post/d9144852.html" data-tag="xception" data-author="">
+            <span class="post-title" title="2017_Xception:Deep learning with Depthwise Separable Convolutions_CVPR2017_CholletF">2017_Xception:Deep learning with Depthwise Separable Convolutions_CVPR2017_CholletF</span>
+            <span class="post-date" title="2020-01-10 16:27:06">2020/01/10</span>
+        </a>
+        
+        <a class="深度学习 模型结构优化 " href="/post/96c98dd3.html" data-tag="resnet" data-author="">
+            <span class="post-title" title="2016_Identity Mappings in Deep Residual Networks_ECCV2016_HeK et al">2016_Identity Mappings in Deep Residual Networks_ECCV2016_HeK et al</span>
+            <span class="post-date" title="2020-01-14 17:15:30">2020/01/14</span>
+        </a>
+        
+        <a class="" href="/post/12fd4503.html" data-tag="" data-author="">
+            <span class="post-title" title="terminator+tmux打造超级终端">terminator+tmux打造超级终端</span>
+            <span class="post-date" title="2016-11-17 22:35:24">2016/11/17</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用git来管理各种文档">利用git来管理各种文档</span>
+            <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
+        </a>
+        
+        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/4ec81054.html" data-tag="object detection,rcnn,spp-net,fast rcnn,faster rcnn" data-author="">
+            <span class="post-title" title="object detection">object detection</span>
+            <span class="post-date" title="2016-12-04 11:43:01">2016/12/04</span>
+        </a>
+        
+        <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
+            <span class="post-title" title="sublime基础用法汇总">sublime基础用法汇总</span>
+            <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/78cc5777.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用sublime文本编辑工具和markdown标记语言写印象笔记">利用sublime文本编辑工具和markdown标记语言写印象笔记</span>
+            <span class="post-date" title="2016-11-17 22:32:59">2016/11/17</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/fe660c1.html" data-tag="two-stage detector,RFCN" data-author="">
+            <span class="post-title" title="2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai">2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai</span>
+            <span class="post-date" title="2020-01-10 13:16:44">2020/01/10</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/c8c7a90a.html" data-tag="FPN" data-author="">
+            <span class="post-title" title="2017_Feature Pyramid Networks for object detection(CVPR2017)Tsung-Yi Lin.pdf">2017_Feature Pyramid Networks for object detection(CVPR2017)Tsung-Yi Lin.pdf</span>
+            <span class="post-date" title="2020-01-13 21:30:50">2020/01/13</span>
+        </a>
+        
+        <a class="深度学习 实例分割 " href="/post/f80ddd8e.html" data-tag="Mask-RCNN" data-author="">
+            <span class="post-title" title="2017_Mask R-CNN(ICCV2017)Kaiming He">2017_Mask R-CNN(ICCV2017)Kaiming He</span>
+            <span class="post-date" title="2020-01-15 21:43:03">2020/01/15</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/f4b2034c.html" data-tag="Light-Head RCNN,RCNN" data-author="">
+            <span class="post-title" title="2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al">2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al</span>
+            <span class="post-date" title="2020-01-20 21:34:46">2020/01/20</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/eb34d552.html" data-tag="Focal Loss,RetinaNet,one-stage Detector" data-author="">
+            <span class="post-title" title="2017_Focal Loss for Dense Object Detection(ICCV2017)Tsung-Yi Lin">2017_Focal Loss for Dense Object Detection(ICCV2017)Tsung-Yi Lin</span>
+            <span class="post-date" title="2020-01-17 15:36:06">2020/01/17</span>
+        </a>
+        
+        <a class="深度学习 模型结构优化 " href="/post/15020972.html" data-tag="Inception,Inception-v3" data-author="">
+            <span class="post-title" title="2016_Rethinking the Inception Architecture for Computer Vision(CVPR2016)_SzegedyC et al">2016_Rethinking the Inception Architecture for Computer Vision(CVPR2016)_SzegedyC et al</span>
+            <span class="post-date" title="2020-01-20 13:18:55">2020/01/20</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/d9ff40b9.html" data-tag="工具" data-author="">
+            <span class="post-title" title="搭建属于你自己的工作环境">搭建属于你自己的工作环境</span>
+            <span class="post-date" title="2016-11-17 21:23:17">2016/11/17</span>
+        </a>
+        
+        <a class="深度学习 " href="/post/0.html" data-tag="deep learning,convolution neural network,CNN" data-author="">
+            <span class="post-title" title="卷积神经网络的基本概念">卷积神经网络的基本概念</span>
+            <span class="post-date" title="2019-02-28 21:31:29">2019/02/28</span>
+        </a>
+        
+        <a class="深度学习 目标检测 " href="/post/60c293cd.html" data-tag="object detection,SPPnet" data-author="">
+            <span class="post-title" title="2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He">2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He</span>
+            <span class="post-date" title="2019-11-10 22:01:15">2019/11/10</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-2017-Light-Head-R-CNN-In-Defense-of-Two-Stage-Object-Detector-CVPR2017-LiZ-et-al" class="article article-type-post" itemscope="" itemprop="blogPost">
+    
+        <h1 class="article-title">2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="深度学习">深度学习</a>/
+            
+                <a href="javascript:" data-rel="目标检测">目标检测</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color1">Light-Head RCNN</a>
+            
+            <a href="javascript:" class="color5">RCNN</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title="更新时间: 2020-01-21 16:36:51">2020-01-20 21:34</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:2.5k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、背景及意义（动机）"><span class="toc-text">一、背景及意义（动机）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、使用什么方法来解决问题（创新点）"><span class="toc-text">二、使用什么方法来解决问题（创新点）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、方法介绍"><span class="toc-text">三、方法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-Light-Head-R-CNN"><span class="toc-text">3.1 Light-Head R-CNN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-Thin-Feature-maps-for-RoI-warping"><span class="toc-text">3.1.1 Thin Feature maps for RoI warping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-Light-Head-R-CNN-for-Object-Detection"><span class="toc-text">3.1.2 Light-Head R-CNN for Object Detection</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、实验结果"><span class="toc-text">四、实验结果</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-实现细节"><span class="toc-text">4.1 实现细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Ablation-Experiments"><span class="toc-text">4.2 Ablation Experiments</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-使用小feature-map对性能的影响"><span class="toc-text">4.2.1 使用小feature map对性能的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-使用Large-separable-convolution对性能的影响"><span class="toc-text">4.2.2 使用Large separable convolution对性能的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-使用Light-Head-R-CNN对性能的影响"><span class="toc-text">4.2.3 使用Light-Head R-CNN对性能的影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-Light-Head-R-CNN-高准确率下的设置"><span class="toc-text">4.3 Light-Head R-CNN,高准确率下的设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-Light-Head-R-CNN-高速度下的设置"><span class="toc-text">4.4 Light-Head R-CNN,高速度下的设置</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h1><p>在这篇论文中，作者调查了为什么两阶段的方法没法跟一阶段的方法一样快。作者发现主要原因是两阶段方法的检测部分太重了，很影响速度，即使把backbone换成轻量级的也无法提速。比如faster-rcnn使用了两个很大的全连接层去对每个区域的候选目标做进一步的筛选和定位。resnet backbone+faster-rcnn使用了整个resnet第五stage去对每个区域的候选目标做进一步的分类和定位，这些都是很耗时的；另外由于ROIpooling出来的特征也很大，所以在接入第一层全连接层的时候，运算量也会很大，这些都对速度带来很大的影响。为了解决逐区域预测带来的计算量的极大消耗，R-FCN使用了一个区域共享的全卷积神经网络去对每个ROI区域做进一步的筛选和定位，但是R-FCN使用了一个很大的位置敏感得分图，这个也很消耗内存和计算时间。为此作者提出了一个轻量级的ROI特征提取层及轻量级的检出头，构建了一个高效但是准确率很高的两阶段检测器。在使用resnet-101作为backbone，并加上提到的轻量级ROI特征提取层及轻量级检出头，并在保持时间效率的情况下，提到的方法可以超过在COCO数据集上最先进的检出方法。当将backbone替换为类xception的网络结构的时候，更是可以在COCO测试集上以每秒102帧的速度达到30.7mmAP的效果，在速度与准确率上远超YOLO和SSD.<br><img src="/post/undefined/68995EB4-FDDF-48E3-AC69-D36F094432CC.png"><br>Figure 1为提到的方法在使用不同的backbone下，与最先进的目标检测方法在准确率和速度上的对比情况。</p>
+<h1 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h1><ol>
+<li>提出了一个轻量级的ROI特征提取层及轻量级的检出头，构建了一个高效但是准确率很高的两阶段检测器。</li>
+<li>高准确率版本的Light-Head R-CNN在COCO test-dev上与其他最先进的方法的对比要比最优方法高出1.4个点。</li>
+<li>快速版本的Light-Head R-CNN与最先进的快速检测器做比较，在速度和准确率上都比最先进方法要好。</li>
+</ol>
+<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><h2 id="3-1-Light-Head-R-CNN"><a href="#3-1-Light-Head-R-CNN" class="headerlink" title="3.1 Light-Head R-CNN"></a>3.1 Light-Head R-CNN</h2><img src="/post/undefined/E34F9B44-25F5-446E-9A21-F2F69DE972E6.png">
+<p>传统的目标检测器的目标检出部分包括两个部分：一个是R-CNN子网，另一个是RoI warping。只考虑准确率的话，faster rcnn更加擅长对ROI进行分类，但是为了降低计算量，通常在R-CNN子网里面会使用一个全局的平均pooling层，这样往往会造成空间信息的缺失从而影响到定位效果；而RFCN则是直接使用位置敏感Pooling层去得到ROI的分类和定位结果，这种方式没有进行逐区域的计算，性能往往比faster rcnn差。只考虑速度的话，faster rcnn对每个区域都应用了一个RCNN子网速度较慢，特别是当候选目标比较多的时候，速度更加慢；RFCN没有对每个区域使用RCNN子网，但是它需要生成一个很大的位置敏感得分图，也很耗时。faster rcnn和RFCN网络整体结构如Figure2(a)和Figure2(b)所示。考虑到这些问题，作者使用一个简单的全连接层作为R-CNN子网，并减少用于R-CNN子网的特征维度，构建了一个Light-Head的R-CNN网络。构建的Light-head RCNN网络整体结构如Figure2(C)所示。</p>
+<h3 id="3-1-1-Thin-Feature-maps-for-RoI-warping"><a href="#3-1-1-Thin-Feature-maps-for-RoI-warping" class="headerlink" title="3.1.1 Thin Feature maps for RoI warping"></a>3.1.1 Thin Feature maps for RoI warping</h3><p>在将候选的特征输入到R-CNN子网之前，会使用RoI warping将候选的特征固定在一定的维度。作者在提到的网络中，使用了一个小的特征图供RoI warping提取特征。作者发现小特征图不仅可以提高准确率而且还能够节省内存和计算时间。在使用小的特征图之后，R-CNN子网可以不用使用全局平均pooling，从而可以提高性能；R-FCN也可以在接一个子网去提升R-CNN的效果。</p>
+<h3 id="3-1-2-Light-Head-R-CNN-for-Object-Detection"><a href="#3-1-2-Light-Head-R-CNN-for-Object-Detection" class="headerlink" title="3.1.2 Light-Head R-CNN for Object Detection"></a>3.1.2 Light-Head R-CNN for Object Detection</h3><img src="/post/undefined/957507E4-3385-4CAD-A194-B383F21B0D78.png">
+<ul>
+<li>backbone<br>作者使用了两种backbone，”L”为高准确率版本；”S”为高速度版本。”L”backbone作者使用了ResNet101；”S”backbone作者使用了类Xception的网络结构。为了产生小的特征图，作者在$C_5$卷积层上应用了一个大kernel的分解卷积层，结构如Figure3所示。这里k为15，对于”S”，$C_{mid}=64$；对于”L”，$C_{mid}=256$。作者也将$C_{out}$减小为$10\times p\times p$，相对于RFCN的位置敏感得分图要小很多。</li>
+<li>R-CNN subnet<br>在每个ROI区域上作者使用单层全连接层(通道数为2048没有加入dropout)然后接入两个全连接层用于RoI的分类和回归，以此作为R-CNN子网。这里回归任务是类别无关的。</li>
+<li>RPN<br>作者将RPN接在$C_4$层，anchor包括了5种尺度3种宽高比，尺寸为$\{32^2,64^2,128^2,256^2,512^2\}$，宽高比为$\{1:2,1:1,2:1\}$。在使用RPN得到候选之后，作者使用IoU阈值为0.3的NMS来过滤掉冗余的目标；然后根据候选目标与grouth truth bbox的IoU来为anchor分配标签。当候选与grouth truth的IoU最大或者IoU大于0.7则被分配为正样本。当候选与grouth truth的IoU小于0.3，则被分配为负样本，其它的被忽略。</li>
+</ul>
+<h1 id="四、实验结果"><a href="#四、实验结果" class="headerlink" title="四、实验结果"></a>四、实验结果</h1><p>作者使用具有80个类别的COCO分类任务去评估提到的方法的有效性。并使用trainval-115k作为训练集，val-5k作为验证集。</p>
+<h2 id="4-1-实现细节"><a href="#4-1-实现细节" class="headerlink" title="4.1 实现细节"></a>4.1 实现细节</h2><ul>
+<li>使用8个Pascal TITAN XP GPU</li>
+<li>使用同步的SGD</li>
+<li>权重衰减系数为0.0001，动量系数为0.9</li>
+<li>每个batch-size每个GPU2张图片，每张图片训练的时候选择2000个RoI候选，测试的时候选择1000个RoI候选</li>
+<li>每个mini-batch将图片pad成一样大小，位置是在图片的右下角</li>
+<li>前1.5M次迭代(这里的迭代是值1张图片)学习率为0.01，之后0.5M次迭代学习率为0.001</li>
+<li>backbone为resnet的所有实验，在stage5都使用了孔洞卷积，并使用在线困难样本挖掘(OHEM)</li>
+<li>backbone使用imagenet分类任务进行预训练。</li>
+<li>roipooling大小为7x7</li>
+<li>实验的时候作者固定了backbone的第1、第2个stage。</li>
+<li>采用水平翻转数据增强方式</li>
+</ul>
+<h2 id="4-2-Ablation-Experiments"><a href="#4-2-Ablation-Experiments" class="headerlink" title="4.2 Ablation Experiments"></a>4.2 Ablation Experiments</h2><img src="/post/undefined/8F747207-F641-4E4B-8F26-1C40EEBA8CEA.png">
+<p>Table1给出了两个baseline，一个是原本的R-FCN，另一个则是在原本的R-FCN上对参数进行调整得到的更好的结果。调整方式包括：1）将图片的短边缩放到800像素，并设置最长边不超过1200。2）将RPN的anchor的尺度变成5，为$\{32^2,64^2,128^2,256^2,512^2\}$.3)将回归任务的损失函数的权重翻倍。4）在线困难样本挖掘的时候使用top256个样本5）训练的时候使用2000个候选，测试的时候使用1000个候选。</p>
+<h3 id="4-2-1-使用小feature-map对性能的影响"><a href="#4-2-1-使用小feature-map对性能的影响" class="headerlink" title="4.2.1 使用小feature map对性能的影响"></a>4.2.1 使用小feature map对性能的影响</h3><img src="/post/undefined/5781DCF7-EEED-4A07-B33E-FA9CAAACB0E5.png">
+<p>如Figure4所示，作者对原本的R-FCN做了两个调整。1）减少了原本的R-FCN的敏感得分图的通道数，从$3969(81\times 7\times 7)$减少到$490(10\times7\times7)$;2)在RSRoI pooling层之后接入两个全连接层去执行分类和回归任务。<br><img src="/post/undefined/5BD84478-A37C-4FF0-B369-DE9538611FFF.png"><br>从结果可以看出，虽然通道数减少了很多，但是结果下降并不多。另外通过使用小的feature map也可以在此结构上使用FPN网络来进一步提高性能。</p>
+<h3 id="4-2-2-使用Large-separable-convolution对性能的影响"><a href="#4-2-2-使用Large-separable-convolution对性能的影响" class="headerlink" title="4.2.2 使用Large separable convolution对性能的影响"></a>4.2.2 使用Large separable convolution对性能的影响</h3><img src="/post/undefined/249753BF-A4D3-4B86-9373-284D7615F90B.png">
+<p>原本为了减小feature map作者使用了1x1卷积，在使用由Large separabel convolution生成的小feature map去提取RoI区域特征之后，AP要比baselines高0.7个点。</p>
+<h3 id="4-2-3-使用Light-Head-R-CNN对性能的影响"><a href="#4-2-3-使用Light-Head-R-CNN对性能的影响" class="headerlink" title="4.2.3 使用Light-Head R-CNN对性能的影响"></a>4.2.3 使用Light-Head R-CNN对性能的影响</h3><img src="/post/undefined/AE67BB94-912D-49B6-B171-E8BB444626CD.png">
+<p>从结果可以看出在使用Large Kernel之后使用Light-Head R-CNN对效果提升明显。</p>
+<h2 id="4-3-Light-Head-R-CNN-高准确率下的设置"><a href="#4-3-Light-Head-R-CNN-高准确率下的设置" class="headerlink" title="4.3 Light-Head R-CNN,高准确率下的设置"></a>4.3 Light-Head R-CNN,高准确率下的设置</h2><img src="/post/undefined/458FE052-EEE3-43B5-8471-757CAC15F2B9.png">
+<p>为了获得更高的准确率，作者结合了最新的目标检测方法。如Table6所示。在使用”L”backbone的基础上，作者将RoIAlign提到的差值方法应用到了PSRoI pooling上，带来了1.3个点的提升。在此基础上，作者将nms抑制的阈值从原本的0.3，变成了0.5，带来了0.6个点的提升。紧接着作者使用了多尺度的训练方式，将图片随机reshape到{600,700,800,900,1000}然后将图片的短边reshape到训练对应的尺度上，带来了1个点的提高。<br><img src="/post/undefined/E3FF9C91-AD19-449C-B72C-CBE5A798793F.png"><br>Tabel5给出了高准确率的Light-Head R-CNN在COCO test-dev上与其他最先进的方法的对比结果。从结果可以看出提到的方法要比最优方法高出1.4个点。</p>
+<h2 id="4-4-Light-Head-R-CNN-高速度下的设置"><a href="#4-4-Light-Head-R-CNN-高速度下的设置" class="headerlink" title="4.4 Light-Head R-CNN,高速度下的设置"></a>4.4 Light-Head R-CNN,高速度下的设置</h2><img src="/post/undefined/5EDECCFE-1BFA-456F-A765-23B869DB16CD.png">
+<p>为了让推断速度更快，作者对网络及相关设置做了一些调整。包括：1）利用xception提到的逐通道卷积替换掉resnet中的卷积层,并且由于网络比较浅作者没有使用pre-activation设计。具体的网络结构如Table7所示。2）弃用孔洞卷积。3）将RPN卷积的通道数设置为256，为原来的一半。4）应用一个$kernelsize=15,C_{min}=64,C_{out}=490$的large sparable convolution。5)使用对齐的PSPooling层。<br><img src="/post/undefined/B3FB7DC1-B9C8-49B5-AFEC-3EC03D801E9C.png"><br>如Table8所示作者将快速版本的Light-Head R-CNN与最先进的快速检测器做比较，在速度和准确率上都比最先进方法要好。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 524813168@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">2.5k</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-01-20, 21:34:46</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-21, 16:36:51</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/post/f4b2034c.html" title="2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al">http://weihaoxie.com/post/f4b2034c.html</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'e1f8db51420f0826c145',
+            clientSecret: '64dc729821c9ab357090a55a4f6a97aab7dc36d7',
+            repo: 'weihaoxie.github.io',
+            owner: 'weihaoxie',
+            admin: ['weihaoxie'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js" value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 weihaoxie</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1"></script>
+
+<script src="/js/script.js?v=1.0.1"></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#GAN','#lung nodule','#segmentation','#object detection','#rcnn','#python','#Fast-RCNN','#two-stage detector','#resnet','#xception','#工具','#spp-net','#fast rcnn','#faster rcnn','#RFCN','#FPN','#Mask-RCNN','#Light-Head RCNN','#RCNN','#Focal Loss','#RetinaNet','#one-stage Detector','#Inception','#Inception-v3','#deep learning','#convolution neural network','#CNN','#SPPnet',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
