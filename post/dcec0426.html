@@ -148,7 +148,7 @@
     
         
             
-            <li><div data-rel="python">python<small>(1)</small></div>
+            <li><div data-rel="总结">总结<small>(2)</small></div>
                 
             </li>
             
@@ -160,7 +160,7 @@
     
         
             
-            <li><div data-rel="总结">总结<small>(2)</small></div>
+            <li><div data-rel="python">python<small>(1)</small></div>
                 
             </li>
             
@@ -251,15 +251,15 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">xception</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">Group Convolution</a>
     </li>
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">ResNeXt</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">xception</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -283,10 +283,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">python</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">spp-net</a>
     </li>
     
@@ -299,15 +295,11 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color3">工具</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color2">Faster RCNN</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">RFCN</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -319,7 +311,19 @@
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Faster RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RFCN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color4">FPN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Mask-RCNN</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -332,10 +336,6 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">one-stage Detector</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Mask-RCNN</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -542,7 +542,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2020-02-05 11:54:38">2017-06-03 20:57</time>
+        创建时间:<time class="date" title="更新时间: 2020-02-05 12:00:21">2017-06-03 20:57</time>
         
     </div>
     <div class="article-meta">
@@ -597,10 +597,10 @@
 <h1 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h1><ol>
 <li>提出了RPN网络用于region proposals，并与fast rcnn共享网络结构，得到faster rcnn网络模型，使得目标检测的性能及速度大大提高。</li>
 </ol>
-<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><h2 id="3-1-RPN网络"><a href="#3-1-RPN网络" class="headerlink" title="3.1 RPN网络"></a>3.1 RPN网络</h2><h3 id="3-1-1-RPN网络结构"><a href="#3-1-1-RPN网络结构" class="headerlink" title="3.1.1 RPN网络结构"></a>3.1.1 RPN网络结构</h3><img src="/post/undefined/DCA5A725-FA69-46D3-A1DA-9EEA96978446.png">
+<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><h2 id="3-1-RPN网络"><a href="#3-1-RPN网络" class="headerlink" title="3.1 RPN网络"></a>3.1 RPN网络</h2><h3 id="3-1-1-RPN网络结构"><a href="#3-1-1-RPN网络结构" class="headerlink" title="3.1.1 RPN网络结构"></a>3.1.1 RPN网络结构</h3><img src="/post/dcec0426/DCA5A725-FA69-46D3-A1DA-9EEA96978446.png">
 <p>RPN网络的输入是任意尺度的图片，输出是一系列的候选目标，每个候选目标有对应的置信度。作者使用一个全卷积神经网络来建模这个过程。为了与Fast R-CNN共享特征，RPN的网络结构作者使用了与Fast R-CNN backbone网络相同的网络结构，并共享了底层的部分卷积层。ZF网络共享了前5层卷积层，VGG网络共享了前13层卷积层。<br>为了生成候选目标，作者在最后一层共享卷积层上，滑动一个小网络为每个位置生成候选目标。这个小网络全连接到nxn的滑动窗口，将每个滑动窗口映射到一个低维向量，ZF模型为256维，VGG模型为512维；然后再连接到两个全连接层，一个用于分类目标，一个用于定位目标。在论文中作者使用的滑动窗口大小为3。Figure1给出了RPN网络的示意图。这里全连接层在每个位置进行共享，可以很自然地通过使用一个nxn的卷积层然后再接入两个1x1的卷积层来实现，nxn的卷积层作者使用了ReLU激活函数。</p>
 <h3 id="3-1-2-RPN网络使用的Anchors"><a href="#3-1-2-RPN网络使用的Anchors" class="headerlink" title="3.1.2 RPN网络使用的Anchors"></a>3.1.2 RPN网络使用的Anchors</h3><p>在RPN网络中每个滑动窗口预测k个候选框，每个候选框预测其是否包括目标还是只有背景，并定位其位置。因此每个位置分类分支预测2k个得分，回归分支预测4k个得分。预测的候选框是预定义的候选框(anchors)的一个相对偏移,每个anchor的中心位置与滑动窗口的中心相对。每个滑动窗口对应的anchors具有3个尺度和3个宽高比，共k=9个。对于大小为$W\times H$的feature map，其总共有$W\times H\times k$个anchors。</p>
-<h3 id="3-1-3-RPN网络的Loss-Function"><a href="#3-1-3-RPN网络的Loss-Function" class="headerlink" title="3.1.3 RPN网络的Loss Function"></a>3.1.3 RPN网络的Loss Function</h3><p>RPN网络的分类任务，正样本有两类anchors：a)跟grounth-truth具有最大IOU的anchor；b)跟gronth-truth的IOU大于0.7的anchor。这里单个ground-truth可能会为多个anchor分配正标签。负样本为IOU小于0.3的非正例。大于0.3小于0.7的anchors则被忽略。则loss函数可定义为：<br><img src="/post/undefined/0DD257A4-0890-4667-8603-13D75150DAF5.png"><br>其中i表示一个mini-batch中的一个anchor，$p_i$是预测第i个anchor概率。${p_i}^<em>$是真实的标签，1为正样本，0为负样本。$t_i$是预测的参数化的bbox坐标，${t_i}^</em>$真实的正样本的bbox的参数化坐标。分类loss使用交叉熵loss；回归loss采用smooth L_1。这里${p_i}^<em>L_{reg}$表示回归loss只使用正样本忽略负样本。作者通过以下方式对坐标进行参数化得到回归使用的grouth truth：<br><img src="/post/undefined/41A3DE35-A1D6-4343-B79C-BA8A2C850469.png"><br>这里$x,y,w,h$表示两个中心坐标和宽高。这里$x,x_a,x^</em>$分别代表预测的box，anchor box和grouth truth box。</p>
+<h3 id="3-1-3-RPN网络的Loss-Function"><a href="#3-1-3-RPN网络的Loss-Function" class="headerlink" title="3.1.3 RPN网络的Loss Function"></a>3.1.3 RPN网络的Loss Function</h3><p>RPN网络的分类任务，正样本有两类anchors：a)跟grounth-truth具有最大IOU的anchor；b)跟gronth-truth的IOU大于0.7的anchor。这里单个ground-truth可能会为多个anchor分配正标签。负样本为IOU小于0.3的非正例。大于0.3小于0.7的anchors则被忽略。则loss函数可定义为：<br><img src="/post/dcec0426/0DD257A4-0890-4667-8603-13D75150DAF5.png"><br>其中i表示一个mini-batch中的一个anchor，$p_i$是预测第i个anchor概率。${p_i}^<em>$是真实的标签，1为正样本，0为负样本。$t_i$是预测的参数化的bbox坐标，${t_i}^</em>$真实的正样本的bbox的参数化坐标。分类loss使用交叉熵loss；回归loss采用smooth L_1。这里${p_i}^<em>L_{reg}$表示回归loss只使用正样本忽略负样本。作者通过以下方式对坐标进行参数化得到回归使用的grouth truth：<br><img src="/post/dcec0426/41A3DE35-A1D6-4343-B79C-BA8A2C850469.png"><br>这里$x,y,w,h$表示两个中心坐标和宽高。这里$x,x_a,x^</em>$分别代表预测的box，anchor box和grouth truth box。</p>
 <h3 id="3-1-4-RPN网络的训练"><a href="#3-1-4-RPN网络的训练" class="headerlink" title="3.1.4 RPN网络的训练"></a>3.1.4 RPN网络的训练</h3><ul>
 <li>作者随机从每张图片中采样256个样本，其中正负样本的比例为1:1。如果正样本小于128个，则用负样本补充。</li>
 <li>新的网络层权重，使用0均值0.01标准差的高斯分布进行随机初始化。其它层则使用在Imagenet上进行预训练的权重进行初始化。</li>
@@ -615,19 +615,17 @@
 <li>跨过边界的anchor作者将他们忽略，不做训练。对于大小为1000X600的图片，所有的anchor约有20k个，将跨边界的去除掉后大概剩下6k个。如果跨边界的anchor不去掉，会引入很多困难的样本，使得训练无法拟合。但是测试的时候会使用整个RPN网络进行测试，这样的话会使用到跨边界的anchor，也会生成跨边界的候选目标，这些候选目标会被clip到边界。</li>
 <li>在通过RPN网络得到候选之后，会使用NMS去过滤掉IOU高于0.7的候选,最后保留得分最高的2k个候选。最后使用这2k个候选来训练Fast R-CNN。但是测试的时候则不是使用2k个。</li>
 </ul>
-<h1 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h1><p>作者在PASCAL VOC2007和PASCAL VOC2012数据集上对提到的方法的有效性进行验证。PASCAL VOC2007包括了5k张trainval图像和5k张test图像，共有20个类别。ZFnet选用5层卷积3层全连接的版本，VGG选用13层卷积和3层全连接的版本。评价指标为mAP。<br><img src="/post/undefined/273C5A9E-3213-4576-A7C9-DA1936209E08.png"><br>Table1给出了在不同proposal方法基础上使用Fast R-CNN来进行目标检测的性能。从Table1可以看出，RPN+ZF可以在只给出较少候选目标的情况下，达到比SS和EB更好的效果。在Table1中，作者也比较了不同变量对于目标检测的影响。作者发现：</p>
+<h1 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h1><p>作者在PASCAL VOC2007和PASCAL VOC2012数据集上对提到的方法的有效性进行验证。PASCAL VOC2007包括了5k张trainval图像和5k张test图像，共有20个类别。ZFnet选用5层卷积3层全连接的版本，VGG选用13层卷积和3层全连接的版本。评价指标为mAP。<br><img src="/post/dcec0426/273C5A9E-3213-4576-A7C9-DA1936209E08.png"><br>Table1给出了在不同proposal方法基础上使用Fast R-CNN来进行目标检测的性能。从Table1可以看出，RPN+ZF可以在只给出较少候选目标的情况下，达到比SS和EB更好的效果。在Table1中，作者也比较了不同变量对于目标检测的影响。作者发现：</p>
 <ol>
 <li>RPN和Fast RCNN共享特征会比不共享特征更好.</li>
 <li>使用RPN网络产生的更多的候选目标可以得到更好的性能，但是当候选目标数量达到一定量之后，性能会趋于饱和。</li>
 <li>使用nms抑制不会影响效果，反而会过滤掉一些假阳。</li>
 <li>RPN的分类任务可以用于挑选高质量的候选目标，使得用于下阶段的候选目标可以大大减少。</li>
 <li>RPN的回归任务对结果的影响很大.</li>
-<li>提高RPN网络的性能可以提高最终整体的性能。<img src="/post/undefined/FBADBB22-C38F-4180-94CF-36F93F0271A6.png">
-Table2和Table3给出了backbone使用VGG-16的Faster RCNN在PASCAL VOC 2007和PASCAL VOC 2012目标检测任务上的检出性能。从Table2和Table3中可以看出，在共享特征并只使用300个候选的情况下，backbone为VGG-16的RPN+Faster RCNN在PASCAL VOC2007和PASCAL VOC 2012目标检测任务上取得了比SS+Fast RCNN更好的结果，运行速度也远远比SS+Fast RCNN更快。<img src="/post/undefined/C612DC4F-6F19-4C28-85EC-E3875A7F5C35.png">
-Table4对比了SS+Fast R-CNN和RPN+Fast R-CNN整个目标检测系统的运行速度。从Table4可以看出在使用RPN进行proposal后，整个系统的运行速度得到了极大的提升。<img src="/post/undefined/FA827482-6937-49C6-B9BA-A8EE92250953.png">
-Figure2给出了不同的proposal方法，在不同IoU的情况下的召回率。从Figure2可以看出，RPN对于不同的proposals数量具有很强的稳定性，即使proposals数从2k降到300，对最终结果的影响也不大；而其它的proposal方法则对结果影响很大。<img src="/post/undefined/3E070A0A-68F8-444D-8A8A-DAC1ACF1DE4C.png">
-Table5对比了一阶段的目标检测和两阶段的目标检测方法的性能。从Table5可以看出Tow-Stage目标检测方法要比one-stage目标检测方法要好很多，在PASCAL VOC 2007上提升了约5个点。</li>
+<li>提高RPN网络的性能可以提高最终整体的性能。</li>
 </ol>
+<img src="/post/dcec0426/FBADBB22-C38F-4180-94CF-36F93F0271A6.png">
+<p>Table2和Table3给出了backbone使用VGG-16的Faster RCNN在PASCAL VOC 2007和PASCAL VOC 2012目标检测任务上的检出性能。从Table2和Table3中可以看出，在共享特征并只使用300个候选的情况下，backbone为VGG-16的RPN+Faster RCNN在PASCAL VOC2007和PASCAL VOC 2012目标检测任务上取得了比SS+Fast RCNN更好的结果，运行速度也远远比SS+Fast RCNN更快。<br><img src="/post/dcec0426/C612DC4F-6F19-4C28-85EC-E3875A7F5C35.png"><br>Table4对比了SS+Fast R-CNN和RPN+Fast R-CNN整个目标检测系统的运行速度。从Table4可以看出在使用RPN进行proposal后，整个系统的运行速度得到了极大的提升。<br><img src="/post/dcec0426/FA827482-6937-49C6-B9BA-A8EE92250953.png"><br>Figure2给出了不同的proposal方法，在不同IoU的情况下的召回率。从Figure2可以看出，RPN对于不同的proposals数量具有很强的稳定性，即使proposals数从2k降到300，对最终结果的影响也不大；而其它的proposal方法则对结果影响很大。<br><img src="/post/dcec0426/3E070A0A-68F8-444D-8A8A-DAC1ACF1DE4C.png"><br>Table5对比了一阶段的目标检测和两阶段的目标检测方法的性能。从Table5可以看出Tow-Stage目标检测方法要比one-stage目标检测方法要好很多，在PASCAL VOC 2007上提升了约5个点。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 524813168@qq.com </span>
@@ -645,7 +643,7 @@ Table5对比了一阶段的目标检测和两阶段的目标检测方法的性�
     <p><span class="copy-title">文章字数:</span><span class="post-count">2.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
     <p><span class="copy-title">发布时间:</span>2017-06-03, 20:57:56</p>
-    <p><span class="copy-title">最后更新:</span>2020-02-05, 11:54:38</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-05, 12:00:21</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/post/dcec0426.html" title="2016_Faster R-CNN Towards Real-Time Object Detection with Region Proposal Networks(CVPR2016)shaoqing ren">http://weihaoxie.com/post/dcec0426.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -783,7 +781,7 @@ Table5对比了一阶段的目标检测和两阶段的目标检测方法的性�
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#object detection','#rcnn','#Fast-RCNN','#two-stage detector','#resnet','#Group Convolution','#ResNeXt','#xception','#ShuffleNet','#Mobile Device','#GAN','#lung nodule','#segmentation','#python','#spp-net','#fast rcnn','#faster rcnn','#工具','#Faster RCNN','#RFCN','#Inception','#Inception-v3','#FPN','#Focal Loss','#RetinaNet','#one-stage Detector','#Mask-RCNN','#Light-Head RCNN','#RCNN','#ShuffleNet V2','#deep learning','#convolution neural network','#CNN','#SPPnet',],
+            'data': ['#object detection','#rcnn','#Fast-RCNN','#two-stage detector','#resnet','#xception','#Group Convolution','#ResNeXt','#ShuffleNet','#Mobile Device','#GAN','#lung nodule','#segmentation','#spp-net','#fast rcnn','#faster rcnn','#python','#工具','#Inception','#Inception-v3','#Faster RCNN','#RFCN','#FPN','#Mask-RCNN','#Focal Loss','#RetinaNet','#one-stage Detector','#Light-Head RCNN','#RCNN','#ShuffleNet V2','#deep learning','#convolution neural network','#CNN','#SPPnet',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
