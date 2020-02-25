@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  <title>2019_Scale-Aware Trident Networks for Object Detection_ICCV2019(Oral)_LiY et al | xieweihao&#39;s blog</title>
+  <meta name="keywords" content=" 目标检测 , 尺度问题 , TridentNet ">
+  <meta name="description" content="2019_Scale-Aware Trident Networks for Object Detection_ICCV2019(Oral)_LiY et al | xieweihao&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xieweihao&#39;s blog">
+<meta property="og:url" content="http://weihaoxie.com/404.html">
+<meta property="og:site_name" content="xieweihao&#39;s blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-11-10T13:06:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="xieweihao&#39;s blog">
+
+
+<link rel="icon" href="/img/my_avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1"></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+<script src="/js/iconfont.js?v=1.0.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/my_avatar.jpg">
+</a>
+<div class="author">
+    <span>xieweihao</span>
+</div>
+
+<div class="icon">
+    
+        
+    
+        
+        <a title="github" href="https://github.com/weihaoxie" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"/>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(28)</small></div></li>
+    
+        
+            
+            <li><div data-rel="论文阅读"><i class="fold iconfont icon-right"></i>论文阅读<small>(19)</small></div>
+                
+                    <ul class="sub hide">
+                        
+                        <li><div data-rel="计算机视觉"><i class="fold iconfont icon-right"></i>计算机视觉<small>(19)</small></div>
+                            
+                                <ul class="sub hide">
+                                    
+                                    <li><div data-rel="模型结构优化">模型结构优化<small>(7)</small></div>
+                                    </li>
+                                    
+                                    <li><div data-rel="目标检测">目标检测<small>(10)</small></div>
+                                    </li>
+                                    
+                                    <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
+                                    </li>
+                                    
+                                    <li><div data-rel="实例分割">实例分割<small>(1)</small></div>
+                                    </li>
+                                    
+                                </ul>
+                            
+                        </li>
+                            
+                        <li><div data-rel="深度学习"><i class="fold iconfont icon-right"></i>深度学习<small>(0)</small></div>
+                            
+                                <ul class="sub hide">
+                                    
+                                    <li><div data-rel="模型结构优化">模型结构优化<small>(0)</small></div>
+                                    </li>
+                                    
+                                </ul>
+                            
+                        </li>
+                            
+                    </ul>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="python">python<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+            <li><div data-rel="工作环境">工作环境<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="总结">总结<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url" href="/about">关于</a><a style="width: 50%" class="friends">友链</a></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="28">
+<input type="hidden" id="yelog_site_word_count" value="56.8k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off" id="local-search-input">
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none">
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">object detection</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">WRN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Fast-RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">two-stage detector</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">resnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">xception</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Group Convolution</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">ResNeXt</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">ShuffleNet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Mobile Device</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">GAN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">lung nodule</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">segmentation</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">python</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">工具</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">spp-net</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">fast rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">faster rcnn</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Inception</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Inception-v3</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RFCN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">FPN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">Faster RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Mask-RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Focal Loss</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RetinaNet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">one-stage Detector</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Light-Head RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">ShuffleNet V2</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">deep learning</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">convolution neural network</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">CNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color2">SPPnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">目标检测</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">尺度问题</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">SNIP</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">TridentNet</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/879cef5f.html" data-tag="目标检测,尺度问题,TridentNet" data-author="">
+            <span class="post-title" title="2019_Scale-Aware Trident Networks for Object Detection_ICCV2019(Oral)_LiY et al">2019_Scale-Aware Trident Networks for Object Detection_ICCV2019(Oral)_LiY et al</span>
+            <span class="post-date" title="2020-01-10 17:42:38">2020/01/10</span>
+        </a>
+        
+        <a class="python " href="/post/b8f3def3.html" data-tag="python" data-author="">
+            <span class="post-title" title="python2.x和python3.x主要的差异">python2.x和python3.x主要的差异</span>
+            <span class="post-date" title="2019-11-13 17:20:48">2019/11/13</span>
+        </a>
+        
+        <a class="总结 " href="/post/0.html" data-tag="deep learning,convolution neural network,CNN" data-author="">
+            <span class="post-title" title="卷积神经网络的基本概念">卷积神经网络的基本概念</span>
+            <span class="post-date" title="2019-02-28 21:31:29">2019/02/28</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/97be11b5.html" data-tag="ShuffleNet V2" data-author="">
+            <span class="post-title" title="2018_ShuffleNet V2:Practical Guidelines for Efficient CNN Architecture Design_CVPR2018_MaN et al">2018_ShuffleNet V2:Practical Guidelines for Efficient CNN Architecture Design_CVPR2018_MaN et al</span>
+            <span class="post-date" title="2019-02-01 17:29:30">2019/02/01</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 医学图像处理 " href="/post/d5dc028e.html" data-tag="GAN,lung nodule,segmentation" data-author="">
+            <span class="post-title" title="2018_[CGAN]CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation_MICCAI2018_Dakai Jin">2018_[CGAN]CT-Realistic Lung Nodule Simulation from 3D Conditional Generative Adversarial Networks for Robust Lung Segmentation_MICCAI2018_Dakai Jin</span>
+            <span class="post-date" title="2018-12-25 16:31:29">2018/12/25</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/b4229735.html" data-tag="目标检测,尺度问题,SNIP" data-author="">
+            <span class="post-title" title="2018_An Analysis of Scale Invariance in Object Detection - SNIP_CVPR2018(oral)_SinghB_DavisL">2018_An Analysis of Scale Invariance in Object Detection - SNIP_CVPR2018(oral)_SinghB_DavisL</span>
+            <span class="post-date" title="2018-12-22 08:16:27">2018/12/22</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/e3ea9c19.html" data-tag="Group Convolution,ResNeXt" data-author="">
+            <span class="post-title" title="2017_Aggregated Residual Transformations for Deep Neural Networks_CVPR2017_XieS et al">2017_Aggregated Residual Transformations for Deep Neural Networks_CVPR2017_XieS et al</span>
+            <span class="post-date" title="2018-01-22 18:14:04">2018/01/22</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/876b210.html" data-tag="ShuffleNet,Mobile Device" data-author="">
+            <span class="post-title" title="2017_ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices_CVPR2017_ZhangX et al">2017_ShuffleNet: An Extremely Efficient Convolutional Neural Network for Mobile Devices_CVPR2017_ZhangX et al</span>
+            <span class="post-date" title="2018-01-22 13:13:03">2018/01/22</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/f4b2034c.html" data-tag="Light-Head RCNN,RCNN" data-author="">
+            <span class="post-title" title="2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al">2017_Light-Head R-CNN:In Defense of Two-Stage Object Detector_CVPR2017_LiZ et al</span>
+            <span class="post-date" title="2018-01-20 21:34:46">2018/01/20</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/d9144852.html" data-tag="xception" data-author="">
+            <span class="post-title" title="2017_Xception:Deep learning with Depthwise Separable Convolutions_CVPR2017_CholletF">2017_Xception:Deep learning with Depthwise Separable Convolutions_CVPR2017_CholletF</span>
+            <span class="post-date" title="2018-01-18 16:27:06">2018/01/18</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/eb34d552.html" data-tag="Focal Loss,RetinaNet,one-stage Detector" data-author="">
+            <span class="post-title" title="2017_Focal Loss for Dense Object Detection(ICCV2017)Tsung-Yi Lin">2017_Focal Loss for Dense Object Detection(ICCV2017)Tsung-Yi Lin</span>
+            <span class="post-date" title="2018-01-17 15:36:06">2018/01/17</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 实例分割 " href="/post/f80ddd8e.html" data-tag="Mask-RCNN" data-author="">
+            <span class="post-title" title="2017_Mask R-CNN(ICCV2017)Kaiming He">2017_Mask R-CNN(ICCV2017)Kaiming He</span>
+            <span class="post-date" title="2018-01-15 21:43:03">2018/01/15</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/c8c7a90a.html" data-tag="FPN" data-author="">
+            <span class="post-title" title="2017_Feature Pyramid Networks for object detection(CVPR2017)Tsung-Yi Lin.pdf">2017_Feature Pyramid Networks for object detection(CVPR2017)Tsung-Yi Lin.pdf</span>
+            <span class="post-date" title="2018-01-13 21:30:50">2018/01/13</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/dcec0426.html" data-tag="Faster RCNN" data-author="">
+            <span class="post-title" title="2016_Faster R-CNN Towards Real-Time Object Detection with Region Proposal Networks(CVPR2016)shaoqing ren">2016_Faster R-CNN Towards Real-Time Object Detection with Region Proposal Networks(CVPR2016)shaoqing ren</span>
+            <span class="post-date" title="2017-06-03 20:57:56">2017/06/03</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/fe660c1.html" data-tag="two-stage detector,RFCN" data-author="">
+            <span class="post-title" title="2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai">2016_R-FCN_Object Detection via Region-based Fully Convolutional Networks(NIPS2016)Jifeng Dai</span>
+            <span class="post-date" title="2017-02-10 13:16:44">2017/02/10</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/15020972.html" data-tag="Inception,Inception-v3" data-author="">
+            <span class="post-title" title="2016_Rethinking the Inception Architecture for Computer Vision(CVPR2016)_SzegedyC et al">2016_Rethinking the Inception Architecture for Computer Vision(CVPR2016)_SzegedyC et al</span>
+            <span class="post-date" title="2017-01-20 13:18:55">2017/01/20</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/92de5aab.html" data-tag="resnet" data-author="">
+            <span class="post-title" title="2016_Deep Residual Learning for Image Recognition_CVPR2016_HeK et al">2016_Deep Residual Learning for Image Recognition_CVPR2016_HeK et al</span>
+            <span class="post-date" title="2017-01-14 17:17:21">2017/01/14</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/96c98dd3.html" data-tag="resnet" data-author="">
+            <span class="post-title" title="2016_Identity Mappings in Deep Residual Networks_ECCV2016_HeK et al">2016_Identity Mappings in Deep Residual Networks_ECCV2016_HeK et al</span>
+            <span class="post-date" title="2017-01-14 17:15:30">2017/01/14</span>
+        </a>
+        
+        <a class="总结 " href="/post/4ec81054.html" data-tag="object detection,rcnn,spp-net,fast rcnn,faster rcnn" data-author="">
+            <span class="post-title" title="object detection">object detection</span>
+            <span class="post-date" title="2016-12-04 11:43:01">2016/12/04</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/a58d66d1.html" data-tag="Fast-RCNN,two-stage detector" data-author="">
+            <span class="post-title" title="2015_Fast R-CNN(ICCV2015)Ross Girshick">2015_Fast R-CNN(ICCV2015)Ross Girshick</span>
+            <span class="post-date" title="2016-11-20 17:25:24">2016/11/20</span>
+        </a>
+        
+        <a class="" href="/post/f7b78535.html" data-tag="" data-author="">
+            <span class="post-title" title="sublime基础用法汇总">sublime基础用法汇总</span>
+            <span class="post-date" title="2016-11-19 11:31:51">2016/11/19</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/6de20b39.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用git来管理各种文档">利用git来管理各种文档</span>
+            <span class="post-date" title="2016-11-17 22:36:38">2016/11/17</span>
+        </a>
+        
+        <a class="" href="/post/12fd4503.html" data-tag="" data-author="">
+            <span class="post-title" title="terminator+tmux打造超级终端">terminator+tmux打造超级终端</span>
+            <span class="post-date" title="2016-11-17 22:35:24">2016/11/17</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/78cc5777.html" data-tag="工具" data-author="">
+            <span class="post-title" title="利用sublime文本编辑工具和markdown标记语言写印象笔记">利用sublime文本编辑工具和markdown标记语言写印象笔记</span>
+            <span class="post-date" title="2016-11-17 22:32:59">2016/11/17</span>
+        </a>
+        
+        <a class="工作环境 " href="/post/d9ff40b9.html" data-tag="工具" data-author="">
+            <span class="post-title" title="搭建属于你自己的工作环境">搭建属于你自己的工作环境</span>
+            <span class="post-date" title="2016-11-17 21:23:17">2016/11/17</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/60c293cd.html" data-tag="object detection,SPPnet" data-author="">
+            <span class="post-title" title="2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He">2014_SPPnet_Spatial pyramid pooling in Deep convolutional networks for visual recognition(ECCV2014)Kaiming He</span>
+            <span class="post-date" title="2016-11-11 22:01:15">2016/11/11</span>
+        </a>
+        
+        <a class="论文阅读 计算机视觉 目标检测 " href="/post/2f9d64a9.html" data-tag="object detection,rcnn" data-author="">
+            <span class="post-title" title="2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick">2014_Rich feature hierarchies for accurate object detection and semantic segmentation(CVPR2014)Ross Girshick</span>
+            <span class="post-date" title="2016-11-10 21:03:14">2016/11/10</span>
+        </a>
+        
+        <a class="" href="/post/4a17b156.html" data-tag="" data-author="">
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2016-10-12 22:35:24">2016/10/12</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-2019-Scale-Aware-Trident-Networks-for-Object-Detection-ICCV2019-Oral-LiY-et-al" class="article article-type-post" itemscope="" itemprop="blogPost">
+    
+        <h1 class="article-title">2019_Scale-Aware Trident Networks for Object Detection_ICCV2019(Oral)_LiY et al</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a href="javascript:" data-rel="论文阅读">论文阅读</a>/
+            
+                <a href="javascript:" data-rel="计算机视觉">计算机视觉</a>/
+            
+                <a href="javascript:" data-rel="目标检测">目标检测</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a href="javascript:" class="color5">目标检测</a>
+            
+            <a href="javascript:" class="color5">尺度问题</a>
+            
+            <a href="javascript:" class="color1">TridentNet</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title="更新时间: 2020-02-25 22:21:58">2020-01-10 17:42</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:5.1k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                评论:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、背景及意义（动机）"><span class="toc-text">一、背景及意义（动机）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、使用什么方法来解决问题（创新点）"><span class="toc-text">二、使用什么方法来解决问题（创新点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-本文的创新点及贡献"><span class="toc-text">2.1 本文的创新点及贡献</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、方法介绍"><span class="toc-text">三、方法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-探究不同感受野对不同尺度的目标检出性能的影响"><span class="toc-text">3.1 探究不同感受野对不同尺度的目标检出性能的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-TridentNet"><span class="toc-text">3.2 TridentNet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-权重共享的Trident-blocks"><span class="toc-text">3.2.1 权重共享的Trident blocks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-适应不同分支的感受野的训练框架"><span class="toc-text">3.2.2 适应不同分支的感受野的训练框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-用于推断的快速版本"><span class="toc-text">3.2.3 用于推断的快速版本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、实验结果及重要结论"><span class="toc-text">四、实验结果及重要结论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-实现细节"><span class="toc-text">4.1 实现细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-探究提到方法中的不同结构对性能的影响"><span class="toc-text">4.2 探究提到方法中的不同结构对性能的影响</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-探究TridentNet各个组成部分对性能的影响"><span class="toc-text">4.2.1 探究TridentNet各个组成部分对性能的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-探究分支数对性能的影响"><span class="toc-text">4.2.3 探究分支数对性能的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-探究在网络中哪个stage放置Trident-blocks最好"><span class="toc-text">4.2.4 探究在网络中哪个stage放置Trident blocks最好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-5-探究放置多少Trident-blocks最好"><span class="toc-text">4.2.5 探究放置多少Trident blocks最好</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-6-探究每个分支的性能"><span class="toc-text">4.2.6 探究每个分支的性能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-快速版本对性能的影响"><span class="toc-text">4.3 快速版本对性能的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-与最先进方法的比较"><span class="toc-text">4.4 与最先进方法的比较</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-6 i,
+    .toc-level-6 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h1><p>尺度变化对于目标检测来说，是个很关键的挑战。为了应对该挑战，有两个主要的方向，一个是利用图像金字塔，另一个则是使用网络内的特征金字塔来近似图像金字塔。多尺度的训练和测试以及SNIP都是利用了图像金字塔带来了整体检出性能的提高，特别是SNIP提高更是显著，但是这种方式大大增加了推断的时间，如fig1(a)所示。SSD和FPN则是利用了网络中的多层特征来近似图像金字塔，虽然取得了一定的效果，但是通过不同的特征层来提取目标的不同尺度信息并无法替代图像金字塔，因为输入两个不同分辨率的图像，其在网络中对应于同个图像分辨率下的同个目标区域的特征是不同的，这里特征金字塔中的每层特征都有一系列不同的参数，使得不同层的特征不具有同等的表达能力，这样也有过拟合的风险，如fig1(b)所示。不管图像金字塔还是特征金字塔，都有相同的动机，就是不同尺度的目标应该具有不同的感受野。为了利用图像金字塔和特征金字塔的优点，摈弃它们的缺点，作者在这篇论文中，首先通过一个探究性的实验，探究在目标检测任务中感受野对于不同尺度的目标有什么影响。然后基于对探究性实验的分析得出的结论，提出一个新颖的三分支网络(TridentNet)，如fig1(c)所示，该网络可以使用同等的表达能力为同个目标，生成不同尺度的特征图。TridentNet是一个并行的多分支结构，每个分支共享相同的参数，但是具有不同的感受野，不同感受野的实现主要是靠调整孔洞卷积的dilated rate参数。为了让具有不同感受野的分支能够适应不同的尺度，作者提出了一个尺度适应的训练框架。该训练框架主要是在对每个分支进行训练的时候，只使用适应该分支感受野大小的目标来训练该分支。另外由于TridentNet在推断的时候需要跑3次网络，比较影响推断速度，为此在推断的时候作者提出了TridentNet的快速近似版本。TridentNet的近似版只需利用中间分支跑一次网络，相较于原版快速版本只牺牲了很小的性能，但是相较于普通的目标检测器，快速版本可以在没有额外参数和计算代价的情况下极大提高检出性能，也使得该方法更加能够应用到实际中。最后作者在使用ResNet-101作为backbone的情况下，将COCO目标检测的mAP提高到48.4，这是目前单模型能达到的最高性能。<br><a href="https://git.io/fj5vR" target="_blank" rel="noopener">代码:https://git.io/fj5vR</a><br><img src="/post/undefined/18FE1E09-1D36-4C34-8A60-8906298A2A39.png"></p>
+<h1 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h1><h2 id="2-1-本文的创新点及贡献"><a href="#2-1-本文的创新点及贡献" class="headerlink" title="2.1 本文的创新点及贡献"></a>2.1 本文的创新点及贡献</h2><ol>
+<li>通过探究不同感受野对不同的尺度的目标的影响，揭露了为获得更好的性能，大目标应该使用更大的感受野，而小目标则应该使用相对小的感受野。</li>
+<li>提出TridentNet去解决目标检测任务中目标尺度变化范围较大的问题。该方法通过孔洞卷积来实现不同尺度大小的目标，使用不同的感受野进行识别；并使用尺度适应的方式选择合适大小的目标来训练具有不同感受野的分支。最后通过该方法可以为同个目标生成具有同等表达能力的多尺度特征，但是只需要输入单分辨率的图像。</li>
+<li>为了加快推断速度，作者提出了TridentNet的近似版本，该版本受益于权重共享的trident-block设计，只需要利用中间分支跑一次网络，在没有增加额外参数和计算代价的情况下，性能稍微比原版差一点，但是比起最先进的目标检测方法性能要提高很多。</li>
+<li>作者在COCO数据集上验证了该方法的有效性，在使用ResNet-101作为backbone的情况下，mAP提高到48.4，这是目前单模型下能达到的最高性能。</li>
+</ol>
+<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><h2 id="3-1-探究不同感受野对不同尺度的目标检出性能的影响"><a href="#3-1-探究不同感受野对不同尺度的目标检出性能的影响" class="headerlink" title="3.1 探究不同感受野对不同尺度的目标检出性能的影响"></a>3.1 探究不同感受野对不同尺度的目标检出性能的影响</h2><p>对于检出器来说，有很多设计因素会影响到最终的检出性能，包括网络深度，下采样率和感受野。网络深度和降采样率对结果的影响已经在很多工作中被调查过了，一般来说深度越深效果越好，下采样率越小效果越好。但是目前还没有对感受野的影响进行调查，为此作者首先设计了一个探究性实验，探究了感受野对目标检测的性能的影响。<br>为了让检出器在同等复杂度的情况下，具有不同的感受野，作者使用空洞卷积替代了backbone网络中某些卷积层，利用dialation rate来控制网络的感受野。<br>作者以ResNet-C4作为backbone，测试了具有不同感受野的Faster RCNN在COCO检出任务上的性能。评价指标使用COCO-style的mmAP，并给出了所有目标，小目标，中等目标和大目标的mmAP。作者测试了两个backbone，ResNet-50和ResNet-101，并通过改变第4个stage中的residual blocks中的$3\times3$卷积层的dilation rate，来得到同等复杂度不同感受野的Faster R-CNN，dilation rate的变化范围从1到3。<br><img src="/post/undefined/F44BA5E0-D793-47A0-9237-B53F4C05AEA6.png"><br>Table1总结了两个不同backbone在不同的dilation rate下的性能。从Table1中可以看出随着感受野的增大，小目标的性能在不断下降，而大目标的性能则在不断提高。从中也可以总结出两点：1）网络的感受野会影响不同尺度的目标的检出性能，即适合的感受野能提高特定尺度范围内的目标的检出性能。2）尽管ResNet-101理论上具有足够大的感受野去覆盖COCO数据集中所有大尺度的目标，大目标的检出性能也可以通过进一步增大感受野来得到提升。这也暗示了有效的感受野要小于理论的感受野。通过增大dilation rate可以提高有效感受野使大目标的性能得到提高，但是同时也会影响到小目标的性能。所以不同尺度的目标要平衡好不同的感受野，才能达到更好的效果。</p>
+<h2 id="3-2-TridentNet"><a href="#3-2-TridentNet" class="headerlink" title="3.2 TridentNet"></a>3.2 TridentNet</h2><p>如Fig2所示，TridentNet主要包括了权重共享的Trident blocks以及适应不同分支的感受野的尺度适应训练框架。另外为了加快推断速度，作者提出TridentNet的快速版本。下面分别就这3部分做介绍。<br><img src="/post/undefined/50AE4300-DA10-42AE-B59D-579FAA411666.png"></p>
+<h3 id="3-2-1-权重共享的Trident-blocks"><a href="#3-2-1-权重共享的Trident-blocks" class="headerlink" title="3.2.1 权重共享的Trident blocks"></a>3.2.1 权重共享的Trident blocks</h3><p>作者提出的TridentNet其实就是利用提到的Trident block去替代检测器中某些卷积blocks。Trident block包括多个并行分支，每个分支与原本的卷积blocks共享相同的结构，除了采用不同的dilation rate。<br><img src="/post/undefined/0A05715B-0F45-4A6D-80EE-A860B33AB719.png"><br>以ResNet为例，每个bottlenet形式的residual block包括3个卷积层，kernal size分别为$1\times1,3\times3,1\times1$。如Fig3所示，与其对应的trident block则是具有同样的卷积层数，同样的kernal size，但是每个分支的$3\times3$卷积层具有不同的dilation rates。通过堆叠多个trident block可以很容易去控制不同分支的感受野。一般来说，会将trident block放置在最后一个stage，因为最后一个stage的stride比较大，这样各个分支的感受野差距比较明显。<br>由于每个分支具有相同的结构，所以可以让多个分支的权重进行共享，这样也避免了过拟合。在本文中，每个分支除了dilation rate不同之外，其它的都相同。权重共享带来了3个好处:1）相较于原本的检测器，不需要增加额外的参数；2）同个目标的不同尺度输入到网络之后得到的特征的表达能力是相同的；3）形态，姿势等变换参数可以从所有的目标中学习到，而不会减少训练目标的数量，从而不会影响到性能。</p>
+<h3 id="3-2-2-适应不同分支的感受野的训练框架"><a href="#3-2-2-适应不同分支的感受野的训练框架" class="headerlink" title="3.2.2 适应不同分支的感受野的训练框架"></a>3.2.2 适应不同分支的感受野的训练框架</h3><p>从Table1中可以看出，感受野与目标尺度的不匹配会导致性能的下降。即使在多个分支的情况下，如果使用所有的目标来训练，那每个分支都存在尺度与感受野不匹配的目标，这将会影响每个分支的性能，从而影响到最终性能。为此作者在训练具有不同感受野的分支的时候，使用了尺度与其适应的目标来训练。<br>与SNIP类似，作者为每个分支定义了一个有效的尺度范围，在训练的时候只选择尺度在有效范围内的grouth truth和proposals。具体的对于在原图上(没resize之前)宽度为w，高度为h的ROIs，其有效的尺度范围如下：<br><img src="/post/undefined/B4EC03D2-CD2A-437F-89F1-CCDCCEA3DDFD.png"><br>这个训练框架可以同时应用到RPN和R-CNN。在训练RPN的时候，作者只选择每个分支对应的有效的grouth truth boxes为每个分支的anchor分配标签。在训练R-CNN的时候，作者将每个分支无效的proposals移除掉，不用于训练。</p>
+<h3 id="3-2-3-用于推断的快速版本"><a href="#3-2-3-用于推断的快速版本" class="headerlink" title="3.2.3 用于推断的快速版本"></a>3.2.3 用于推断的快速版本</h3><p>TridentNet的推断过程是，首先为每个分支生成检出结果，然后将各个分支中没有落在其有效范围内的目标全部过滤掉，最后将所有有效的目标组合在一起，利用NMS或者soft-NMS过滤掉冗余的目标，得到最后的结果。<br>由于每个分支需要跑一次测试结果，这种方式会比较影响推断的速度，为此作者剔除了TridentNet的快速版本。TridentNet的快速版只需要对一个主要分支进行预测，这里作者使用了中间的分支，因为中间分支的有效范围同时覆盖了大目标和小目标。TridentNet的快速版本可以在牺牲很小的检出性能的情况下，达到与普通检出器同等的推断速度。这可能是由于权重共享策略，通过权重共享和多分支的训练，就等同于在网络内部应用多尺度增强。</p>
+<h1 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h1><p>作者在COCO数据集上进行实验，并按照通用的数据集使用方式，将80k训练集图片和验证集中的35k图片合并起来作为训练集，并利用验证集中的剩余5k图片作为一个小的测试集(minival)。在跟最先进方法比较的时候，作者也给出了它们在20k张测试集图片上的效果(test-dev)。</p>
+<h2 id="4-1-实现细节"><a href="#4-1-实现细节" class="headerlink" title="4.1 实现细节"></a>4.1 实现细节</h2><ul>
+<li>作者利用mxnet重新实现了Faster R-CNN检测器。</li>
+<li>检测器的backbone是在ImageNet1000上进行预训练的，在使用预训练的模型初始化的时候，作者固定了第一个residual阶段，并冻结所有的BN参数。</li>
+<li>输入的图片被rescale到短边为800。</li>
+<li>采用随机翻转进行数据增强。</li>
+<li>模型在8个GPU上进行训练，一个batchsize16张图片。</li>
+<li>默认情况下，模型训练12个epoch。</li>
+<li>起始学习率为0.02，然后在8个和第10个epoch，学习率分别乘以0.1。</li>
+<li>这里的2$\times$和3$\times$分别表示将训练的epoch总数翻倍和翻三倍，对应的学习率机制也对应发生改变。</li>
+<li>RPN网络接在ResNet的Conv4上，R-CNN网络接在ResNet的Conv5上。</li>
+<li>默认使用3个分支，三个分支的dilation rates被设置为1，2，3。</li>
+<li>对于每个分支，在NMS之前取top12000个候选目标，在NMS之后取top500个候选目标，并采集128个ROIs训练R-CNN。</li>
+<li>当采用适应不同分支感受野的尺度适应框架来训练的时候，三个分支选择的目标尺度分别为[0,90]，[30,60]，[90,无穷大]。</li>
+<li>评估方法使用平均精度AP，也给出IOU为0.5的AP和IOU为0.75的AP，作者也给出了COCO-style的$AP_s$,$AP_m$和$AP_l$，分别表示小目标(像素小于$32\times32$)、中等目标(像素大于$32\times32$小于$96\times96$)和大目标(像素大于$96\times96$)的平均精度。</li>
+</ul>
+<h2 id="4-2-探究提到方法中的不同结构对性能的影响"><a href="#4-2-探究提到方法中的不同结构对性能的影响" class="headerlink" title="4.2 探究提到方法中的不同结构对性能的影响"></a>4.2 探究提到方法中的不同结构对性能的影响</h2><h3 id="4-2-1-探究TridentNet各个组成部分对性能的影响"><a href="#4-2-1-探究TridentNet各个组成部分对性能的影响" class="headerlink" title="4.2.1 探究TridentNet各个组成部分对性能的影响"></a>4.2.1 探究TridentNet各个组成部分对性能的影响</h3><img src="/post/undefined/38F70A16-04C1-4CCE-99A3-9E1C6550AC53.png">
+<p>Table2给出了在Baseline的基础上，逐步增加各个组成部分后对整体检出性能的影响。这里的Baseline分别是以ResNet-101和ResNet-101-Deformable为backbone的faster R-CNN。在此基础上作者逐步应用多分支体系结构，权重共享设计和适应不同感受野的尺度适应训练框架来看看各个部分对整体检出性能的影响。<br>Table2(b)为直接使用3个具有不同的感受野不进行权重共享的分支来进行目标检测。从Table2中可以看到，使用多个不同感受野的分支，对两个不同backbone的faster R-CNN检出器的性能，都带来了提升。对于大目标的提升更是明显。这个也证明了使用不同的感受野对不同尺度目标检出性能的提高很关键。<br>Table2(d)为在多分支的基础上，使用尺度适应框架来训练的结果。从结果来看，整体的性能并没有得到提升，虽然它提高了小目标的检出性能，但是却降低了大目标的检出性能。作者认为虽然各个分支使用了合适的尺度进行训练，避免了使用过大过小的目标尺度的情况，但是整体训练样本却减少了，这样有可能带来过拟合。<br>Table2(c)为在多分支的基础上，进行权重共享，但是每个分支使用所有尺度的目标来训练。从Table2(c)中可以看出权重共享在两个不同的backbone下都得到了提高。通过权重共享的方式可以减少模型的参数避免过拟合，从而是检出器的性能得到提高。<br>Table2(e)为在权重共享的基础上，使用尺度适应的训练框架。由于权重共享设置，使得网络训练的时候仍然使用所有的样本来训练，减少了过拟合，从而是最终的结果得到提高。但是这里其实提高并不明显。<br>从结果也可以看出，提到的Trident block与deformable convolution是互补的，都带来了性能的提高。</p>
+<h3 id="4-2-3-探究分支数对性能的影响"><a href="#4-2-3-探究分支数对性能的影响" class="headerlink" title="4.2.3 探究分支数对性能的影响"></a>4.2.3 探究分支数对性能的影响</h3><img src="/post/undefined/E8D9E9B0-2E0A-488B-8096-7BD3C760F62F.png">
+<p>Table3给出了使用1个到4个分支的情况下，TridentNet的性能，这里并没有应用尺度适应框架，避免干扰试验的客观性。从Table3可以看出多分支比起单分支效果要提高不少，但是当分支数超过3个之后，性能开始饱和，为此作者只选择3个分支，也因此把该方法命名为TridentNet。</p>
+<h3 id="4-2-4-探究在网络中哪个stage放置Trident-blocks最好"><a href="#4-2-4-探究在网络中哪个stage放置Trident-blocks最好" class="headerlink" title="4.2.4 探究在网络中哪个stage放置Trident blocks最好"></a>4.2.4 探究在网络中哪个stage放置Trident blocks最好</h3><img src="/post/undefined/070AA4D7-6906-4BC1-8B70-B9F3C1649D37.png">
+<p>Table4给出了将Trident blocks放置在conv2，conv3，conv4 stage上的效果，对应的stride分别为4、8和16。从Table4可以看出，相较于放置在Conv4 stage，放置在Conv2，Conv3 stage上时，性能只比baseline提高一点点。这是因为conv2、conv3 stage对应的stride不够大，使得3个分支的感受野差异较小。</p>
+<h3 id="4-2-5-探究放置多少Trident-blocks最好"><a href="#4-2-5-探究放置多少Trident-blocks最好" class="headerlink" title="4.2.5 探究放置多少Trident blocks最好"></a>4.2.5 探究放置多少Trident blocks最好</h3><img src="/post/undefined/10737DC6-2D77-4AC3-AE6D-54143948C949.png">
+<p>由于在Conv4 stage有很多个residual block，那应该放置多少个trident block合适呢。Fig4给出了将Conv4 stage中不同数量的residual block替换为trident block后的效果。从Fig4可以看出，当Trident block的数量超过10，TridentNet的性能就比较稳定了，也不会出现性能下降的情况。这也说明了在各个分支的感受野差异足够大的情况下，TridentNet中tridnet block的数量具有很强的鲁棒性。</p>
+<h3 id="4-2-6-探究每个分支的性能"><a href="#4-2-6-探究每个分支的性能" class="headerlink" title="4.2.6 探究每个分支的性能"></a>4.2.6 探究每个分支的性能</h3><img src="/post/undefined/C82422A8-5257-46F5-BDFF-7903A02091F3.png">
+<p>Table5给出了TridentNet中不同分支的性能及多个分支组合的性能，这里的TridentNet作者也使用了尺度训练框架。从Table5可以看出，具有最小感受野且利用小尺度目标来训练的branch-1对小尺度目标的检出效果最好；branch-2则是对中尺度的目标效果最好；branch-3对大尺度的目标效果最好。最后三分支的组合方法，从多个分支中继承了它们的优点，取得了最好的效果。</p>
+<h2 id="4-3-快速版本对性能的影响"><a href="#4-3-快速版本对性能的影响" class="headerlink" title="4.3 快速版本对性能的影响"></a>4.3 快速版本对性能的影响</h2><img src="/post/undefined/C388A557-D3F3-44BA-AAC5-4550FBC2DBFE.png">
+<p>为了减少TridentNet的推断时间，作者提出了TridentNet的快速版本，快速版本只使用了TridentNet的一个主要分支来进行推断，因此可以大大节省推断时间。如Table5所示，branch-2效果是最好的，很自然地成为主分支的候选。branch-2由于同时包含了其他两个分支的结果，可以得到比其他两个分支更优的效果。Table6为使用不同尺度来训练三个分支的情况下，TridentNet的快速版本的效果。从Table6中可以看出，随着中间分支适应的尺度范围的增大，整体的AP也不断的提高，从Table6(c)可以看出当中间分支适应所有尺度范围的情况下，比起baseline AP要高出1.4个点。在将3个分支适应的尺度全部扩大到支持所有尺度的情况下，AP进一步提高到40.0，这相较于普通版本AP只减低了0.6。作者认为这主要得益于权重共享策略，这种多分支的尺度无关的训练框架就类似在网络内执行了尺度增强策略。</p>
+<h2 id="4-4-与最先进方法的比较"><a href="#4-4-与最先进方法的比较" class="headerlink" title="4.4 与最先进方法的比较"></a>4.4 与最先进方法的比较</h2><img src="/post/undefined/82235D7F-84F9-4A1E-B4DD-96F828CF5ACD.png">
+<p>Table7给出了最先进的目标检测方法及TridentNet的不同设置在COCO test-dev数据集下的测试结果。从Table7中可以看出，TridentNet应用到以ResNet-101为backbone的faster R-CNN检测器上并在2$\times$epoch数的情况下AP可以达到42.7。为了与SNIP和SNIPER进行公平的比较，在使用跟它们一致的多尺度训练，soft-NMS，Deformable卷积，large-batch BN和3$\times$的epochs数量的情况下，AP可以达到46.8，如Table7中的$TridentNet^<em>$，这个指标已经超过了SNIP和SNIPER，这里还没有使用图像金字塔。在使用图像金字塔进行测试的情况下，可以将$TridentNet^</em>$的性能进一步提高到48.4。这是目前为止以resnet-101为backbone的情况下达到的最优的性能。在使用快速版本+图像金字塔进行测试的时候，$TridentNet^*$的AP可以达到47.6。<br><img src="/post/undefined/360BD2E9-6EA1-483D-B3F6-9FDFCFB61BF8.png"><br>Table8给出了在R-CNN直接采用2个fc层来进行精细的分类和回归而不是采用conv5之后的网络层来进行精细的分类和回归的情况下，TridentNet和FPN，ASPP的对比情况。从Table8中可以看出，TridentNet在各个尺度上都要由于其他方法。在使用快速版本的情况下，可以AP可以达到41.0，比起baseline要高出1.2个点，这也进一步说明了该方法的有效性。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 524813168@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>2019_Scale-Aware Trident Networks for Object Detection_ICCV2019(Oral)_LiY et al</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">5.1k</span></p>
+    <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
+    <p><span class="copy-title">发布时间:</span>2020-01-10, 17:42:38</p>
+    <p><span class="copy-title">最后更新:</span>2020-02-25, 22:21:58</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/post/879cef5f.html" title="2019_Scale-Aware Trident Networks for Object Detection_ICCV2019(Oral)_LiY et al">http://weihaoxie.com/post/879cef5f.html</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: 'e1f8db51420f0826c145',
+            clientSecret: '64dc729821c9ab357090a55a4f6a97aab7dc36d7',
+            repo: 'weihaoxie.github.io',
+            owner: 'weihaoxie',
+            admin: ['weihaoxie'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js" value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 weihaoxie</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1"></script>
+
+<script src="/js/script.js?v=1.0.1"></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#object detection','#rcnn','#WRN','#Fast-RCNN','#two-stage detector','#resnet','#xception','#Group Convolution','#ResNeXt','#ShuffleNet','#Mobile Device','#GAN','#lung nodule','#segmentation','#python','#工具','#spp-net','#fast rcnn','#faster rcnn','#Inception','#Inception-v3','#RFCN','#FPN','#Faster RCNN','#Mask-RCNN','#Focal Loss','#RetinaNet','#one-stage Detector','#Light-Head RCNN','#RCNN','#ShuffleNet V2','#deep learning','#convolution neural network','#CNN','#SPPnet','#目标检测','#尺度问题','#SNIP','#TridentNet',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
