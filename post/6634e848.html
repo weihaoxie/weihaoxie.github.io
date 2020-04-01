@@ -108,11 +108,11 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(30)</small></div></li>
+    <li><div class="all active">全部文章<small>(31)</small></div></li>
     
         
             
-            <li><div data-rel="论文阅读"><i class="fold iconfont icon-right"></i>论文阅读<small>(20)</small></div>
+            <li><div data-rel="论文阅读"><i class="fold iconfont icon-right"></i>论文阅读<small>(21)</small></div>
                 
                     <ul class="sub hide">
                         
@@ -120,13 +120,13 @@
                             
                                 <ul class="sub hide">
                                     
+                                    <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
+                                    </li>
+                                    
                                     <li><div data-rel="模型结构优化">模型结构优化<small>(7)</small></div>
                                     </li>
                                     
                                     <li><div data-rel="目标检测">目标检测<small>(11)</small></div>
-                                    </li>
-                                    
-                                    <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
                                     </li>
                                     
                                     <li><div data-rel="实例分割">实例分割<small>(1)</small></div>
@@ -136,11 +136,11 @@
                             
                         </li>
                             
-                        <li><div data-rel="深度学习"><i class="fold iconfont icon-right"></i>深度学习<small>(0)</small></div>
+                        <li><div data-rel="深度学习"><i class="fold iconfont icon-right"></i>深度学习<small>(1)</small></div>
                             
                                 <ul class="sub hide">
                                     
-                                    <li><div data-rel="模型结构优化">模型结构优化<small>(0)</small></div>
+                                    <li><div data-rel="模型结构优化">模型结构优化<small>(1)</small></div>
                                     </li>
                                     
                                 </ul>
@@ -171,14 +171,6 @@
     
         
             
-        
-    
-        
-            
-        
-    
-        
-            
             <li><div data-rel="python">python<small>(1)</small></div>
                 
             </li>
@@ -187,9 +179,17 @@
     
         
             
+        
+    
+        
+            
             <li><div data-rel="总结">总结<small>(2)</small></div>
                 
             </li>
+            
+        
+    
+        
             
         
     
@@ -215,8 +215,8 @@
     </div>
     <div><a class="about  hasFriend  site_url" href="/about">关于</a><a style="width: 50%" class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="30">
-<input type="hidden" id="yelog_site_word_count" value="62.1k">
+<input type="hidden" id="yelog_site_posts_number" value="31">
+<input type="hidden" id="yelog_site_word_count" value="63.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -250,7 +250,11 @@
     <div class="tags-list">
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">WRN</a>
+        <a href="javascript:" class="color5">Fast-RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">two-stage detector</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -262,15 +266,11 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">Fast-RCNN</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">two-stage detector</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">resnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">WRN</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -508,6 +508,11 @@
             <span class="post-date" title="2017-02-10 13:16:44">2017/02/10</span>
         </a>
         
+        <a class="论文阅读 深度学习 模型结构优化 " href="/post/b1aa0dad.html" data-tag="WRN" data-author="">
+            <span class="post-title" title="2016_Wide Residual Networks_BMVC2016_ZagoruykoS_KomodakisN">2016_Wide Residual Networks_BMVC2016_ZagoruykoS_KomodakisN</span>
+            <span class="post-date" title="2017-02-05 12:06:17">2017/02/05</span>
+        </a>
+        
         <a class="论文阅读 计算机视觉 模型结构优化 " href="/post/15020972.html" data-tag="Inception,Inception-v3" data-author="">
             <span class="post-title" title="2016_Rethinking the Inception Architecture for Computer Vision(CVPR2016)_SzegedyC et al">2016_Rethinking the Inception Architecture for Computer Vision(CVPR2016)_SzegedyC et al</span>
             <span class="post-date" title="2017-01-20 13:18:55">2017/01/20</span>
@@ -603,7 +608,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2020-03-30 17:49:59">2018-03-30 15:59</time>
+        创建时间:<time class="date" title="更新时间: 2020-03-30 17:50:15">2018-03-30 15:59</time>
         
     </div>
     <div class="article-meta">
@@ -654,19 +659,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h1><p>nms是目标检测pipeline的一个组成部分。它首先按照候选目标的score，对候选目标进行排序；然后根据预定义的阈值，过滤掉与最大score候选目标的IOU大于该阈值的候选目标；接着重新选择一个新的最大score目标来过滤其它候选目标；重复这个过程直到没有可过滤的候选目标。在这个过程中如果存在一个真实的目标与最大score的候选目标的IOU大于预定义的阈值的情况，那么这个真实的目标就会被过滤掉，如Fig1。为了解决这个问题作者提出了soft-NMS方法，该方法不会直接将候选目标的score设置为0从而将目标直接过滤掉，而是根据最大score的候选目标与其它候选目标的IOU来对其它候选目标的score进行调整。soft-nms使用一个关于IOU的单调递减函数来调整score，该函数在当IOU很大的时候，可以将候选目标的score调整到比较低，而当IOU很小的时候则保持不变。通过将nms替换为soft-nms，R-FCN和Faster RCNN目标检测方法在PASCAL VOC2007和MS-COCO目标检测任务上的性能都得到了一致的提高。在使用最先进的目标检测方法Deformable-RFCN的情况下，soft-nms将目标检测的性能从39.8%提高到40.9%。而且，soft-nms的计算复杂度与原来的是一样的，也不需要额外的训练并且实现简单，所以该方法可以应用到任何目标检测方法中。<br><a href="http://bit.ly/2nJLNMu" target="_blank" rel="noopener">代码:http://bit.ly/2nJLNMu</a><br><img src="/post/undefined/29799F8C-1816-4CF0-804D-62D1ED18642B.png"></p>
+        <h1 id="一、背景及意义（动机）"><a href="#一、背景及意义（动机）" class="headerlink" title="一、背景及意义（动机）"></a>一、背景及意义（动机）</h1><p>nms是目标检测pipeline的一个组成部分。它首先按照候选目标的score，对候选目标进行排序；然后根据预定义的阈值，过滤掉与最大score候选目标的IOU大于该阈值的候选目标；接着重新选择一个新的最大score目标来过滤其它候选目标；重复这个过程直到没有可过滤的候选目标。在这个过程中如果存在一个真实的目标与最大score的候选目标的IOU大于预定义的阈值的情况，那么这个真实的目标就会被过滤掉，如Fig1。为了解决这个问题作者提出了soft-NMS方法，该方法不会直接将候选目标的score设置为0从而将目标直接过滤掉，而是根据最大score的候选目标与其它候选目标的IOU来对其它候选目标的score进行调整。soft-nms使用一个关于IOU的单调递减函数来调整score，该函数在当IOU很大的时候，可以将候选目标的score调整到比较低，而当IOU很小的时候则保持不变。通过将nms替换为soft-nms，R-FCN和Faster RCNN目标检测方法在PASCAL VOC2007和MS-COCO目标检测任务上的性能都得到了一致的提高。在使用最先进的目标检测方法Deformable-RFCN的情况下，soft-nms将目标检测的性能从39.8%提高到40.9%。而且，soft-nms的计算复杂度与原来的是一样的，也不需要额外的训练并且实现简单，所以该方法可以应用到任何目标检测方法中。<br><a href="http://bit.ly/2nJLNMu" target="_blank" rel="noopener">代码:http://bit.ly/2nJLNMu</a><br><img src="/post/6634e848/29799F8C-1816-4CF0-804D-62D1ED18642B.png"></p>
 <h1 id="二、使用什么方法来解决问题（创新点）"><a href="#二、使用什么方法来解决问题（创新点）" class="headerlink" title="二、使用什么方法来解决问题（创新点）"></a>二、使用什么方法来解决问题（创新点）</h1><ol>
 <li>由于传统的nms在过滤掉冗余的候选目标的时候，可能把真实的目标也过滤掉，为了减少这种情况，从而提高mAP，作者提出了soft-nms方法，该方法会应用关于IOU的递减函数，重新对候选目标的score进行调整，而不是直接过滤。</li>
 </ol>
-<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><p>当前评估目标检测的性能主要采用在不同IOU阈值下的AP作为评估准则。在使用这种评估方式的情况下，当使用一个较低的iou阈值来进行nms抑制，并使用一个较高的iou阈值来匹配grouth truth的时候，会出现较多实际上命中目标的候选框被nms抑制过滤掉的情况，从而带来较大的miss-rate而使得AP下降；而当使用一个较高的iou阈值来进行nms抑制，则会带来较多的假阳，这种情况下虽然召回高但是假阳更高，为此也会导致最终AP下降。为了应对传统nms中存在的这些问题。作者重新审视了传统的nms方法，并提出了对其的改进方式。<br>原本的nms可以写成如下一个对score进行重排序的函数：<br><img src="/post/undefined/B4C72976-E3B3-4E08-A806-5C92B54CD515.png"><br>这里的$s_i$表示当前bbox的score，$N_t$表示IOU阈值，$M$表示最大score的bbox，$b_i$表示当前的bbox。在使用原本的nms方法过滤冗余目标的时候，阈值太高或者太低都会带来mAP的下降。所以nms应该将以下几个约束考虑进来：</p>
+<h1 id="三、方法介绍"><a href="#三、方法介绍" class="headerlink" title="三、方法介绍"></a>三、方法介绍</h1><p>当前评估目标检测的性能主要采用在不同IOU阈值下的AP作为评估准则。在使用这种评估方式的情况下，当使用一个较低的iou阈值来进行nms抑制，并使用一个较高的iou阈值来匹配grouth truth的时候，会出现较多实际上命中目标的候选框被nms抑制过滤掉的情况，从而带来较大的miss-rate而使得AP下降；而当使用一个较高的iou阈值来进行nms抑制，则会带来较多的假阳，这种情况下虽然召回高但是假阳更高，为此也会导致最终AP下降。为了应对传统nms中存在的这些问题。作者重新审视了传统的nms方法，并提出了对其的改进方式。<br>原本的nms可以写成如下一个对score进行重排序的函数：<br><img src="/post/6634e848/B4C72976-E3B3-4E08-A806-5C92B54CD515.png"><br>这里的$s_i$表示当前bbox的score，$N_t$表示IOU阈值，$M$表示最大score的bbox，$b_i$表示当前的bbox。在使用原本的nms方法过滤冗余目标的时候，阈值太高或者太低都会带来mAP的下降。所以nms应该将以下几个约束考虑进来：</p>
 <ol>
 <li>临近的候选目标的分数应被降低到一定程度，以使它们增加假阳性率的可能性较小，并且要使在已排序的检测列表中真实候选的得分明显高于假阳。</li>
 <li>用一个低的NMS阈值移除掉相邻的检测并不是最优的，它会导致在使用一个较高的IOU阈值来判断候选目标是否匹配上真实目标的情况下，漏检率的增加。</li>
 <li>当使用一个高的NMS阈值的时候，则对待来更多的假阳而使得各个阈值下的AP的下降。</li>
 </ol>
-<p>soft-nms可以写成如下一个重排序函数：<br><img src="/post/undefined/1A5753FA-2CBF-4AD8-A2A4-8A97D0B5ADEF.png"><br>soft-nms会对iou大于NMS阈值的候选目标的得分进行线性的衰减，而不是直接过滤。但是上面这个函数并不连续，这会使得当达到nms阈值$N_t$的时候，候选列表发生剧烈变化。为此作者使用一个高斯惩罚函数替代上面的函数：<br><img src="/post/undefined/9B6A9798-DF50-4989-9997-256B237A2737.png"><br>这个更新规则会被应用到各个迭代，并且会更新所有除当前最高得分的候选目标外余下的候选目标。Fig2给出了soft-nms的整个流程。<br><img src="/post/undefined/97AA6678-DD07-41E7-80E7-B41AF0DD8CCB.png"></p>
-<h1 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h1><p>Table1给出了soft-nms和传统的nms在MS-COCO数据集下的效果。从Table1可以看出soft-nms要优于传统的nms方法。<br><img src="/post/undefined/401ED28C-DDBC-43DC-B41F-5C767AEFBC48.png"><br>Table2给出了soft-nms和传统的nms在Pascal VOC 2007数据集下的效果。从Table2可以看出soft-nms要优于传统的nms方法。也可以进一步验证soft-nms的泛化能力。<br><img src="/post/undefined/B58A7A01-1837-47A9-B59E-853D4FF1C31C.png"><br>在Fig6中作者分析了不同类别目标的增益情况，可以看到增益最大的是那些经常多个目标同时出现的类别，比如各种动物，而增益较少的则是那些很少有多个共同目标出现的类别。<br><img src="/post/undefined/5929D081-D723-4DBB-9E05-C5899BCD99F3.png"></p>
-<p>Fig4给出了不同的超参设置下，soft-nms和传统的nms在MS-COCO minival数据集下的效果。从Fig4可以看出，传统的nms的$N_t$在0.3到0.6的范围内较稳定，而soft-nms的$\sigma$则是在0.4到0.7的范围内比较稳定，在$\sigma$为0.1到0.7的范围内soft-nms都要比传统的nms要好。在作者的实验中，将$\sigma$设置为0.5。<br><img src="/post/undefined/DA9754F8-9C11-4676-BA0F-C932646EE19B.png"><br>Table3给出了不同的超参设置以及不同阈值设置下的性能变化情况。从Table3可以看出，为了获取更加精确的定位，可以将soft-nms的$\sigma$和匹配阈值都提高就可以了，但是传统的nms则不行。传统的nms提高很小并且会导致在匹配阈值很小的情况下效果很差；而soft-nms提高较多，并且对其它匹配阈值的影响较小。<br><img src="/post/undefined/48A101B8-D57C-43E9-B607-86FFCF21084A.png"><br>Figure5给出了soft-nms和nms在不同的匹配阈值下精度和召回的变化情况。从Figure5可以看出，在相同召回下，soft-nms要比nms精度要高，并且随着匹配阈值的增加soft-nms提高的精度更多。<br><img src="/post/undefined/B8A8690D-79F1-425A-AFF5-FF853454B217.png"></p>
+<p>soft-nms可以写成如下一个重排序函数：<br><img src="/post/6634e848/1A5753FA-2CBF-4AD8-A2A4-8A97D0B5ADEF.png"><br>soft-nms会对iou大于NMS阈值的候选目标的得分进行线性的衰减，而不是直接过滤。但是上面这个函数并不连续，这会使得当达到nms阈值$N_t$的时候，候选列表发生剧烈变化。为此作者使用一个高斯惩罚函数替代上面的函数：<br><img src="/post/6634e848/9B6A9798-DF50-4989-9997-256B237A2737.png"><br>这个更新规则会被应用到各个迭代，并且会更新所有除当前最高得分的候选目标外余下的候选目标。Fig2给出了soft-nms的整个流程。<br><img src="/post/6634e848/97AA6678-DD07-41E7-80E7-B41AF0DD8CCB.png"></p>
+<h1 id="四、实验结果及重要结论"><a href="#四、实验结果及重要结论" class="headerlink" title="四、实验结果及重要结论"></a>四、实验结果及重要结论</h1><p>Table1给出了soft-nms和传统的nms在MS-COCO数据集下的效果。从Table1可以看出soft-nms要优于传统的nms方法。<br><img src="/post/6634e848/401ED28C-DDBC-43DC-B41F-5C767AEFBC48.png"><br>Table2给出了soft-nms和传统的nms在Pascal VOC 2007数据集下的效果。从Table2可以看出soft-nms要优于传统的nms方法。也可以进一步验证soft-nms的泛化能力。<br><img src="/post/6634e848/B58A7A01-1837-47A9-B59E-853D4FF1C31C.png"><br>在Fig6中作者分析了不同类别目标的增益情况，可以看到增益最大的是那些经常多个目标同时出现的类别，比如各种动物，而增益较少的则是那些很少有多个共同目标出现的类别。<br><img src="/post/6634e848/5929D081-D723-4DBB-9E05-C5899BCD99F3.png"></p>
+<p>Fig4给出了不同的超参设置下，soft-nms和传统的nms在MS-COCO minival数据集下的效果。从Fig4可以看出，传统的nms的$N_t$在0.3到0.6的范围内较稳定，而soft-nms的$\sigma$则是在0.4到0.7的范围内比较稳定，在$\sigma$为0.1到0.7的范围内soft-nms都要比传统的nms要好。在作者的实验中，将$\sigma$设置为0.5。<br><img src="/post/6634e848/DA9754F8-9C11-4676-BA0F-C932646EE19B.png"><br>Table3给出了不同的超参设置以及不同阈值设置下的性能变化情况。从Table3可以看出，为了获取更加精确的定位，可以将soft-nms的$\sigma$和匹配阈值都提高就可以了，但是传统的nms则不行。传统的nms提高很小并且会导致在匹配阈值很小的情况下效果很差；而soft-nms提高较多，并且对其它匹配阈值的影响较小。<br><img src="/post/6634e848/48A101B8-D57C-43E9-B607-86FFCF21084A.png"><br>Figure5给出了soft-nms和nms在不同的匹配阈值下精度和召回的变化情况。从Figure5可以看出，在相同召回下，soft-nms要比nms精度要高，并且随着匹配阈值的增加soft-nms提高的精度更多。<br><img src="/post/6634e848/B8A8690D-79F1-425A-AFF5-FF853454B217.png"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 524813168@qq.com </span>
@@ -684,7 +689,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">1.6k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
     <p><span class="copy-title">发布时间:</span>2018-03-30, 15:59:27</p>
-    <p><span class="copy-title">最后更新:</span>2020-03-30, 17:49:59</p>
+    <p><span class="copy-title">最后更新:</span>2020-03-30, 17:50:15</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/post/6634e848.html" title="2017_Soft-NMS - Improving Object Detection With One Line of Code_ICCV2017(poster)_BodlaN et al">http://weihaoxie.com/post/6634e848.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -822,7 +827,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#WRN','#object detection','#rcnn','#Fast-RCNN','#two-stage detector','#resnet','#xception','#Group Convolution','#ResNeXt','#ShuffleNet','#Mobile Device','#soft-nms','#GAN','#lung nodule','#segmentation','#python','#spp-net','#fast rcnn','#faster rcnn','#工具','#Inception','#Inception-v3','#RFCN','#Faster RCNN','#FPN','#Mask-RCNN','#Focal Loss','#RetinaNet','#one-stage Detector','#Light-Head RCNN','#RCNN','#Deformable Convolution','#Deformable RoI Pooling','#ShuffleNet V2','#deep learning','#convolution neural network','#CNN','#SPPnet','#目标检测','#尺度问题','#SNIP','#TridentNet',],
+            'data': ['#Fast-RCNN','#two-stage detector','#object detection','#rcnn','#resnet','#WRN','#xception','#Group Convolution','#ResNeXt','#ShuffleNet','#Mobile Device','#soft-nms','#GAN','#lung nodule','#segmentation','#python','#spp-net','#fast rcnn','#faster rcnn','#工具','#Inception','#Inception-v3','#RFCN','#Faster RCNN','#FPN','#Mask-RCNN','#Focal Loss','#RetinaNet','#one-stage Detector','#Light-Head RCNN','#RCNN','#Deformable Convolution','#Deformable RoI Pooling','#ShuffleNet V2','#deep learning','#convolution neural network','#CNN','#SPPnet','#目标检测','#尺度问题','#SNIP','#TridentNet',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
