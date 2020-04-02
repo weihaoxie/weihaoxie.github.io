@@ -120,13 +120,13 @@
                             
                                 <ul class="sub hide">
                                     
+                                    <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
+                                    </li>
+                                    
                                     <li><div data-rel="模型结构优化">模型结构优化<small>(8)</small></div>
                                     </li>
                                     
                                     <li><div data-rel="目标检测">目标检测<small>(12)</small></div>
-                                    </li>
-                                    
-                                    <li><div data-rel="医学图像处理">医学图像处理<small>(1)</small></div>
                                     </li>
                                     
                                     <li><div data-rel="实例分割">实例分割<small>(1)</small></div>
@@ -148,13 +148,17 @@
     
         
             
-            <li><div data-rel="python">python<small>(1)</small></div>
-                
-            </li>
+        
+    
+        
             
         
     
         
+            
+            <li><div data-rel="python">python<small>(1)</small></div>
+                
+            </li>
             
         
     
@@ -175,10 +179,6 @@
             <li><div data-rel="工作环境">工作环境<small>(3)</small></div>
                 
             </li>
-            
-        
-    
-        
             
         
     
@@ -255,11 +255,7 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">ShuffleNet</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">Mobile Device</a>
+        <a href="javascript:" class="color4">xception</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -268,6 +264,14 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color3">ResNeXt</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">ShuffleNet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Mobile Device</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -307,10 +311,6 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">xception</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Inception</a>
     </li>
     
@@ -323,23 +323,15 @@
     </li>
     
     <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">FPN</a>
-    </li>
-    
-    <li class="article-tag-list-item">
         <a href="javascript:" class="color2">Faster RCNN</a>
     </li>
     
     <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">FPN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
         <a href="javascript:" class="color5">Mask-RCNN</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Light-Head RCNN</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color5">RCNN</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -352,6 +344,14 @@
     
     <li class="article-tag-list-item">
         <a href="javascript:" class="color4">one-stage Detector</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">Light-Head RCNN</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">RCNN</a>
     </li>
     
     <li class="article-tag-list-item">
@@ -608,7 +608,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title="更新时间: 2020-04-02 21:03:55">2020-02-25 22:34</time>
+        创建时间:<time class="date" title="更新时间: 2020-04-02 21:08:35">2020-02-25 22:34</time>
         
     </div>
     <div class="article-meta">
@@ -673,9 +673,9 @@
 <li>浅层特征和深层特征<br>在backbone中，浅层特征和深层特征都很重要。浅层特征能获取细节信息，这个对于定位是很关键的；深层特征可以获取更抽象更具有判别性的信息，这个对于分类是很关键的。因此两种类型特征都很重要。在实践中，作者发现对于更大的backbone网络，定位任务比分类任务更加困难，因此浅层特征对于目标检测更加重要；对于小的backbone网络，则会弱化特征表达能力而对定位和分类任务带来负面影响，对于小的backbone网络来说，浅层特征和深层特征都同等重要。<br>之前ShuffleNetV1/V2约束了感受野；而ShuffleNetV2和MobileNetV2则是缺少浅层特征，Xception则是缺少足够的高层特征。基于对先前实时分类网络的分析，作者在ShuffleNetV2的基础上进行改进，提出用于实时目标检测的backbone网络SNet。作者提出了3个SNet backbone:1)SNet49是为了能达到更快的推断;2)SNet535是为了能达到更高的准确率;3)SNet146则是两者的权衡。作者对ShuffleNetV2的调整方式，首先是将ShuffleNetV2中3X3的逐深度卷积变成5X5的逐深度卷积，计算效率差不多但是增大了网络的感受野（从原来的121到193pixels）；然后对于SNet146和SNet535则是将最后Conv5卷积层移除，并扩大浅层特征的宽度，这样可以在没有增加额外计算代价的情况下，深层更多的浅层特征，对于SNet49则是减少Conv5的宽度到512，并增加浅层的宽度，因为网络较浅，如果直接移除的话，backbone无法编码足够多的信息，但是如果把Conv5的宽度全部保留的话，这样浅层的特征又比较弱。Table1给出了backbone的体系结构，这里stage3和stage4(对于Snet49来说则是Conv5)最后的输出特征图在本文中分别被表示为$C_4$和$C_5$。<img src="/post/7e83fc6/228DD4B2-CCE3-4B1F-9854-4C3DEF18EC88.png">
 </li>
 </ol>
-<h2 id="3-2-Detection-Part"><a href="#3-2-Detection-Part" class="headerlink" title="3.2 Detection Part"></a>3.2 Detection Part</h2><h3 id="压缩RPN和detection-head"><a href="#压缩RPN和detection-head" class="headerlink" title="压缩RPN和detection head"></a>压缩RPN和detection head</h3><p>两阶段的目标检测方法通常采用大的RPN网络和很重的检出头，在使用轻量级backbone的情况下，显然是不合适的，既无法实现实时计算也很容易导致过拟合。虽然light-head R-CNN使用轻量级的检出头，但是在使用提到的轻量级的backbone的情况下，仍然过于复杂。为了解决这个问题，作者在light-head R-CNN的基础上对RPN和检出头做进一步的压缩。<br>对于RPN网络，作者将原先RPN中256个通道的3x3卷积，替换为5x5的逐深度卷积然后再接入一个256个通道的1x1卷积。作者在这里增大了卷积核的大小，以增大感受野和编码更多的上下文信息。anchor主要采用五个尺度{$32^2,64^2,128^2,256^2,512^2$}，5个宽高比{$1:2,3:4,1:1,4:3,2:1$}。<br>对于检出头，原本的light-head R-CNN生成一个小的特征图，channel数为$a\timesp\timesp$，这里$p=7$是pooling的大小，$a=10$。因为现在使用的backbone和输入的分辨率更加的小，作者将a变成5，从而消除一些冗余的计算。最后作者仍然使用PSROI align去提取每个ROI区域的特征。由于PSROI align提取的特征只有245维，为此作者在之后接入一个1024维的全连接层，用于分类和回归。</p>
+<h2 id="3-2-Detection-Part"><a href="#3-2-Detection-Part" class="headerlink" title="3.2 Detection Part"></a>3.2 Detection Part</h2><h3 id="压缩RPN和detection-head"><a href="#压缩RPN和detection-head" class="headerlink" title="压缩RPN和detection head"></a>压缩RPN和detection head</h3><p>两阶段的目标检测方法通常采用大的RPN网络和很重的检出头，在使用轻量级backbone的情况下，显然是不合适的，既无法实现实时计算也很容易导致过拟合。虽然light-head R-CNN使用轻量级的检出头，但是在使用提到的轻量级的backbone的情况下，仍然过于复杂。为了解决这个问题，作者在light-head R-CNN的基础上对RPN和检出头做进一步的压缩。<br>对于RPN网络，作者将原先RPN中256个通道的3x3卷积，替换为5x5的逐深度卷积然后再接入一个256个通道的1x1卷积。作者在这里增大了卷积核的大小，以增大感受野和编码更多的上下文信息。anchor主要采用五个尺度{$32^2,64^2,128^2,256^2,512^2$}，5个宽高比{$1:2,3:4,1:1,4:3,2:1$}。<br>对于检出头，原本的light-head R-CNN生成一个小的特征图，channel数为$a \times p \times p$，这里$p=7$是pooling的大小，$a=10$。因为现在使用的backbone和输入的分辨率更加的小，作者将a变成5，从而消除一些冗余的计算。最后作者仍然使用PSROI align去提取每个ROI区域的特征。由于PSROI align提取的特征只有245维，为此作者在之后接入一个1024维的全连接层，用于分类和回归。</p>
 <h3 id="CEM"><a href="#CEM" class="headerlink" title="CEM"></a>CEM</h3><p>CEM的目的主要是为了增大网络的感受野，以使网络可以编码更多的上下文信息。也可以使用FPN，但是FPN会增加额外的卷积层和多个检出分支，会增加很多计算量。CEM的关键思想是将多个尺度的局部上下文信息和全局上下文信息整合在一起，生成一个更加具有辨别性的特征。在CEM中，最终的特征主要整合了3个尺度的特征信息:$C_4$,$C_5$,$C_{glb}$，这里$C_{glb}$主要是对$C_5$应用全局pooling得到的。在每个特征图上面作者使用一个1x1的卷积层，将通道数变成245，然后再将他们整合到一起。最终的输出特征图大小跟$C_4$一致，为此对于$C_5$需要对其进行upsampled，对于$C_{glb}$则需要对其进行broadcase。通过使用局部和全局的上下文信息，CEM可以有效增大感受野并且可以融合更多细节信息。Fig3给出了提到的CEM结构。<br><img src="/post/7e83fc6/761C05CA-DCD3-4917-86A5-6CA344306C48.png"></p>
-<h3 id="SAM"><a href="#SAM" class="headerlink" title="SAM"></a>SAM</h3><p>在通过ROI align去提取每个ROI区域的特征的时候，我们希望特征中背景的信息尽可能小而前景的信息尽可能的大。为此作者利用RPN网络的信息，去精细化特征图中的前背景信息。SAM主要有两个输入：一个是来自RPN网络的特征图$F^{RPN}$，另一个是来自CEM的特征图$F^{CEM}$。输出的特征图$F^{SAM}$可以定义为：<br><img src="/post/7e83fc6/0DDA8932-CEF5-458A-A975-2D55CEC4DFCF.png"><br>Fig4给出了SAM的结构。<br>SAM主要有两个功能：一个是精细化前背景信息分布；另一个是增强RPN的训练，因为通过这种方式，R-CNN的信息会传到RPN网络中，从而有助于RPN网络的训练。<br><img src="/post/7e83fc6/309AF360-0628-4E9D-8CDA-04792E205836.png"></p>
+<h3 id="SAM"><a href="#SAM" class="headerlink" title="SAM"></a>SAM</h3><p>在通过ROI align去提取每个ROI区域的特征的时候，我们希望特征中背景的信息尽可能小而前景的信息尽可能的大。为此作者利用RPN网络的信息，去精细化特征图中的前背景信息。SAM主要有两个输入：一个是来自RPN网络的特征图$F^{RPN}$，另一个是来自CEM的特征图$F^{CEM}$。输出的特征图$F^{SAM}$可以定义为：<br><img src="/post/7e83fc6/0DDA8932-CEF5-458A-A975-2D55CEC4DFCF.png"><br>Fig4给出了SAM的结构。<br><img src="/post/7e83fc6/309AF360-0628-4E9D-8CDA-04792E205836.png"><br>SAM主要有两个功能：一个是精细化前背景信息分布；另一个是增强RPN的训练，因为通过这种方式，R-CNN的信息会传到RPN网络中，从而有助于RPN网络的训练。</p>
 <h1 id="四、实验结果"><a href="#四、实验结果" class="headerlink" title="四、实验结果"></a>四、实验结果</h1><h2 id="4-1-ThunderNet与最先进方法的比较"><a href="#4-1-ThunderNet与最先进方法的比较" class="headerlink" title="4.1 ThunderNet与最先进方法的比较"></a>4.1 ThunderNet与最先进方法的比较</h2><p>Table2给出了ThunderNet在PASCAL VOC目标检测任务上与其它最先进的轻量级一阶段目标检测方法及最先进的目标检测方法的对比结果。从Table2中可以看出，ThunderNet可以以更低的计算代价，得到比其它轻量级一阶段目标检测方法更优的检出性能。另外ThunderNet也可以以更低的计算代价，达到与最先进的目标检测方法如YOLOv2、SSD321、R-FCN同等水平的性能。说明ThunderNet不仅速度快，而且准确率也高。<br><img src="/post/7e83fc6/D0304311-6F1E-441E-8175-DF27B358ABDF.png"><br>Table3给出了ThunderNet在MS COCO目标检测任务上与其它最先进的轻量级一阶段目标检测方法及最先进的目标检测方法的对比结果.从Table3中可以看出，ThunderNet同样可以以更低的计算代价，得到比其它轻量级一阶段目标检测方法更优的检出性能。另外ThunderNet也可以以更低的计算代价，达到与最先进的目标检测方法如YOLOv2、SSD321、R-FCN同等水平的性能。说明ThunderNet不仅速度快，而且准确率也高。<br><img src="/post/7e83fc6/A5D4D890-0AF3-4F2A-A2D1-122BAE049C78.png"></p>
 <h2 id="4-2-探究性试验"><a href="#4-2-探究性试验" class="headerlink" title="4.2 探究性试验"></a>4.2 探究性试验</h2><h3 id="4-2-1-探究输入分辨率与backbone的关系"><a href="#4-2-1-探究输入分辨率与backbone的关系" class="headerlink" title="4.2.1 探究输入分辨率与backbone的关系"></a>4.2.1 探究输入分辨率与backbone的关系</h3><p>Table4给出了不同的backbone在不同的输入分辨率下的效果。从Table4可以看出，大的网络配小的输入分辨率或者小的网络配大的输入分辨率都不是最优的。<br><img src="/post/7e83fc6/07D0CFD6-2DC3-4CDA-8599-BF59360B68D1.png"></p>
 <h3 id="4-2-2-探究backbone网络中不同的设计对性能的影响"><a href="#4-2-2-探究backbone网络中不同的设计对性能的影响" class="headerlink" title="4.2.2 探究backbone网络中不同的设计对性能的影响"></a>4.2.2 探究backbone网络中不同的设计对性能的影响</h3><p>Table5给出了不同的设计在ImageNet分类任务和COCO检出任务上的性能。在Table5中，(b)为将SNet146中的5x5逐深度卷积替换为3x3的逐深度卷积，并稍微增加stage2到stage4的通道数，这个改变给分类和检出任务都带来了性能的下跌。说明大的感受野都有助于提高分类和检出任务的性能。（c）为在每个构建块中的第一个1x1卷积层前面加入一个3x3的逐深度卷积层，通道数保持不变，这个改变使得检出任务出现下跌，分类任务基本保持不变。因为两个3x3的卷积层基本跟一个5x5的卷积层的感受野一样，这说明5x5的卷积层的有效感受野要比两个3x3要大。（d）为在SNet146中插入1024通道的Conv5卷积层，然后稍微降低早期阶段的通道数，这个改变使得分类任务性能提高，但是检出任务性能下降。这是因为加入的Conv5卷积层，带来了更加具有判别性的特征，从而提高了分类的准确率，但是减少的早期阶段的通道数，使得编码细节信息的能力下降，从而导致目标检测的性能下降。（f）为移除掉SNet49中的Conv5卷积层，并增加stage2到stage4的通道数。这个改变使得分类和检出的性能都出现下降，这是因为移除了Conv5使得输出通道数基本减半了，这使得模型无法去学习足够的信息，也即模型的表达能力不够。(g)为将SNet49中Conv5的通道数增加到1024维度，然后降低早期阶段的通道数，使得整体的计算复杂度保持一致，这个改变提高了分类任务的性能，但是减低了目标检测的性能。这是因为增大了Conv5的通道数，使得模型有更多抽象的特征，这个变化对分类任务有益，但是由于缺少细节信息使得检出性能下降。上面的这几个实验进一步说明，分类任务和检出任务的不同。为了能得到更好的检出性能，应该平衡好抽象特征和细节特征。<br><img src="/post/7e83fc6/50FF7BC4-7D4E-47D1-BEBE-1FE5D2FA1FA5.png"><br>Table6给出了SNet和其它轻量级backbone网络的对比情况。从Table6中可以看出，在相似的计算代价的情况下，SNet146要比其它轻量级的backbone网络在目标检测任务效果更好。这也进一步阐明了作者提出的设计结构的优势。<br><img src="/post/7e83fc6/0DC8E314-9AD5-4F20-855A-F15D4D411FCE.png"></p>
@@ -699,7 +699,7 @@
     <p><span class="copy-title">文章字数:</span><span class="post-count">4.3k</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="xieweihao">xieweihao</a></p>
     <p><span class="copy-title">发布时间:</span>2020-02-25, 22:34:53</p>
-    <p><span class="copy-title">最后更新:</span>2020-04-02, 21:03:55</p>
+    <p><span class="copy-title">最后更新:</span>2020-04-02, 21:08:35</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/post/7e83fc6.html" title="2019_ThunderNet: Towards Real-time Generic Object Detection_ICCV2019(Poster)_QinZ et al">http://weihaoxie.com/post/7e83fc6.html</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -837,7 +837,7 @@
     /*作者、标签的自动补全*/
     $(function () {
         $('.search').AutoComplete({
-            'data': ['#object detection','#rcnn','#Fast-RCNN','#two-stage detector','#resnet','#WRN','#ShuffleNet','#Mobile Device','#Group Convolution','#ResNeXt','#soft-nms','#GAN','#lung nodule','#segmentation','#python','#spp-net','#fast rcnn','#faster rcnn','#工具','#xception','#Inception','#Inception-v3','#RFCN','#FPN','#Faster RCNN','#Mask-RCNN','#Light-Head RCNN','#RCNN','#Focal Loss','#RetinaNet','#one-stage Detector','#Deformable Convolution','#Deformable RoI Pooling','#ShuffleNet V2','#ThunderNet','#deep learning','#convolution neural network','#CNN','#SPPnet','#目标检测','#尺度问题','#SNIP','#TridentNet',],
+            'data': ['#object detection','#rcnn','#Fast-RCNN','#two-stage detector','#resnet','#WRN','#xception','#Group Convolution','#ResNeXt','#ShuffleNet','#Mobile Device','#soft-nms','#GAN','#lung nodule','#segmentation','#python','#spp-net','#fast rcnn','#faster rcnn','#工具','#Inception','#Inception-v3','#RFCN','#Faster RCNN','#FPN','#Mask-RCNN','#Focal Loss','#RetinaNet','#one-stage Detector','#Light-Head RCNN','#RCNN','#Deformable Convolution','#Deformable RoI Pooling','#ShuffleNet V2','#ThunderNet','#deep learning','#convolution neural network','#CNN','#SPPnet','#目标检测','#尺度问题','#SNIP','#TridentNet',],
             'itemHeight': 20,
             'width': 418
         }).AutoComplete('show');
